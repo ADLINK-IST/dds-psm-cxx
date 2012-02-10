@@ -1,8 +1,0 @@
-[TDomainParticipant.hpp]
-
-- Check wether we need to add methods on set-pub-default-qos
-- No methods to set/get QoS
-
-[TDomainParticipantFactory]
-
-- Consider removing this factory as serve no purpose now.
