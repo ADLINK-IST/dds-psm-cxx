@@ -29,27 +29,35 @@ class TDHolderBase {
 public:
     virtual ~TDHolderBase() { }
 
-    virtual dds::domain::DomainParticipant parent() const = 0;
+    virtual const dds::domain::DomainParticipant& domain_participant() const = 0;
 
-    virtual const std::string topic_name() const = 0;
+    virtual const std::string& name() const = 0;
 
-    virtual const std::string type_name() const = 0;
+    virtual const std::string& type_name() const = 0;
 };
 
 template <typename T>
 class TDHolder : public virtual TDHolderBase {
 public:
-    TDHolder(const T& t) : t_(t) { }
+    TDHolder(const dds::topic::TopicDescription<T>& t) : td_(t) { }
     virtual ~TDHolder() { }
 public:
-    virtual dds::domain::DomainParticipant parent() const;
+    virtual const dds::domain::DomainParticipant& domain_participant() const {
+    	return td_.domain_participant();
+    }
 
-    virtual const std::string topic_name() const;
+    virtual const std::string& name() const {
+    	return td_.name();
+    }
 
-    virtual const std::string type_name() const;
+    virtual const std::string& type_name() const {
+    	return td_.type_name();
+    }
+
+    const dds::topic::TopicDescription<T>& get() const { return td_; }
 
 protected:
-    T t_;
+    dds::topic::TopicDescription<T> td_;
 };
 } } }
 

@@ -20,34 +20,57 @@
  */
 
 #include <dds/core/Exception.hpp>
+#include <dds/core/ref_traits.hpp>
 #include <dds/topic/detail/AnyTopic.hpp>
-#include <dds/topic/AnyTopicDescription.hpp>
+#include <dds/topic/TopicDescription.hpp>
 
 namespace dds { namespace topic {
 
-class AnyTopic : public AnyTopicDescription {
+class AnyTopic {
 public:
     template <typename T>
-    inline AnyTopic(const T& t)
-    : AnyTopicDescription(new detail::THolder<T>(t)) { }
+    inline AnyTopic(const dds::topic::Topic<T>& t)
+    : holder_(new detail::THolder<T>(t)) { }
 
-    inline const detail::THolderBase* operator->() const {
-        return dynamic_cast<detail::THolderBase*>(holder_);
-    }
+public:
+     const dds::domain::DomainParticipant& domain_participant() const {
+    	 return holder_->domain_participant();
+     }
 
-    detail::THolderBase* operator->() {
-        return dynamic_cast<detail::THolderBase*>(holder_);
-    }
-    ~AnyTopic();
+     const dds::core::status::InconsistentTopicStatus& inconsistent_topic_status() {
+    	 return holder_->inconsistent_topic_status();
+     }
+
+       const dds::topic::qos::TopicQos& qos() const {
+    	   return holder_->qos();
+       }
+
+       void qos(const dds::topic::qos::TopicQos& q) {
+    	   holder_->qos(q);
+       }
+
 public:
     template <typename T>
-    const T& get() {
-        detail::THolder<T>* h = dynamic_cast<detail::THolder<T>* >(holder_);
+    const Topic<T>& get() {
+    	OMG_DDS_STATIC_ASSERT(::dds::topic::is_topic_type<T>::value == 1);
+        detail::THolder<T>* h = dynamic_cast<detail::THolder<T>* >(holder_.get());
         if (h == 0) {
             throw dds::core::InvalidDowncastError("invalid type");
         }
         return h->get();
     }
+
+public:
+    inline const detail::THolderBase* operator->() const {
+        return holder_.get();
+    }
+
+    detail::THolderBase* operator->() {
+        return holder_.get();
+    }
+
+private:
+    dds::core::smart_ptr_traits<detail::THolderBase>::ref_type holder_;
 };
 
 }}

@@ -20,56 +20,57 @@
  */
 
 #include <dds/core/Exception.hpp>
+#include <dds/core/ref_traits.hpp>
 #include <dds/sub/detail/AnyDataReader.hpp>
+
 
 namespace dds { namespace sub {
 class AnyDataReader {
 public:
-    template <typename DR>
-    AnyDataReader(const DR& dr)  {
-        holder_ = new detail::DRHolder<DR>(dr);
-    }
+    template <typename T>
+    AnyDataReader(const dds::sub::DataReader<T>& dr)
+    : holder_ (new detail::DRHolder<T>(dr)) { }
 
     inline const detail::DRHolderBase* operator->() const {
-        return holder_;
+        return holder_.get();
     }
 
     inline detail::DRHolderBase* operator->() {
-        return holder_;
+        return holder_.get();
     }
 
-    inline ~AnyDataReader() {
-        delete holder_;
-    }
 
 public:
     inline AnyDataReader& swap(AnyDataReader& rhs) {
-        std::swap(holder_, rhs.holder_);
+        holder_.swap(holder_);
         return *this;
     }
 
-    template <typename TOPIC>
-    AnyDataReader& operator =(const TOPIC& rhs) {
-        AnyDataReader(rhs).swap(*this);
+    template <typename T>
+    AnyDataReader& operator =(const DataReader<T>& rhs) {
+        holder_.reset(new detail::DRHolder<T>(rhs));
         return *this;
     }
 
     inline AnyDataReader& operator =(AnyDataReader rhs) {
-        rhs.swap(*this);
+    	if (this != &rhs)
+    		holder_ = rhs.holder_;
+
         return *this;
     }
 
 public:
-    template <typename DR>
-    const DR& get() {
-        detail::DRHolder<DR>* h = dynamic_cast<detail::DRHolder<DR>* >(holder_);
+    template <typename T>
+    const dds::sub::DataReader<T>& get() {
+    	OMG_DDS_STATIC_ASSERT(::dds::topic::is_topic_type<T>::value == 1);
+        detail::DRHolder<T>* h = dynamic_cast<detail::DRHolder<T>* >(holder_.get());
         if (h == 0) {
             throw dds::core::InvalidDowncastError("invalid type");
         }
         return h->get();
     }
 private:
-    detail::DRHolderBase* holder_;
+    dds::core::smart_ptr_traits<detail::DRHolderBase>::ref_type holder_;
 };
 
 }}

@@ -20,6 +20,7 @@
  */
 
 #include <dds/core/Exception.hpp>
+#include <dds/core/ref_traits.hpp>
 #include <dds/topic/detail/AnyTopicDescription.hpp>
 
 
@@ -27,55 +28,68 @@ namespace dds { namespace topic {
 
 class AnyTopicDescription {
 public:
-    template <typename T>
-    inline AnyTopicDescription(const T& t)
-    : holder_(new detail::TDHolder<T>(t)) { }
-
-    const detail::TDHolderBase* operator->() const {
-        return holder_;
-    }
-
-    detail::TDHolderBase* operator->() {
-        return holder_;
-    }
-
-    inline ~AnyTopicDescription() {
-        delete holder_;
-    }
-
-protected:
-    inline AnyTopicDescription(detail::TDHolderBase* holder)
-    : holder_(holder) { }
+	template <typename T>
+	inline AnyTopicDescription(const dds::topic::TopicDescription<T>& t)
+	: holder_(new detail::TDHolder<T>(t)) { }
 
 public:
-    inline AnyTopicDescription& swap(AnyTopicDescription& rhs) {
-        std::swap(holder_, rhs.holder_);
-        return *this;
-    }
+	const dds::domain::DomainParticipant& domain_participant() const {
+		return holder_->domain_participant();
+	}
 
-    template <typename TOPIC>
-    AnyTopicDescription& operator =(const TOPIC& rhs) {
-        AnyTopicDescription(rhs).swap(*this);
-        return *this;
-    }
+	const std::string& name() const {
+		return holder_->name();
+	}
 
-    inline AnyTopicDescription& operator =(AnyTopicDescription rhs) {
-        rhs.swap(*this);
-        return *this;
-    }
-
-public:
-    template <typename T>
-    const T& get() {
-        detail::TDHolder<T>* h = dynamic_cast<detail::TDHolder<T>* >(holder_);
-        if (h == 0) {
-            throw dds::core::InvalidDowncastError("invalid type");
-        }
-        return h->get();
-    }
+	const std::string& type_name() const {
+		return holder_->type_name();
+	}
 
 protected:
-    detail::TDHolderBase* holder_;
+	inline AnyTopicDescription(detail::TDHolderBase* holder)
+	: holder_(holder) { }
+
+public:
+	inline AnyTopicDescription& swap(AnyTopicDescription& rhs) {
+		holder_.swap(rhs.holder_);
+		return *this;
+	}
+
+	template <typename T>
+	AnyTopicDescription& operator =(const dds::topic::Topic<T>& rhs) {
+		holder_.reset(new detail::TDHolder<T>(rhs));
+		return *this;
+	}
+
+	inline AnyTopicDescription& operator =(const AnyTopicDescription& rhs) {
+		if (this != &rhs)
+			holder_ = rhs.holder_;
+
+		return *this;
+	}
+
+public:
+	template <typename T>
+	const dds::topic::TopicDescription<T>& get() {
+		// OMG_DDS_STATIC_ASSERT(::dds::topic::is_topic_type<T>::value == 1);
+		detail::TDHolder<T>* h = dynamic_cast<detail::TDHolder<T>* >(holder_.get() );
+		if (h == 0) {
+			throw dds::core::InvalidDowncastError("invalid type");
+		}
+		return h->get();
+	}
+
+public:
+	const detail::TDHolderBase* operator->() const {
+		return holder_.get();
+	}
+
+	detail::TDHolderBase* operator->() {
+		return holder_.get();
+	}
+
+protected:
+	dds::core::smart_ptr_traits<detail::TDHolderBase>::ref_type holder_;
 };
 
 }}

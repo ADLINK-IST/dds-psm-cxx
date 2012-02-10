@@ -19,8 +19,8 @@
  * limitations under the License.
  */
 
-#include <dds/sub/qos/DataReaderQos.hpp>
-#include <dds/sub/Subscriber.hpp>
+#include <dds/sub/DataReader.hpp>
+
 
 namespace dds { namespace sub { namespace detail {
 class DRHolderBase {
@@ -41,26 +41,26 @@ public:
     // TODO: Add other non type-dependent methods.
 };
 
-template <typename DR>
+template <typename T>
 class DRHolder : public DRHolderBase {
 public:
-    DRHolder(const DR& dr) : DR_(dr) { }
+    DRHolder(const dds::sub::DataReader<T>& dr) : dr_(dr) { }
     virtual ~DRHolder() { }
 public:
     virtual const dds::sub::qos::DataReaderQos qos() const {
-        return DR_.qos();
+        return dr_.qos();
     }
 
     virtual void qos(const dds::sub::qos::DataReaderQos& the_qos) {
-    	DR_.qos(the_qos);
+    	dr_.qos(the_qos);
     }
 
     virtual const std::string topic_name() const {
-        return DR_.topic().name();
+        return dr_.topic().name();
     }
 
     virtual const std::string type_name() const {
-        return DR_.topic().type_name();
+        return dr_.topic().type_name();
     }
 
     virtual ::dds::sub::Subscriber parent() const {
@@ -68,11 +68,11 @@ public:
     }
 
     virtual void close() {
-        DR_.close();
+        dr_.close();
     }
 
 private:
-    DR DR_;
+    dds::sub::DataReader<T> dr_;
 };
 } } }
 

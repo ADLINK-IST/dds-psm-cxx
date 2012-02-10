@@ -34,15 +34,15 @@ class dds::pub::detail::DWHolderBase {
 public:
   virtual ~DWHolderBase() { }
 
-    virtual const ::dds::pub::qos::DataWriterQos qos() const = 0;
+    virtual const dds::pub::qos::DataWriterQos& qos() const = 0;
 
     virtual void qos(const ::dds::pub::qos::DataWriterQos& qos) = 0;
 
-    virtual const std::string topic_name() const = 0;
+    virtual const std::string& topic_name() const = 0;
 
-    virtual const std::string type_name() const = 0;
+    virtual const std::string& type_name() const = 0;
 
-    virtual  ::dds::pub::Publisher parent() const = 0;
+    virtual  const dds::pub::Publisher& publisher() const = 0;
 
     virtual void wait_for_acknowledgments(const dds::core::Duration& timeout) = 0;
 
@@ -57,23 +57,23 @@ public:
     DWHolder(const dds::pub::DataWriter<T>& dw) : dw_(dw) { }
     virtual ~DWHolder() { }
 public:
-    virtual const ::dds::pub::qos::DataWriterQos qos() const {
+    virtual const ::dds::pub::qos::DataWriterQos& qos() const {
         return dw_.qos();
     }
 
     virtual void qos(const ::dds::pub::qos::DataWriterQos& the_qos) {
-        return dw_.qos(the_qos);
+    	dw_.qos(the_qos);
     }
 
-    virtual const std::string topic_name() const {
+    virtual const std::string& topic_name() const {
         return dw_.topic().name();
     }
 
-    virtual const std::string type_name() const {
+    virtual const std::string& type_name() const {
         return dw_.topic().type_name();
     }
 
-    virtual ::dds::pub::Publisher parent() const {
+    virtual const ::dds::pub::Publisher& publisher() const {
         return dw_.parent();
     }
   virtual void wait_for_acknowledgments(const dds::core::Duration& timeout) {
