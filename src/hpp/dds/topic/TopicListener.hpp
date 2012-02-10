@@ -19,9 +19,6 @@
  * limitations under the License.
  */
 
-#include <dds/core/corefwd.hpp>
-#include <dds/topic/topicfwd.hpp>
-
 
 namespace dds { namespace topic {
 

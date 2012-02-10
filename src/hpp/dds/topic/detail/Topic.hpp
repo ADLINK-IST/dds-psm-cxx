@@ -65,7 +65,7 @@ public:
     }
 
 public:
-	const dds::topic::qos::TopicQos qos() const {
+	const dds::topic::qos::TopicQos& qos() const {
 		return qos_;
 	}
 
@@ -73,14 +73,15 @@ public:
 		qos_ = the_qos;
 	}
 
-	::dds::core::status::InconsistentTopicStatus inconsistent_topic_status() {
-		return ::dds::core::status::InconsistentTopicStatus();
+	const ::dds::core::status::InconsistentTopicStatus& inconsistent_topic_status() {
+		return its_;
 	}
 
 private:
 	dds::topic::qos::TopicQos qos_;
     dds::topic::TopicListener<T>* listener_;
     const dds::core::status::StatusMask& mask_;
+    ::dds::core::status::InconsistentTopicStatus its_;
 
 };
 

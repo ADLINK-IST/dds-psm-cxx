@@ -21,13 +21,35 @@
 
 #include <dds/core/ref_traits.hpp>
 #include <idds/core/ConditionImpl.hpp>
-
+#include <dds/sub/status/DataStatus.hpp>
+#include <dds/sub/cond/detail/Executor.hpp>
 
 namespace dds { namespace sub { namespace cond { namespace detail {
 
 
 template <typename T>
 class ReadCondition : public idds::core::ConditionImpl {
+
+public:
+	ReadCondition(const dds::sub::DataReader<T>& dr, const dds::sub::status::DataState& status)
+	: dr_(dr),
+	  executor_(new TrivialExecutor()),
+	  status_(status)
+	{ }
+
+	template <typename FUN>
+	ReadCondition(const dds::sub::DataReader<T>& dr, const dds::sub::status::DataState& status, const FUN& functor)
+	: dr_(dr),
+	  executor_(new ParametrizedExecutor<FUN, dds::sub::DataReader<T> >(functor, dr)),
+	  status_(status)
+	  { }
+
+	virtual void dispatch() { executor_->exec(); }
+
+private:
+	dds::sub::DataReader<T> dr_;
+	dds::sub::cond::detail::Executor* executor_;
+	dds::sub::status::DataState status_;
 
 //public:
 //    typedef typename dds::core::smart_ptr_traits< dds::sub::detail::DataReaderHolder<T> >::ref_type
@@ -49,6 +71,7 @@ class ReadCondition : public idds::core::ConditionImpl {
 //private:
 //    DRHolder reader_;
 //
+
 };
 
 } } } }

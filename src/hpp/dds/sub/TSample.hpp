@@ -22,7 +22,7 @@
 #include <dds/core/Exception.hpp>
 #include <dds/core/Value.hpp>
 #include <dds/core/Time.hpp>
-
+#include <dds/sub/SampleInfo.hpp>
 
 namespace dds { namespace sub {
     template <typename T, template <typename Q> class DELEGATE>

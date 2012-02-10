@@ -24,45 +24,42 @@
 
 #include <dds/core/detail/conformance.hpp>
 #include <dds/core/types.hpp>
-#include <dds/topic/detail/topicfwd.hpp>
-#include <idds/topic/TopicDescription.hpp>
+#include <dds/topic/detail/TopicDescription.hpp>
 #include <dds/topic/Topic.hpp>
-
+#include <dds/core/Query.hpp>
 
 namespace dds { namespace topic { namespace detail {
 
 #ifdef OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT
 
 template <typename T>
-class ContentFilteredTopic  : public idds::topic::TopicDescriptionImpl<T>
+class ContentFilteredTopic  : public dds::topic::detail::TopicDescription<T>
 {
 public:
-    ContentFilteredTopic(const std::string& the_name,
-                         const dds::topic::Topic<T>& the_topic,
-                         const std::string& filter,
-                         const dds::core::StringSeq& parameters,
-                         const typename idds::topic::TopicDescriptionImpl<T>::DPHolder& dp)
-    : idds::topic::TopicDescriptionImpl<T>(the_name,
-                                           the_topic.type_name(),
-                                           dp),
-      topic_(the_topic),
-      filter_(filter),
-      params_(parameters) { }
+    ContentFilteredTopic(const std::string& name,
+                         const dds::topic::Topic<T>& topic,
+                         const dds::core::Query& query)
+    : dds::topic::detail::TopicDescription<T>(topic.domain_participant(), topic.name(), topic.type_name()),
+      topic_(topic),
+      query_(query)
+      { }
 
 	virtual ~ContentFilteredTopic() { }
 
 public:
-    const std::string& filter_expression() const {
-		return filter_;
+	const dds::core::Query& query() {
+		return query_;
 	}
 
-    const dds::core::StringSeq expression_parameters() const {
-		return params_;
+	/**
+	 * Updates the filter parameters for this content filtered topic.
+	 */
+	template <typename FWIterator>
+    void filter_parameters(const FWIterator& begin, const FWIterator& end) {
+		query_.parameters(begin, end);
 	}
 
-    void expression_parameters(const dds::core::StringSeq& params) {
-		params_ = params;
-	}
+
 
 	dds::topic::Topic<T> topic() const {
 		return topic_;
@@ -70,9 +67,7 @@ public:
 
 private:
 	dds::topic::Topic<T> topic_;
-	std::string 		filter_;
-	std::vector<std::string> params_;
-
+	dds::core::Query query_;
 };
 
 #endif  // OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT

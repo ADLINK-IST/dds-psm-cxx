@@ -47,14 +47,14 @@ class dds::sub::cond::QueryCondition : public dds::sub::cond::ReadCondition< T, 
 public:
     OMG_DDS_REF_TYPE_T(QueryCondition, dds::sub::cond::ReadCondition, T, DELEGATE)
 
+    // QueryCondition(const dds::sub::DataReader& reader, const dds::sub::status::DataStatus& status, const dds::core::Query& query) { }
+    //: dds::sub::cond::ReadCondition<T, DELEGATE<T> >(new DELEGATE<T>(reader, status, query)) { }
     ~QueryCondition() { }
 
 public:
-    const std::string query_expression() const;
-
-    dds::core::StringSeq&
-    query_parameters(dds::core::StringSeq& dst) const;
-
+    const dds::core::Query& query() {
+    	return this->delegate()->query();
+    }
     const dds::core::StringSeq query_parameters() const;
 
     void query_parameters(const dds::core::StringSeq& query_parameters);

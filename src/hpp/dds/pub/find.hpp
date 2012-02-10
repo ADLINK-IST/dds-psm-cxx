@@ -21,7 +21,6 @@
 
 #include <string>
 
-#include <dds/core/corefwd.hpp>
 #include <dds/pub/pubfwd.hpp>
 #include <dds/pub/detail/find.hpp>
 

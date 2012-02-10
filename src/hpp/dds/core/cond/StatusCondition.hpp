@@ -1,5 +1,5 @@
-#ifndef OMG_DDS_CORE_STATUS_CONDITION_HPP_
-#define OMG_DDS_CORE_STATUS_CONDITION_HPP_
+#ifndef OMG_DDS_CORE_STATUSCONDITION_HPP_
+#define OMG_DDS_CORE_STATUSCONDITION_HPP_
 
 /* Copyright 2010, Object Management Group, Inc.
  * Copyright 2010, PrismTech, Corp.
@@ -18,60 +18,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-#include <dds/core/status/State.hpp>
-#include <dds/core/cond/TCondition.hpp>
 #include <dds/core/cond/detail/StatusCondition.hpp>
+#include <dds/core/cond/TStatusCondition.hpp>
 
 namespace dds { namespace core { namespace cond {
-
-    /**
-     * A StatusCondition object is a specific Condition that is
-     * associated with each Entity.
-     * The trigger_value of the StatusCondition depends on the communication
-     * status of that entity (e.g., arrival of data, loss of information, etc.),
-     * filtered by the set of enabled_statuses on the StatusCondition.
-     * The enabled_statuses and its relation to Listener and WaitSet is detailed
-     * in Trigger State of the StatusCondition.
-     */
-    template <typename ENTITY, typename DELEGATE = dds::core::cond::detail::StatusCondition<ENTITY> >
-    class StatusCondition : public dds::core::cond::TCondition<DELEGATE> {
-    public:
-        OMG_DDS_REF_TYPE(StatusCondition, dds::core::cond::TCondition, DELEGATE)
-
-    public:
-        /**
-         * This operation defines the list of communication statuses that
-         * are taken into account to determine the trigger_value of the
-         * StatusCondition. This operation may change the trigger_value of
-         * the StatusCondition.
-         * WaitSet objects behavior depend on the changes of the trigger_value
-         * of their attached conditions. Therefore, any WaitSet to which the
-         * StatusCondition is attached is potentially affected by this operation.
-         * If this function is not invoked, the default list of enabled statuses
-         * includes all the statuses.
-         *
-         * @param status the enabled statuses
-         */
-        void
-        enabled_statuses(const ::dds::core::status::StatusMask& status) const {
-            this->delegate()->enabled_statuses(status);
-        }
-
-        /**
-         * This operation retrieves the list of communication statuses that are
-         * taken into account to determine the trigger_value of the
-         * StatusCondition. This operation returns the statuses that were
-         * explicitly set on the last call to set enabled_statuses or, if
-         * set enabled_statuses was never called, the default list
-         * (see Section 7.1.2.1.9.1).
-         */
-        const ::dds::core::status::StatusMask enabled_statuses() const {
-            return this->delegate()->enabled_statuses();
-        }
-    };
-
+	template <typename ENTITY, typename DELEGATE = dds::core::cond::detail::StatusCondition<ENTITY> >
+    class StatusCondition;
 } } }
-#endif  /* OMG_DDS_CORE_STATUS_CONDITION_HPP_ */
 
-
+#endif /* OMG_DDS_CORE_STATUSCONDITION_HPP_ */

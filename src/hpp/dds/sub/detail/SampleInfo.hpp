@@ -9,8 +9,8 @@ public:
         return dds::core::Time();
     }
     
-    inline const dds::sub::status::ReaderState state() const {
-        return dds::sub::status::ReaderState::any();
+    inline const dds::sub::status::DataState state() const {
+        return dds::sub::status::DataState::any();
     }
     
     inline const GenerationCount generation_count() const {

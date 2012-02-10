@@ -50,6 +50,7 @@ public:
 
     TInstanceHandle& operator=(const dds::core::null_type& src) {
     	this->delegate()->operator=(src);
+    	return *this;
     }
 
     bool operator==(const dds::core::null_type& other) const {

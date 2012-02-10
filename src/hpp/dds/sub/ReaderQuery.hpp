@@ -174,7 +174,7 @@ public:
     /**
      * The application intends to read or take only those samples with the
      * given ReaderState.
-     * 
+     *
      * If this ReaderQuery was initialized with a ReadCondition or
      * QueryCondition, this method shall return the ReaderState associated
      * with that condition.

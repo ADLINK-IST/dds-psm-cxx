@@ -21,7 +21,7 @@
 
 #include <dds/core/Exception.hpp>
 #include <dds/core/Time.hpp>
-#include <dds/sub/status/ReaderState.hpp>
+#include <dds/sub/status/DataStatus.hpp>
 
 
 namespace dds { namespace sub { namespace detail {

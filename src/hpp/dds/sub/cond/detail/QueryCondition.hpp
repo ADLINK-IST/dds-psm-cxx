@@ -29,12 +29,22 @@ namespace dds { namespace sub { namespace cond { namespace detail {
 template <typename T>
 class QueryCondition : public ReadCondition<T> {
 public:
-    QueryCondition() : ReadCondition<T>() { }
+    QueryCondition(const dds::sub::DataReader<T>& dr,
+    			   const dds::sub::status::DataState& status,
+    			   const dds::core::Query& query)
+    : ReadCondition<T>(dr, status), query_(query) { }
 
     virtual ~QueryCondition() { }
 
+    const dds::core::Query& query() {
+    	return query_;
+    }
+
 public:
     // TODO
+
+private:
+    dds::core::Query query_;
 };
 
 #endif  // OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT

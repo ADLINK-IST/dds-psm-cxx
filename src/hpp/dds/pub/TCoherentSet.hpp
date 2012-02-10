@@ -19,7 +19,7 @@
  * limitations under the License.
  */
 
-#include <dds/pub/Publisher.hpp
+#include <dds/pub/Publisher.hpp>
 
 namespace dds { namespace pub {
 
@@ -57,7 +57,7 @@ public:
      * see both together; otherwise, it may e.g., erroneously
      * interpret that the aircraft is on a collision course.
      */
-    explicit TCoherentSet(const dds::pub::Publisher& pub) : dds::core::Value<DELEGATE>(pub)  { }
+    explicit TCoherentSet(const dds::pub::Publisher& pub) : dds::core::Value<DELEGATE>(pub)  {  }
 
 public:
     /**
@@ -65,14 +65,16 @@ public:
      * constructor. If there is no matching call to the constructor,
      * the operation will raise the PreconditionNotMetError.
      */
-    void end() { this->impl().end();}
+    void end() { this->delegate().end(); }
 
 public:
     /**
      * This operation terminates the coherent set initiated by the
      * constructor.
      */
-    ~TCoherentSet() { }
+    ~TCoherentSet() {
+    	this->delegate().end();
+    }
 };
 
 } }

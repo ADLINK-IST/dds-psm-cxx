@@ -51,7 +51,7 @@ public:
      *
      * @param ref the other reference
      */
-    Reference(const Reference& ref) : impl_(ref.delegate()) {
+    explicit Reference(const Reference& ref) : impl_(ref.delegate()) {
         OMG_DDS_LOG("MM", "Reference(const Reference& ref)");
     }
 

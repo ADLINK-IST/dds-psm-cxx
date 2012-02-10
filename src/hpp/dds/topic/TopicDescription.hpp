@@ -2,7 +2,7 @@
 #define OMG_DDS_TOPIC_TOPIC_DESCRIPTION_HPP_
 
 /* Copyright 2010, Object Management Group, Inc.
- * Copyright 2010, PrismTech, Corp.
+ * Copyright 2010, PrismTech, Inc.
  * Copyright 2010, Real-Time Innovations, Inc.
  * All rights reserved.
  *
@@ -19,60 +19,14 @@
  * limitations under the License.
  */
 
-#include <dds/core/TEntity.hpp>
 #include <dds/topic/detail/TopicDescription.hpp>
-#include <dds/topic/TopicTraits.hpp>
-
+#include <dds/topic/TTopicDescription.hpp>
 
 namespace dds { namespace topic {
-    template <typename T, 
+    template <typename T,
     template <typename Q> class DELEGATE = dds::topic::detail::TopicDescription>
     class TopicDescription;
 } }
-    
-
-/**
- * TopicDescription represents the fact that both publications and
- * subscriptions are tied to a single data-type. Its attribute
- * type_name defines a unique resulting type for the publication
- * or the subscription and therefore creates an implicit
- * association with a TypeSupport. TopicDescription has also a
- * name that allows it to be retrieved locally.
- */
-template <typename T, template <typename Q> class DELEGATE>
-class dds::topic::TopicDescription : public ::dds::core::TEntity< DELEGATE<T> > {
-public:
-    typedef T DataType;
-
-public:
-    OMG_DDS_REF_TYPE(TopicDescription, ::dds::core::TEntity, DELEGATE<T>)
-
-public:
-    ~TopicDescription() { }
-
-public:
-    /**
-     * Get the name used to create the TopicDescription.
-     */
-    const std::string& name() const {
-        return this->delegate()->name();
-    }
-
-    /**
-     * The type_name used to create the TopicDescription.
-     */
-    const std::string& type_name() const {
-        return this->delegate()->type_name();
-    }
-    
-protected:
-    
-    TopicDescription(const dds::domain::DomainParticipant& dp,
-                     const std::string& name, 
-                     const std::string& type_name = dds::topic::topic_type_name<T>::value())
-    : ::dds::core::TEntity< DELEGATE<T> >(new DELEGATE<T>(dp, name, type_name)) 
-    { }
-};
 
 
 #endif /* OMG_DDS_TOPIC_TOPIC_DESCRIPTION_HPP_ */

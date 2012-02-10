@@ -21,15 +21,8 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // -- Status Includes
-#include <dds/sub/status/ReaderState.hpp>
+#include <dds/sub/status/DataStatus.hpp>
 
-/////////////////////////////////////////////////////////////////////////////
-// -- Condition Includes
-/* Depends on:
- *    <dds/sub/status/ReaderState.hpp>
- */
-#include <dds/sub/cond/ReadCondition.hpp>
-#include <dds/sub/cond/QueryCondition.hpp>
 
 /////////////////////////////////////////////////////////////////////////////
 // -- QoS Includes
@@ -65,10 +58,6 @@
  */
 #include <dds/sub/LoanedSamples.hpp>
 
-/* Depends on:
- *    <dds/sub/cond/ReadCondition.hpp>
- */
-#include <dds/sub/ReaderQuery.hpp>
 
 /* Depends on:
  *  <dds/sub/qos/SubscriberQos.hpp>
@@ -97,15 +86,24 @@
 
 /* Depends on:
  *   <dds/sub/Subscriber.hpp>
- *	 <dds/sub/cond/ReadCondition.hpp>
- *	 <dds/sub/cond/QueryCondition.hpp>
- *   <dds/sub/status/ReaderState.hpp>
- *   <dds/sub/ReaderQuery.hpp>
+ *   <dds/sub/status/DataStatus.hpp>
  *   <dds/sub/Sample.hpp>
  *   <dds/sub/LoanedSamples.hpp>
  */
 #include <dds/sub/DataReader.hpp>
 #include <dds/sub/DataReaderListener.hpp>
+
+/////////////////////////////////////////////////////////////////////////////
+// -- Condition Includes
+/* Depends on:
+ *   <dds/sub/DataReader.hpp>
+ */
+#include <dds/sub/cond/ReadCondition.hpp>
+
+/* Depends on:
+ *    <dds/sub/status/DataStatus.hpp>
+ */
+#include <dds/sub/cond/QueryCondition.hpp>
 
 /* Depends on:
  *   <dds/sub/Subscriber.hpp>

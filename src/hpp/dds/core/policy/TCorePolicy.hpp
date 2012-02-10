@@ -661,17 +661,17 @@ public:
 	}
 public:
 	static TPresentation GroupAccessScope(bool coherent = false, bool ordered = false) {
-		return GroupAccessScope(dds::core::policy::PresentationAccessScopeKind::GROUP,
+		return TPresentation(dds::core::policy::PresentationAccessScopeKind::GROUP,
 				coherent,
 				ordered);
 	}
 	static TPresentation InstanceAccessScope(bool coherent = false, bool ordered = false) {
-		return GroupAccessScope(dds::core::policy::PresentationAccessScopeKind::INSTANCE,
+		return TPresentation(dds::core::policy::PresentationAccessScopeKind::INSTANCE,
 				coherent,
 				ordered);
 	}
 	static TPresentation TopicAccessScope(bool coherent = false, bool ordered = false) {
-		return GroupAccessScope(dds::core::policy::PresentationAccessScopeKind::TOPIC,
+		return TPresentation(dds::core::policy::PresentationAccessScopeKind::TOPIC,
 				coherent,
 				ordered);
 	}

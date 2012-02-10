@@ -29,7 +29,8 @@ namespace dds { namespace core { namespace cond {namespace detail {
     class StatusCondition : public idds::core::ConditionImpl {
     public:
 
-    	StatusCondition(const ENTITY& the_parent) : parent_(the_parent) { }
+
+    	StatusCondition(const ENTITY& entity) : entity_(entity) { }
 
         void enabled_statuses(const dds::core::status::StatusMask& status) {
             mask_ = status;
@@ -39,11 +40,11 @@ namespace dds { namespace core { namespace cond {namespace detail {
             return mask_;
         }
 
-        ENTITY parent() const {
-			return parent_;
+        ENTITY entity() const {
+			return entity_;
 		}
     private:
-		ENTITY parent_;
+		ENTITY entity_;
         dds::core::status::StatusMask mask_;
     };
 

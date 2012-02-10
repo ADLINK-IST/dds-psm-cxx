@@ -19,48 +19,12 @@
  * limitations under the License.
  */
 
-#include <vector>
-
-#include <dds/core/detail/conformance.hpp>
-#include <dds/core/types.hpp>
-#include <dds/topic/topicfwd.hpp>
-#include <dds/topic/TopicDescription.hpp>
 #include <dds/topic/detail/ContentFilteredTopic.hpp>
-
+#include <dds/topic/TContentFilteredTopic.hpp>
 
 namespace dds { namespace topic {
-
-#ifdef OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT
-
-template <typename T, template <typename Q> class DELEGATE>
-class ContentFilteredTopic : public TopicDescription <T, DELEGATE> {
-public:
-    OMG_DDS_REF_TYPE(ContentFilteredTopic, TopicDescription, DELEGATE<T>)
-
-    virtual ~ContentFilteredTopic() { }
-
-public:
-	public:
-	const std::string& filter_expression() {
-		return this->delegate()->filter_expression();
-	}
-
-    const dds::core::StringSeq expression_parameters() {
-		return this->delegate()->expression_parameters();
-	}
-
-	void expression_parameters(const dds::core::StringSeq& params) {
-		this->delegate()->parameters(params);
-	}
-
-    dds::topic::Topic<T> topic() {
-		return this->delegate()->topic();
-	}
-};
-
-#endif  // OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT
-
+    template <typename T, template <typename Q> class DELEGATE = dds::topic::detail::ContentFilteredTopic>
+    class ContentFilteredTopic;
 } }
-
 
 #endif /* OMG_DDS_TOPIC_CONTENT_FILTERED_TOPIC_HPP_ */

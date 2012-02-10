@@ -47,7 +47,7 @@
 #define OMG_DDS_REF_TYPE_BASE(TYPE, BASE, DELEGATE)     \
 public: \
 typedef BASE< DELEGATE >                                                  BASE_T;\
-public:\
+protected:\
 explicit TYPE(DELEGATE_T* p)\
 : BASE< DELEGATE_T >(p) \
 {  }\
@@ -61,14 +61,13 @@ TYPE(const H__& h)    \
 : BASE< DELEGATE_T >(h) \
 { \
     OMG_DDS_STATIC_ASSERT((::dds::core::is_base_of<typename TYPE::DELEGATE_T, typename H__::DELEGATE_T>::value)); \
-    this->::dds::core::Reference<DELEGATE>::impl_ = h.delegate();\
+    this->::dds::core::Reference<DELEGATE>::impl_ = h.delegate(); \
 }
-
 
 #define OMG_DDS_REF_TYPE_BASE_T(TYPE, BASE, T_PARAM, DELEGATE) \
 public: \
 typedef BASE< T_PARAM, DELEGATE > BASE_T; \
-public: \
+protected: \
 explicit TYPE(DELEGATE_T* p) \
     : BASE< T_PARAM, DELEGATE >(p) \
       {  } \
@@ -196,13 +195,13 @@ public:
 private: \
    TYPE(); \
 public: \
-   TYPE(const dds::core::null_type&) : BASE< DELEGATE >(static_cast<DELEGATE*>(0)) { }
+   TYPE(const dds::core::null_type&) : BASE< DELEGATE >(static_cast<DELEGATE*>(NULL)) { }
 
 #define OMG_DDS_REF_TYPE_T(TYPE, BASE, T_PARAM, DELEGATE) \
    OMG_DDS_REF_TYPE_NODC_T(TYPE, BASE, T_PARAM, DELEGATE) \
 private: \
     TYPE(); \
 public: \
-   TYPE(const dds::core::null_type&) : BASE< DELEGATE< T_PARAM > >(static_cast<DELEGATE< T_PARAM* > >(0)) { }
+   TYPE(const dds::core::null_type&) : BASE<T_PARAM, DELEGATE>(static_cast<DELEGATE<T_PARAM>* >(NULL)) { }
 
 #endif /* OMG_DDS_CORE_REFMACROS_HPP_ */

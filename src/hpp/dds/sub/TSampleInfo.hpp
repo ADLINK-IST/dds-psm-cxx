@@ -3,6 +3,8 @@
 
 #include <dds/core/Time.hpp>
 #include <dds/core/Value.hpp>
+#include <dds/sub/GenerationCount.hpp>
+#include <dds/sub/Rank.hpp>
 
 namespace dds { namespace sub {
 
@@ -20,7 +22,7 @@ namespace dds { namespace sub {
             return this->delegate().timestamp();
         }
         
-        const dds::sub::status::ReaderState state() const {
+        const dds::sub::status::DataState state() const {
             return this->delegate().state();
         }
         const dds::sub::GenerationCount generation_count() const {

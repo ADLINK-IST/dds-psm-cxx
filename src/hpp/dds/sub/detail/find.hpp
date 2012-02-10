@@ -23,7 +23,7 @@
 #include <vector>
 
 #include <dds/sub/Subscriber.hpp>
-#include <dds/sub/status/ReaderState.hpp>
+#include <dds/sub/status/DataStatus.hpp>
 #include <dds/topic/TopicDescription.hpp>
 
 
@@ -69,7 +69,7 @@ find(const dds::sub::Subscriber& sub,
 template <typename READER, typename FwdIterator>
 uint32_t
 find(const dds::sub::Subscriber& sub,
-	const dds::sub::status::ReaderState& rs,
+	const dds::sub::status::DataState& rs,
 	FwdIterator begin, uint32_t max_size)
 {
 	return 0;
@@ -78,7 +78,7 @@ find(const dds::sub::Subscriber& sub,
 template <typename READER, typename BinIterator>
 uint32_t
 find(const dds::sub::Subscriber& sub,
-	const dds::sub::status::ReaderState& rs,
+	const dds::sub::status::DataState& rs,
 	BinIterator begin)
 {
 	return 0;

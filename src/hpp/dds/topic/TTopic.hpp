@@ -20,6 +20,7 @@
  */
 
 #include <dds/core/types.hpp>
+#include <dds/core/ref_traits.hpp>
 #include <dds/core/cond/StatusCondition.hpp>
 #include <dds/domain/DomainParticipant.hpp>
 #include <dds/topic/qos/TopicQos.hpp>
@@ -53,7 +54,7 @@ public:
 public:
     OMG_DDS_REF_TYPE_T(Topic, TopicDescription, T, DELEGATE)
 
-    virtual ~Topic() {}
+    ~Topic() {}
 public:
 
 
@@ -77,6 +78,19 @@ public:
                                                                 dp.default_topic_qos(),
                                                                 NULL,
                                                                 dds::core::status::StatusMask::all()))
+    { }
+
+    Topic(const dds::domain::DomainParticipant& dp,
+          const std::string& topic_name,
+          const dds::topic::qos::TopicQos& qos,
+          dds::topic::TopicListener<T>* listener = NULL,
+          const dds::core::status::StatusMask& mask = dds::core::status::StatusMask::all())
+    : dds::topic::TopicDescription<T, DELEGATE>(new DELEGATE<T>(dp,
+                                                topic_name,
+                                                topic_type_name<T>::value(),
+                                                qos,
+                                                listener,
+                                                mask))
     { }
 
 
@@ -105,7 +119,7 @@ public:
      *
      * @return the status condition
      */
-    StatusCondition status_condition() const{
+    const StatusCondition& status_condition() const{
         return this->delegate()->template status_condition<Topic>(*this);
     }
 
@@ -115,7 +129,7 @@ public:
 
     Listener* listener() const;
 
-    const dds::topic::qos::TopicQos qos() const {
+    const dds::topic::qos::TopicQos& qos() const {
         return this->::dds::core::Reference<DELEGATE<T> >::delegate()->qos();
     }
 
@@ -133,8 +147,8 @@ public:
      * DomainEntities they apply to is provided in Section 7.1.4.1,
      * ÒCommunication Status,Ó on page 120.
      */
-    const ::dds::core::status::InconsistentTopicStatus
-    inconsistent_topic_status() {
+    const ::dds::core::status::InconsistentTopicStatus&
+    inconsistent_topic_status() const {
         return this->delegate()->inconsistent_topic_status();
     }
 };

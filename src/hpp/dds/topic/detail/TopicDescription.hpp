@@ -62,7 +62,7 @@ public:
      * This operation returns the DomainParticipant to which the
      * TopicDescription belongs.
      */
-    const dds::domain::DomainParticipant& parent() const {
+    const dds::domain::DomainParticipant& domain_participant() const {
         return dp_;
     }
     

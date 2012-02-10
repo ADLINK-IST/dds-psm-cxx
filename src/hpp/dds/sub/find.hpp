@@ -111,7 +111,7 @@ find(const dds::sub::Subscriber& sub,
 template <typename READER, typename FwdIterator>
 uint32_t
 find(const dds::sub::Subscriber& sub,
-	const dds::sub::status::ReaderState& rs,
+	const dds::sub::status::DataState& rs,
 	FwdIterator begin, uint32_t max_size)
 {
 	return dds::sub::detail::find<READER, FwdIterator>(sub,
@@ -123,7 +123,7 @@ find(const dds::sub::Subscriber& sub,
 template <typename READER, typename BinIterator>
 uint32_t
 find(const dds::sub::Subscriber& sub,
-	const dds::sub::status::ReaderState& rs,
+	const dds::sub::status::DataState& rs,
 	BinIterator begin)
 {
 	return dds::sub::detail::find<READER, BinIterator>(sub, rs, begin);

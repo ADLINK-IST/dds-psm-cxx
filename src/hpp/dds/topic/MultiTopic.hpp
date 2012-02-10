@@ -19,42 +19,17 @@
  * limitations under the License.
  */
 
-#include <vector>
-
 #include <dds/core/detail/conformance.hpp>
-#include <dds/core/types.hpp>
-#include <dds/topic/topicfwd.hpp>
-#include <dds/topic/TopicDescription.hpp>
 #include <dds/topic/detail/MultiTopic.hpp>
-#include <dds/domain/domainfwd.hpp>
+#include <dds/topic/TMultiTopic.hpp>
 
 
 namespace dds { namespace topic {
 
-#ifdef OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT
-
-template <typename T, template <typename Q> class DELEGATE>
-class MultiTopic : public TopicDescription<T, DELEGATE> {
-public:
-    OMG_DDS_REF_TYPE(MultiTopic, TopicDescription, DELEGATE<T>)
-
-	virtual ~MultiTopic() { }
-
-public:
-    const std::string& subscription_expression() const {
-		return this->delegate()->subscription_expression();
-	}
-
-    const dds::core::StringSeq expression_parameters() const {
-		return this->delegate()->expression_parameters();
-	}
-
-    void expression_parameters(const dds::core::StringSeq& params) {
-		this->delegate()->parameters(params);
-	}
-};
-
-#endif  // OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT
+#ifdef OMG_DDS_MULTI_TOPIC_SUPPORT
+	template <typename T, template <typename Q> class DELEGATE = dds::topic::detail::MultiTopic>
+	class MultiTopic;
+#endif  // OMG_DDS_MULTI_TOPIC_SUPPORT
 
 } }
 

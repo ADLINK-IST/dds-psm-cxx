@@ -92,7 +92,7 @@ public:
      * @param id the id of the domain joined by this <code>DomainParticipant</code>.
      * @param qos the QoS settings for this <code>DomainParticipant</code>
      */
-    TDomainParticipant(dds::domain::DomainId           id,
+    TDomainParticipant(dds::domain::DomainId                         id,
                        const dds::domain::qos::DomainParticipantQos& qos,
                        dds::domain::DomainParticipantListener*       listener = NULL,
                        const dds::core::status::StatusMask&          mask = dds::core::status::StatusMask::all())
@@ -132,9 +132,8 @@ public:
      * @param event_mask the mask defining the events for which the listener
      *  will be notified.
      */
-    void listener(
-            Listener* the_listener,
-                  const ::dds::core::status::StatusMask& event_mask) {
+    void listener(Listener* the_listener,
+    		const ::dds::core::status::StatusMask& event_mask) {
         this->delegate()->listener(the_listener, event_mask);
     }
 
@@ -151,7 +150,7 @@ public:
      *
      * @return the qos setting.
      */
-    const dds::domain::qos::DomainParticipantQos
+    const dds::domain::qos::DomainParticipantQos&
     qos() const {
         return this->delegate()->qos();
     }
@@ -218,7 +217,7 @@ public:
      * uses to time-stamp data writes and to set the reception timestamp
      * for the data updates it receives.
      */
-    const dds::core::Time
+    dds::core::Time
     current_time() {
         return this->delegate()->current_time();
     }
@@ -230,7 +229,7 @@ public:
     }
     
     static void default_participant_qos(const ::dds::domain::qos::DomainParticipantQos& qos) {
-        return DELEGATE::default_participant_qos(qos);
+    	DELEGATE::default_participant_qos(qos);
     }
     
     // --- Publisher QoS Defaults --- //
@@ -238,7 +237,7 @@ public:
         return this->delegate()->default_publisher_qos();
     }
     void default_publisher_qos(const ::dds::pub::qos::PublisherQos& qos) {
-        return this->delegate()->default_publisher_qos(qos);        
+    	this->delegate()->default_publisher_qos(qos);
     }
 
     // --- Subscriber QoS Defaults --- //
@@ -259,40 +258,6 @@ public:
         this->delegate()->default_topic_qos(qos);
     }
 
-    
-//////////////////////////////////////////////////////////////////////////////
-// Move to the TOPIC class
-//////////////////////////////////////////////////////////////////////////////
-#if 0
-    // --- Topic Factory Methods: --- //
-public:
-
-//////////////////////////////////////////////////////////////////////////////
-
-    // --- ContentFilteredTopic Factory Methods: --- //
-public:
-#ifdef OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT
-    template <typename T>
-    dds::topic::ContentFilteredTopic<T> create_contentfilteredtopic(
-        const std::string& name,
-        const dds::topic::Topic<T>& related_topic,
-        const std::string& filter_expression,
-        const dds::core::StringSeq& expression_parameters);
-#endif  // OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT
-
-     // --- MultiTopic Factory Methods: --- //
-public:
-#ifdef OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT
-    template <typename T>
-    dds::topic::MultiTopic<T> create_multitopic(
-        const std::string& name,
-        const std::string& type_name, 
-        const std::string& subscription_expression,
-        const dds::core::StringSeq& expression_parameters);
-#endif  // OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT
-    
-// =============================================================================
-#endif 
 //=============================================================================
 };
 

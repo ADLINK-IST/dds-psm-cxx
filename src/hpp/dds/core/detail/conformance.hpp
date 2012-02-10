@@ -16,10 +16,12 @@
  * therefore no corresponding macro is provided.
  */
 #define OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT                FULL
+#define OMG_DDS_MULTI_TOPIC_SUPPORT                         FULL
 #define OMG_DDS_PERSISTENCE_SUPPORT                         FULL
 #define OMG_DDS_OWNERSHIP_SUPPORT                           FULL
 #define OMG_DDS_OBJECT_MODEL_SUPPORT                        FULL
 #define OMG_DDS_EXTENSIBLE_AND_DYNAMIC_TOPIC_TYPE_SUPPORT   FULL
+
 
 
 #endif /* OMG_DDS_CORE_DETAIL_CONFORMANCE_HPP_ */

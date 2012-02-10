@@ -25,10 +25,34 @@
 
 namespace dds { namespace domain {
 
-// Ignore publlications
+/**
+ * This function allows to express the will to ignore the entity
+ * represented by the given <code>InstanceHandle</code> for the specific
+ * <code>DomainParticipant</code>.
+ *
+ * @param dp      the <code>DomainParticipant</code> for which the remote
+ *                entity will be ignored
+ *
+ * @param handle  the <code>InstanceHandle</code> of the remote entity that
+ *                has to be ignored
+ *
+ */
 void ignore(const dds::domain::DomainParticipant& dp, const dds::core::InstanceHandle& handle);
 
-// @TODO: Clarify semantics & add documentation.
+/**
+ * This function allows to express the will to ignore a series of entities
+ * whose instance handles are made available via the provided iterators.
+ *
+ * @param dp      the <code>DomainParticipant</code> for which the remote
+ *                entity will be ignored
+ *
+ * @param begin   the begin iterator for the <code>InstanceHandle</code>
+ *                to ignore
+ *
+ * @param end     the end iterator for the <code>InstanceHandle</code>
+ *                to ignore
+ *
+ */
 template <typename FwdIterator>
 void ignore(const dds::domain::DomainParticipant& dp, FwdIterator begin, FwdIterator end);
 

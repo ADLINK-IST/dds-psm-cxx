@@ -1,5 +1,5 @@
-#ifndef OMG_DDS_TOPIC_DETAIL_MULTI_HPP_
-#define OMG_DDS_TOPIC_DETAIL_MULTI_HPP_
+#ifndef OMG_DDS_TOPIC_DETAIL_MULTI_TOPIC_HPP_
+#define OMG_DDS_TOPIC_DETAIL_MULTI_TOPIC_HPP_
 
 /* Copyright 2010, Object Management Group, Inc.
  * Copyright 2010, PrismTech, Inc.
@@ -22,53 +22,43 @@
 #include <string>
 #include <vector>
 
-#include <dds/core/detail/conformance.hpp>
 #include <dds/core/types.hpp>
-#include <dds/topic/detail/topicfwd.hpp>
-#include <idds/topic/TopicDescription.hpp>
-
+#include <dds/domain/DomainParticipant.hpp>
+#include <dds/topic/detail/TopicDescription.hpp>
+#include <dds/core/Query.hpp>
 
 namespace dds { namespace topic { namespace detail {
 
-#ifdef OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT
+#ifdef OMG_DDS_MULTI_TOPIC_SUPPORT
 
 template <typename T>
-class MultiTopic  : public idds::topic::TopicDescriptionImpl<T>
+class MultiTopic  : public dds::topic::detail::TopicDescription<T>
 {
 public:
-    MultiTopic(const std::string& the_name,
-               const std::string& sub_expr,
-               const dds::core::StringSeq& params,
-               const typename idds::topic::TopicDescriptionImpl<T>::DPHolder& dp)
-    : idds::topic::TopicDescriptionImpl<T>(the_name, " ", dp),
-      sub_expr_(sub_expr),
-      params_(params)
-    { }
+	MultiTopic(const dds::domain::DomainParticipant& dp,
+			   const std::string& name,
+			   const dds::core::Query& query)
+    : dds::topic::detail::TopicDescription<T>(dp, name, topic_type_name<T>::value()),
+      query_(query) { }
 
 	virtual ~MultiTopic() { }
 
 public:
-    const std::string& subscription_expression() const {
-		return sub_expr_;
-	}
-
-    const dds::core::StringSeq expression_parameters() const {
-		return params_;
-	}
+    const dds::core::Query& query() { return query_; }
 
     void expression_parameters(const dds::core::StringSeq& params) {
-		params_ = params;
+		query_.parameters(params.begin(), params.end());
 	}
 
 private:
-	std::string 					sub_expr_;
-	std::vector<std::string> 		params_;
-
+	std::string 		     subscription_expression_;
+	std::vector<std::string> params_;
+	dds::core::Query query_;
 };
 
-#endif  // OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT
+#endif  // OMG_DDS_MULTI_TOPIC_SUPPORT
 
 } } }
 
 
-#endif /* OMG_DDS_TOPIC_DETAIL_MULTI_HPP_ */
+#endif /* OMG_DDS_TOPIC_DETAIL_MULTI_TOPIC_HPP_ */

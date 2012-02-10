@@ -20,7 +20,7 @@
  */
 
 #include <dds/core/cond/TCondition.hpp>
-#include <dds/sub/status/ReaderState.hpp>
+
 
 
 namespace dds { namespace sub { namespace cond {
@@ -44,6 +44,15 @@ template <typename T, template <typename Q> class DELEGATE>
 class dds::sub::cond::ReadCondition : public dds::core::cond::TCondition< DELEGATE<T> > {
 public:
 	OMG_DDS_REF_TYPE(ReadCondition, dds::core::cond::TCondition, DELEGATE<T>)
+
+public:
+	ReadCondition(const dds::sub::DataReader<T>& dr, const dds::sub::status::DataState& status)
+	: dds::core::cond::TCondition<DELEGATE<T> >(new DELEGATE<T>(dr, status)) { }
+
+	template <typename FUN>
+	ReadCondition(const dds::sub::DataReader<T>& dr, const dds::sub::status::DataState& status, const FUN& functor)
+		: dds::core::cond::TCondition<DELEGATE<T> >(new DELEGATE<T>(dr, status, functor)) { }
+
     ~ReadCondition() { }
 
 public:
@@ -52,8 +61,8 @@ public:
      * account to determine the trigger_value of the ReadCondition. These are
      * the sample-states specified when the ReadCondition was created.
      */
-    const dds::sub::status::ReaderState reader_state() const {
-        return this->delegate()->sample_state();
+    const dds::sub::status::DataState status_filter() const {
+        return this->delegate()->status_filter();
     }
 
 };
