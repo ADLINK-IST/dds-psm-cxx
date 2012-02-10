@@ -3,14 +3,14 @@
 #include <dds/pub/DataWriter.hpp>
 #include <dds/pub/DataWriterListener.hpp>
 
-
 using namespace dds::pub;
 using namespace dds::domain;
 using namespace dds::core;
 using namespace dds::topic;
 
 
-struct Point {
+class Point {
+public:
     uint32_t x;
     uint32_t y;
 };
@@ -47,8 +47,8 @@ dds::pub::test::testPub() {
     
     Publisher pub2(dp, pubQos, 0, status::StatusMask::all());
     PointDataWriterListener* listener = new PointDataWriterListener();
-    DataWriter<Point> dw = dds::core::null; 
-    DataWriter<Point> dw2(pub, 
+
+    DataWriter<Point> dw(pub,
                           topic, 
                           qos::DataWriterQos(), 
                           listener, 
@@ -57,6 +57,9 @@ dds::pub::test::testPub() {
 
     Point p1 = {10, 20};
     std::cout << ">> Writing: " << p1 << std::endl;    
-    dw2 << p1;
+    dw << p1;
+    dw.write(p1);
+
     return 0;
 }
+
