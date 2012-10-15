@@ -126,17 +126,34 @@ public:
 	 *
 	 * @param sub the subscriber owning this <code>DataReader</code>.
 	 * @param topic the topic associated with this <code>DataReader</code>.
+	 */
+	DataReader(const dds::sub::Subscriber& sub,
+		   const ::dds::topic::Topic<T>& topic);
+	/**
+	 * Create a <code>DataReader</code>.
+	 *
+	 * @param sub the subscriber owning this <code>DataReader</code>.
+	 * @param topic the topic associated with this <code>DataReader</code>.
 	 * @param qos the QoS settings for this <code>DataReader</code>.
 	 * @param listener the listener.
 	 * @param mask the event mask associated to the <code>DataReader</code> listener.
 	 */
 	DataReader(const dds::sub::Subscriber& sub,
 			const ::dds::topic::Topic<T>& topic,
-			const dds::sub::qos::DataReaderQos& qos = sub.default_datareader_qos(),
+			const dds::sub::qos::DataReaderQos& qos,
 			dds::sub::DataReaderListener<T>* listener = NULL,
 			const dds::core::status::StatusMask& mask = ::dds::core::status::StatusMask::all());
 
 #ifdef OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT
+
+	/**
+	 * Create a <code>DataReader</code>.
+	 *
+	 * @param sub the subscriber owning this <code>DataReader</code>.
+	 * @param topic the content filtered topic.
+	 */
+	DataReader(const dds::sub::Subscriber& sub,
+		   const ::dds::topic::ContentFilteredTopic<T>& topic);
 
 	/**
 	 * Create a <code>DataReader</code> for a <code>ContentFilteredTopic</code>.
@@ -150,13 +167,25 @@ public:
 	 * @param mask the event mask associated to the <code>DataReader</code> listener.
 	 */
 	DataReader(const dds::sub::Subscriber& sub,
-			const ::dds::topic::ContentFilteredTopic<T>& topic,
-			const dds::sub::qos::DataReaderQos& qos = sub.default_datareader_qos(),
+		   const ::dds::topic::ContentFilteredTopic<T>& topic,
+			const dds::sub::qos::DataReaderQos& qos,
 			dds::sub::DataReaderListener<T>* listener = NULL,
 			const dds::core::status::StatusMask& mask = ::dds::core::status::StatusMask::all());
 #endif /* OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT */
 
 #ifdef OMG_DDS_MULTI_TOPIC_SUPPORT
+
+
+	/**
+	 * Create a <code>DataReader</code> for a <code>MultiTopic</code>.
+	 * This <code>DataReader</code> will only receive that data that mathes the
+	 * <code>Filter</code> associated with the <code>ContentFilteredTopic</code>.
+	 *
+	 * @param sub the subscriber owning this <code>DataReader</code>.
+	 * @param topic the multi-topic.
+	 */
+	DataReader(const dds::sub::Subscriber& sub,
+		   const ::dds::topic::MultiTopic<T>& topic);
 
 	/**
 	 * Create a <code>DataReader</code> for a <code>MultiTopic</code>.

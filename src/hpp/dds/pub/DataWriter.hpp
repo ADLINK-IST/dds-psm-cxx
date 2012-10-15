@@ -53,13 +53,22 @@ public:
 	 *
 	 * @param pub the publisher
 	 * @param topic the <code>Topic</code> associated with this <code>DataWriter</code>
+	 */
+	DataWriter(const dds::pub::Publisher& pub,
+		   const ::dds::topic::Topic<T>& topic);
+
+	/**
+	 * Create a <code>DataWriter</code>.
+	 *
+	 * @param pub the publisher
+	 * @param topic the <code>Topic</code> associated with this <code>DataWriter</code>
 	 * @param qos the <code>DataWriter</code> qos.
 	 * @param listener the <code>DataWriter</code> listener.
 	 * @param mask the listener event mask.
 	 */
 	DataWriter(const dds::pub::Publisher& pub,
 			const ::dds::topic::Topic<T>& topic,
-			const dds::pub::qos::DataWriterQos& qos = pub.default_datawriter_qos(),
+			const dds::pub::qos::DataWriterQos& qos,
 			dds::pub::DataWriterListener<T>* listener = NULL,
 			const dds::core::status::StatusMask& mask = ::dds::core::status::StatusMask::all());
 
