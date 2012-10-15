@@ -1,0 +1,5 @@
+<map id="dds::topic::TopicDescription&lt; T, DELEGATE &gt;" name="dds::topic::TopicDescription&lt; T, DELEGATE &gt;">
+<area shape="rect" id="node7" href="$classdds_1_1topic_1_1_topic.html" title="dds::topic::Topic\&lt;\l T, DELEGATE \&gt;" alt="" coords="34,286,157,330"/>
+<area shape="rect" id="node2" href="$classdds_1_1core_1_1_t_entity.html" title="dds::core::TEntity\l\&lt; DELEGATE\&lt; T \&gt; \&gt;" alt="" coords="23,99,168,143"/>
+<area shape="rect" id="node4" href="$classdds_1_1core_1_1_reference.html" title="dds::core::Reference\l\&lt; DELEGATE\&lt; T \&gt; \&gt;" alt="" coords="23,6,168,50"/>
+</map>

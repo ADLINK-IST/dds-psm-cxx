@@ -1,0 +1,11 @@
+<map id="src/hpp/dds/core/status/detail/Status.hpp" name="src/hpp/dds/core/status/detail/Status.hpp">
+<area shape="rect" id="node3" href="$_t_status_8hpp.html" title="dds/core/status/TStatus.hpp" alt="" coords="390,107,577,135"/>
+<area shape="rect" id="node5" href="$_value_8hpp.html" title="dds/core/Value.hpp" alt="" coords="4,201,139,229"/>
+<area shape="rect" id="node7" href="$_instance_handle_8hpp.html" title="dds/core/InstanceHandle.hpp" alt="" coords="164,201,359,229"/>
+<area shape="rect" id="node13" href="$_core_policy_8hpp.html" title="dds/core/policy/CorePolicy.hpp" alt="" coords="382,201,585,229"/>
+<area shape="rect" id="node19" href="$_qos_policy_count_8hpp.html" title="dds/core/policy/QosPolicy\lCount.hpp" alt="" coords="610,193,784,237"/>
+<area shape="rect" id="node21" href="$_state_8hpp.html" title="dds/core/status/State.hpp" alt="" coords="808,201,980,229"/>
+<area shape="rect" id="node11" href="$detail_2_instance_handle_8hpp.html" title="dds/core/detail/Instance\lHandle.hpp" alt="" coords="188,286,349,330"/>
+<area shape="rect" id="node15" href="$_policy_kind_8hpp.html" title="dds/core/policy/PolicyKind.hpp" alt="" coords="379,294,580,322"/>
+<area shape="rect" id="node17" href="$detail_2_core_policy_8hpp.html" title="dds/core/policy/detail\l/CorePolicy.hpp" alt="" coords="606,286,751,330"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="src/hpp/dds/pub/detail/SuspendedPublication.hpp" name="src/hpp/dds/pub/detail/SuspendedPublication.hpp">
+<area shape="rect" id="node3" href="$_t_suspended_publication_8hpp.html" title="dds/pub/TSuspendedPublication.hpp" alt="" coords="434,99,672,127"/>
+<area shape="rect" id="node5" href="$_publisher_8hpp.html" title="dds/pub/Publisher.hpp" alt="" coords="477,177,629,205"/>
+<area shape="rect" id="node7" href="$detail_2_publisher_8hpp.html" title="dds/pub/detail/Publisher.hpp" alt="" coords="459,254,647,282"/>
+<area shape="rect" id="node9" href="$_t_publisher_8hpp.html" title="dds/pub/TPublisher.hpp" alt="" coords="363,331,524,359"/>
+<area shape="rect" id="node11" href="$types_8hpp.html" title="dds/core/types.hpp" alt="" coords="5,409,139,437"/>
+<area shape="rect" id="node13" href="$_t_entity_8hpp.html" title="dds/core/TEntity.hpp" alt="" coords="163,409,305,437"/>
+<area shape="rect" id="node15" href="$_status_condition_8hpp.html" title="dds/core/cond/StatusCondition.hpp" alt="" coords="330,409,557,437"/>
+<area shape="rect" id="node17" href="$_data_writer_qos_8hpp.html" title="dds/pub/qos/DataWriterQos.hpp" alt="" coords="582,409,793,437"/>
+<area shape="rect" id="node19" href="$_publisher_qos_8hpp.html" title="dds/pub/qos/PublisherQos.hpp" alt="" coords="818,409,1021,437"/>
+</map>
