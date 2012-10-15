@@ -21,10 +21,10 @@
 
 
 namespace dds {
-namespace core {
-template <typename D>
-class Value;
-}
+  namespace core {
+    template <typename D>
+    class Value;
+  }
 }
 
 /**
@@ -33,64 +33,67 @@ class Value;
 template <typename D>
 class dds::core::Value {
 protected:
-	Value();
-	Value(const Value& p);
+  Value();
+  Value(const Value& p);
 
 public:
-	template <typename ARG>
-	Value(const ARG& arg);
+  template <typename ARG>
+  Value(const ARG& arg);
 
-	// -- We can't assume that the compiler supports variadic templates,
-	// -- `yet. this code should be refactored to take advantage of compier that
-	// -- do support variadic templates.
-	template <typename ARG1, typename ARG2>
-	Value(const ARG1& arg1, const ARG2& arg2);
+  // -- We can't assume that the compiler supports variadic templates,
+  // -- `yet. this code should be refactored to take advantage of compier that
+  // -- do support variadic templates.
+  template <typename ARG1, typename ARG2>
+  Value(const ARG1& arg1, const ARG2& arg2);
 
-	template <typename ARG1, typename ARG2, typename ARG3>
-	Value(const ARG1& arg1, const ARG2& arg2, const ARG3& arg3);
+  template <typename ARG1, typename ARG2, typename ARG3>
+  Value(const ARG1& arg1, const ARG2& arg2, const ARG3& arg3);
 
-	template <typename ARG1, typename ARG2, typename ARG3, typename ARG4>
-	Value(const ARG1& arg1, const ARG2& arg2, const ARG3& arg3, const ARG4& arg4);
+  template <typename ARG1, typename ARG2, typename ARG3, typename ARG4>
+  Value(const ARG1& arg1, const ARG2& arg2, const ARG3& arg3, const ARG4& arg4);
 
-	template <typename ARG1, typename ARG2, typename ARG3, typename ARG4, typename ARG5>
-	Value(const ARG1& arg1, const ARG2& arg2, const ARG3& arg3, const ARG4& arg4, const ARG5& arg5);
+  template <typename ARG1, typename ARG2, typename ARG3, typename ARG4, typename ARG5>
+  Value(const ARG1& arg1, const ARG2& arg2, const ARG3& arg3, const ARG4& arg4, const ARG5& arg5);
 
-	template <typename ARG1, typename ARG2, typename ARG3, typename ARG4, typename ARG5, typename ARG6>
-	Value(const ARG1& arg1, const ARG2& arg2, const ARG3& arg3, const ARG4& arg4, const ARG5& arg5, const ARG6& arg6);
-
-public:
-	~Value();
+  template <typename ARG1, typename ARG2, typename ARG3, typename ARG4, typename ARG5, typename ARG6>
+  Value(const ARG1& arg1, const ARG2& arg2, const ARG3& arg3, const ARG4& arg4, const ARG5& arg5, const ARG6& arg6);
 
 public:
-	Value& operator=(const Value& other);
-
-	bool operator==(const Value& other) const;
-
-	bool operator !=(const Value& other) const;
+  ~Value();
 
 public:
-	/**
-	 * Return the delegate.
-	 */
-	const D* operator->() const;
+  Value& operator=(const Value& other);
 
-	/**
-	 * Return the delegate.
-	 */
-	D* operator->();
+  bool operator==(const Value& other) const;
 
-	/**
-	 * Return the delegate.
-	 */
-	const D& delegate() const;
+  bool operator !=(const Value& other) const;
 
-	/**
-	 * Return the delegate.
-	 */
-	D& delegate();
+public:
+  /**
+   * Return the delegate.
+   */
+  const D* operator->() const;
 
+  /**
+   * Return the delegate.
+   */
+  D* operator->();
+
+  /**
+   * Return the delegate.
+   */
+  const D& delegate() const;
+
+  /**
+   * Return the delegate.
+   */
+  D& delegate();
+
+  operator D& ();
+
+  operator const D& () const;
 protected:
-	D d_;
+  D d_;
 };
 
 

@@ -201,6 +201,10 @@ public:
      */
     const DELEGATE* operator->() const;
 
+    operator DELEGATE_REF_T& ();
+
+    operator const DELEGATE_REF_T& () const;
+
 protected:
     DELEGATE_REF_T impl_;
 };
