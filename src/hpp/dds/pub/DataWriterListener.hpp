@@ -51,24 +51,24 @@ public:
 template <typename T>
 class NoOpDataWriterListener : public virtual DataWriterListener<T> {
 public:
-    virtual ~NoOpDataWriterListener() { }
+    virtual ~NoOpDataWriterListener();
 
 public:
     virtual void 
     on_offered_deadline_missed(dds::pub::DataWriter<T>& writer,
-                               const dds::core::status::OfferedDeadlineMissedStatus& status) { }
+                               const dds::core::status::OfferedDeadlineMissedStatus& status);
     
     virtual void 
     on_offered_incompatible_qos(dds::pub::DataWriter<T> writer,
-                                const dds::core::status::OfferedIncompatibleQosStatus&  status) { }
+                                const dds::core::status::OfferedIncompatibleQosStatus&  status);
     
     virtual void 
     on_liveliness_lost(dds::pub::DataWriter<T>& writer,
-                       const dds::core::status::LivelinessLostStatus& status) { }
+                       const dds::core::status::LivelinessLostStatus& status);
     
     virtual void 
     on_publication_matched(dds::pub::DataWriter<T>& writer,
-                           const dds::core::status::PublicationMatchedStatus& status) { }
+                           const dds::core::status::PublicationMatchedStatus& status);
 };
 
 } }

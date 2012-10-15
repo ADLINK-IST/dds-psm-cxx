@@ -22,7 +22,14 @@
 #include <dds/core/cond/TCondition.hpp>
 
 
-namespace dds { namespace core { namespace cond {
+namespace dds {
+	namespace core {
+		namespace cond {
+			template <typename DELEGATE>
+			class TGuardCondition;
+		}
+	}
+}
 
 /**
  * A GuardCondition object is a specific Condition whose trigger_value is
@@ -34,37 +41,33 @@ namespace dds { namespace core { namespace cond {
  * trigger_value by means of the set trigger_value operation.
  */
 template <typename DELEGATE>
-class TGuardCondition : public TCondition<DELEGATE> {
+class dds::core::cond::TGuardCondition : public TCondition<DELEGATE> {
 public:
     OMG_DDS_REF_TYPE_NODC(TGuardCondition, TCondition, DELEGATE)
 
 public:
-    TGuardCondition() { }
-    ~TGuardCondition() { }
+    TGuardCondition();
+
+    ~TGuardCondition();
 
 public:
 
+    /**
+     * Registers a custom handler with this condition.
+     */
     template <typename Functor>
-    void handler(const Functor& func) {
-        this->delegate()->set_handler(func);
-    }
+    void handler(const Functor& func);
 
     /**
      * Resets the handler for this condition. After the invocation of this
      * method no handler will be registered with this condition.
      */
-    void reset_handler() {
-        this->delegate()->reset_handler();
-    }
-
+    void reset_handler();
 
 public:
 
-    void trigger_value(bool value) {
-        this->delegate()->trigger_value(value);
-    }
+    void trigger_value(bool value);
 
 };
 
-} } }
 #endif /* OMG_TDDS_CORE_GUARD_CONDITION_HPP_ */

@@ -23,45 +23,50 @@
 #include <dds/core/Value.hpp>
 
 
-namespace dds { namespace core {
+namespace dds {
+	namespace core {
+	template <typename DELEGATE>
+	class TInstanceHandle;
+	}
+}
 
 template <typename DELEGATE>
-class TInstanceHandle : public dds::core::Value<DELEGATE> {
+class dds::core::TInstanceHandle : public dds::core::Value<DELEGATE> {
 public:
-    TInstanceHandle() { }
+	/**
+	 * Construct a nil instance handle.
+	 */
+	TInstanceHandle(const dds::core::null_type& nullHandle);
 
-    TInstanceHandle(const dds::core::null_type& nullHandle)
-    : dds::core::Value<DELEGATE>(nullHandle) { }
+	/**
+	 * Copy Constructor
+	 */
+	TInstanceHandle(const TInstanceHandle& other);
 
-    TInstanceHandle(const TInstanceHandle& other)
-        : dds::core::Value<DELEGATE>(other.delegate())
-    { }
+	/**
+	 * Distructor
+	 */
+	~TInstanceHandle();
 
-    ~TInstanceHandle() { }
+	/**
+	 * Parametric constructor for creating an instance-handle
+	 * from some other type. This method is intended for internal
+	 * usage.
+	 */
+	template <typename ARG0>
+	TInstanceHandle(const ARG0& arg0);
 
 public:
-    static const TInstanceHandle nil() {
-        return TInstanceHandle();
-    }
+	TInstanceHandle& operator=(const TInstanceHandle& that);
 
-    bool operator==(const TInstanceHandle& other) const {
-    	return this->delegate().operator==(other);
-    }
+	bool operator==(const TInstanceHandle& that);
 
-    TInstanceHandle& operator=(const dds::core::null_type& src) {
-    	this->delegate()->operator=(src);
-    	return *this;
-    }
 
-    bool operator==(const dds::core::null_type& other) const {
-    	return this->is_nil();
-    }
+public:
+	static const TInstanceHandle nil();
 
-    bool is_nil() const {
-    	return this->delegate()->is_nil();
-    }
+	bool is_nil() const;
 };
 
-} }
 
 #endif // !defined(OMG_TDDS_CORE_INSTANCE_HANDLE_HPP_)

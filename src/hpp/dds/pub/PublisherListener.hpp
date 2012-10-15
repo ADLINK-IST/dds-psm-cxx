@@ -22,11 +22,12 @@
 #include <dds/pub/AnyDataWriterListener.hpp>
 
 
-namespace dds { namespace pub {
-
-    class PublisherListener;
-    class NoOpPublisherListener;
-} }
+namespace dds {
+	namespace pub {
+    	class PublisherListener;
+    	class NoOpPublisherListener;
+	}
+}
 
 class dds::pub::PublisherListener : public virtual dds::pub::AnyDataWriterListener {
 public:
@@ -38,7 +39,7 @@ class dds::pub::NoOpPublisherListener :
     public virtual dds::pub::PublisherListener,
     public virtual dds::pub::NoOpAnyDataWriterListener {
 public:
-    virtual ~NoOpPublisherListener() { }
+    virtual ~NoOpPublisherListener();
 };
     
 

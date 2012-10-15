@@ -25,7 +25,7 @@ namespace dds { namespace sub {
 
 class SubscriberListener : public virtual AnyDataReaderListener {
 public:
-    virtual ~SubscriberListener() { }
+    virtual ~SubscriberListener();
 
 public:
     virtual void on_data_on_readers(Subscriber& sub) = 0;
@@ -35,10 +35,10 @@ class NoOpSubscriberListener :
     public virtual SubscriberListener,
     public virtual NoOpAnyDataReaderListener {
 public:
-    virtual ~NoOpSubscriberListener() { }
+    virtual ~NoOpSubscriberListener();
 
 public:
-    virtual void on_data_on_readers(Subscriber& sub) { }
+    virtual void on_data_on_readers(Subscriber& sub);
 };
 
 } }

@@ -18,30 +18,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include <dds/sub/TSample.hpp>
+#include <foo/bar/sub/Sample.hpp>
 
-#include <dds/core/Exception.hpp>
-#include <dds/core/Time.hpp>
-#include <dds/sub/status/DataStatus.hpp>
-
-
-namespace dds { namespace sub { namespace detail {
-
-template <typename T>
-class Sample {
-public:
-    const T& data() const {
-        throw dds::core::InvalidDataError("sample has no valid data");
-    }
-
-    const SampleInfo& info() const {
-        return info_;
-    }
-    
-private:
-    SampleInfo info_;
-};
-
-} } }
-
+namespace dds {
+	namespace sub {
+		namespace detail {
+			typedef dds::sub::TSample<foo::bar::sub::Sample> Sample;
+		}
+	}
+}
 
 #endif /* OMG_DDS_PUB_DETAIL_SAMPLE_HPP_ */

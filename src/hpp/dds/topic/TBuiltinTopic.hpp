@@ -41,74 +41,40 @@ namespace dds { namespace topic {
 template <typename D>
 class dds::topic::TParticipantBuiltinTopicData : public ::dds::core::Value<D> {
 public:
-    const dds::topic::BuiltinTopicKey& key() const {
-        return this->delegate()->key();
-    }
+    const dds::topic::BuiltinTopicKey& key() const;
 
-    const ::dds::core::policy::UserData& user_data() const {
-        return this->delegate()->user_data();
-    }
+    const ::dds::core::policy::UserData& user_data() const;
 };
 
 template <typename D>
 class dds::topic::TTopicBuiltinTopicData : public ::dds::core::Value<D>  {
 public:
-    const dds::topic::BuiltinTopicKey& key() {
-        return this->delegate()->key();
-    }
-    const std::string&                  name() const {
-        return this->delegate()->name();
-    }
-    const std::string&                  type_name() const {
-        return this->delegate()->type_name();
-    }
-    const ::dds::core::policy::Durability&         durability() const {
-        return this->delegate()->durability();
-    }
+    const dds::topic::BuiltinTopicKey& key();
+
+    const std::string&                  name() const;
+    const std::string&                  type_name() const;
+
+    const ::dds::core::policy::Durability&         durability() const;
 
 
 #ifdef OMG_DDS_PERSISTENCE_SUPPORT
 
-    const ::dds::core::policy::DurabilityService&  durability_service() const {
-        return this->delegate()->durability_service();
-    }
+    const ::dds::core::policy::DurabilityService&  durability_service() const
 
 #endif  // OMG_DDS_PERSISTENCE_SUPPORT
 
 
-    const ::dds::core::policy::Deadline&           deadline() const {
-        return this->delegate()->delegate();
-    }
-    const ::dds::core::policy::LatencyBudget&      latency_budget() const {
-        return this->delegate()->latency_budget();
-    }
-    const ::dds::core::policy::Liveliness&         liveliness() const {
-        return this->delegate()->liveliness();
-    }
-    const ::dds::core::policy::Reliability&        reliability() const {
-        return this->delegate()->reliability();
-    }
-    const ::dds::core::policy::TransportPriority&  transport_priority() const {
-        return this->delegate()->transport_priority();
-    }
-    const ::dds::core::policy::Lifespan&           lifespan() const {
-        return this->delegate()->lifespan();
-    }
-    const ::dds::core::policy::DestinationOrder&   destination_order() const {
-        return this->delegate()->destination_order();
-    }
-    const ::dds::core::policy::History&            history() const {
-        return this->delegate()->history();
-    }
-    const ::dds::core::policy::ResourceLimits&     resource_limits() const {
-        return this->delegate()->resource_limits();
-    }
-    const ::dds::core::policy::Ownership&          ownership() const {
-        return this->delegate()->ownership();
-    }
-    const ::dds::core::policy::TopicData&          topic_data() const {
-        return this->delegate()->topic_data();
-    }
+    const ::dds::core::policy::Deadline&           deadline() const;
+    const ::dds::core::policy::LatencyBudget&      latency_budget() const;
+    const ::dds::core::policy::Liveliness&         liveliness() const;
+    const ::dds::core::policy::Reliability&        reliability() const;
+    const ::dds::core::policy::TransportPriority&  transport_priority() const;
+    const ::dds::core::policy::Lifespan&           lifespan() const;
+    const ::dds::core::policy::DestinationOrder&   destination_order() const;
+    const ::dds::core::policy::History&            history() const;
+    const ::dds::core::policy::ResourceLimits&     resource_limits() const;
+    const ::dds::core::policy::Ownership&          ownership() const;
+    const ::dds::core::policy::TopicData&          topic_data() const;
 };
 
 template <typename D>

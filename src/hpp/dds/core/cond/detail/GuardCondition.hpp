@@ -20,11 +20,17 @@
  */
 
 #include <dds/core/cond/TGuardCondition.hpp>
-#include <idds/core/GuardConditionImpl.hpp>
+#include <foo/bar/core/cond/GuardConditionImpl.hpp>
 
-namespace dds { namespace core { namespace cond { namespace detail {
-    typedef dds::core::cond::TGuardCondition<idds::core::GuardConditionImpl> GuardCondition;
-} } } }
+namespace dds {
+	namespace core {
+		namespace cond {
+			namespace detail {
+				typedef dds::core::cond::TGuardCondition<foo::bar::core::cond::GuardConditionl> GuardCondition;
+			}
+		}
+	}
+}
 
 
 #endif /* OMG_DDS_CORE_DETAIL_GUARDCONDITION_HPP_ */

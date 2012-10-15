@@ -19,6 +19,10 @@
  * limitations under the License.
  */
 
+/**
+ * These traits have to be provided by compliant implementations
+ * to enable safe polymorphic casts.
+ */
 namespace  dds { namespace core {
                 
     template <typename T1, typename T2>

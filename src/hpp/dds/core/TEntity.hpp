@@ -41,7 +41,7 @@ class dds::core::TEntity : public dds::core::Reference<DELEGATE> {
 public:
     OMG_DDS_REF_TYPE(TEntity, dds::core::Reference, DELEGATE)
 
-    ~TEntity() { }
+    ~TEntity();
 
 public:
     /**
@@ -67,9 +67,7 @@ public:
      * is not enabled are inactive, that is, have a trigger_value==FALSE
      (see Section 7.1.4.4, “Conditions and Wait-sets, on page 131).
      */
-    void enable() {
-        this->delegate()->enable();
-    }
+    void enable();
 
     /**
      * This operation retrieves the list of communication statuses in the Entity
@@ -86,17 +84,13 @@ public:
      *
      * @return the status changes
      */
-    const dds::core::status::StatusMask status_changes() {
-        return this->delegate()->status_changes();
-    }
+    const dds::core::status::StatusMask status_changes();
 
     /**
      * This operation returns the InstanceHandle_t that
      * represents the Entity.
      */
-    const dds::core::InstanceHandle instance_handle() const {
-        return this->delegate()->instance_handle();
-    }
+    const dds::core::InstanceHandle instance_handle() const;
 
   
     /**
@@ -104,9 +98,7 @@ public:
      * DDS, such as threads, sockets, buffers, etc. Any attempt to invoke
      * methods on a closed entity will raise an exception.
      */
-     void close() {
-         this->delegate()->close();
-     }
+     void close();
 
     /**
      * Indicates that references to this object may go out of scope but that
@@ -114,9 +106,7 @@ public:
      * Service must consider this object to be still in use and may not
      * close it automatically.
      */
-    void retain() {
-    	this->delegate->retain();
-    }
+    void retain();
 };
 
 

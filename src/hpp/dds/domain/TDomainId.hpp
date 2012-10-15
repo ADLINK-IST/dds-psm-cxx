@@ -12,25 +12,18 @@ namespace dds { namespace domain {
 template <typename DELEGATE>
 class dds::domain::TDomainId : public dds::core::Value<DELEGATE> {
 public:
+
     template <typename ARG0>
-    TDomainId(ARG0 id) : dds::core::Value<DELEGATE>(id) { }
+    TDomainId(ARG0 id) : dds::core::Value<DELEGATE>(id);
     
     template <typename ARG0, typename ARG1>
-    TDomainId(ARG0 arg0, ARG1 arg1) 
-    : dds::core::Value<DELEGATE>(arg0, arg1) { }
+    TDomainId(ARG0 arg0, ARG1 arg1);
     
-    operator uint32_t () const {
-        return this->delegate().value();
-    }
+    operator uint32_t () const;
     
-    uint32_t value() const { 
-        return this->delegate().value();
-    }
+    uint32_t value() const;
     
-    static const TDomainId default_domain() { 
-        static TDomainId dd(DELEGATE::default_domain());
-        return dd;
-    }
+    static const TDomainId default_domain();
 };
     
 #endif /* OMG_DDS_DOMAIN_T_DOMAIN_ID_HPP_ */

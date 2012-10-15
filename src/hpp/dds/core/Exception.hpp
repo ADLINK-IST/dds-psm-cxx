@@ -25,6 +25,11 @@
 
 namespace dds { namespace core {
 
+/**
+ * This files contains the exceptions corresponding to DDS errors.
+ * In the DDS-PSM-Cxx in place of DDS errors the associated expcetion
+ * should be raised. Please section 7.5.5 of the DDS-PSM-C++ specification.
+ */
 
 class Exception
 {
@@ -137,12 +142,15 @@ public:
 class PreconditionNotMetError : public Exception, public std::logic_error
 {
 public:
-    explicit PreconditionNotMetError(const std::string& msg);
-    PreconditionNotMetError(const PreconditionNotMetError& src);
-    virtual ~PreconditionNotMetError() throw ();
+    explicit PreconditionNotMetError(const std::string& msg) : std::logic_error(msg) { }
+    PreconditionNotMetError(const PreconditionNotMetError& src) : std::logic_error(src.what()) {}
+    virtual ~PreconditionNotMetError() throw () { }
 
 public:
-    virtual const char* what() const throw ();
+    virtual const char* what() const throw () {
+    	return this->std::logic_error::what();
+    }
+
 };
 
 

@@ -43,7 +43,7 @@
 // Defines all the types, methods and attributes required for a Reference type
 // without default ctor.
 //
-
+/*
 #define OMG_DDS_REF_TYPE_BASE(TYPE, BASE, DELEGATE)     \
 public: \
 typedef BASE< DELEGATE >                                                  BASE_T;\
@@ -63,6 +63,23 @@ TYPE(const H__& h)    \
     OMG_DDS_STATIC_ASSERT((::dds::core::is_base_of<typename TYPE::DELEGATE_T, typename H__::DELEGATE_T>::value)); \
     this->::dds::core::Reference<DELEGATE>::impl_ = h.delegate(); \
 }
+*/
+
+#define OMG_DDS_REF_TYPE_BASE(TYPE, BASE, DELEGATE)     \
+public: \
+typedef BASE< DELEGATE >                                                  BASE_T;\
+protected:\
+explicit TYPE(DELEGATE_T* p)\
+: BASE< DELEGATE_T >(p) \
+{  }\
+public:\
+template <typename H__> \
+TYPE(const H__& h)    \
+: BASE< DELEGATE_T >(h) \
+{ \
+    OMG_DDS_STATIC_ASSERT((::dds::core::is_base_of<typename TYPE::DELEGATE_T, typename H__::DELEGATE_T>::value)); \
+    this->::dds::core::Reference<DELEGATE>::impl_ = h.delegate(); \
+}
 
 #define OMG_DDS_REF_TYPE_BASE_T(TYPE, BASE, T_PARAM, DELEGATE) \
 public: \
@@ -72,10 +89,6 @@ explicit TYPE(DELEGATE_T* p) \
     : BASE< T_PARAM, DELEGATE >(p) \
       {  } \
 public: \
-explicit TYPE(const DELEGATE_REF_T& ref) \
-    : BASE< T_PARAM, DELEGATE >(ref) \
-      { } \
-\
 template <typename H__> \
 TYPE(const H__& h) \
 : BASE< T_PARAM, DELEGATE >(h) \
@@ -203,5 +216,11 @@ private: \
     TYPE(); \
 public: \
    TYPE(const dds::core::null_type&) : BASE<T_PARAM, DELEGATE>(static_cast<DELEGATE<T_PARAM>* >(NULL)) { }
+
+#define OMG_DDS_BASIC_REF_TYPE(TYPE, BASE, DELEGATE)      \
+private: \
+   TYPE(); \
+public: \
+   TYPE(const dds::core::null_type&) : BASE< DELEGATE >(static_cast<DELEGATE*>(NULL)) { }
 
 #endif /* OMG_DDS_CORE_REFMACROS_HPP_ */

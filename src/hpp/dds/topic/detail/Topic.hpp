@@ -20,11 +20,15 @@
  */
 
 #include <dds/core/ref_traits.hpp>
+#include <dds/topic/TopicTraits.hpp>
 #include <dds/core/status/Status.hpp>
 #include <dds/core/status/State.hpp>
 #include <dds/domain/DomainParticipant.hpp>
 #include <dds/topic/qos/TopicQos.hpp>
 #include <dds/topic/detail/TopicDescription.hpp>
+
+#include <org/opensplice/core/config.hpp>
+#include <org/opensplice/topic/TopicTraits.hpp>
 
 namespace dds { namespace topic {
     template <typename T>
@@ -34,55 +38,8 @@ namespace dds { namespace topic {
 namespace dds { namespace topic { namespace detail {
     template <typename T>
     class Topic;
+    // Vendors should provide implementation.
+
 } } }
-
-template <typename T>
-class dds::topic::detail::Topic : public dds::topic::detail::TopicDescription<T> {
-public:
-
-    Topic(const dds::domain::DomainParticipant& dp,
-          const std::string& name,
-          const std::string& type_name,
-          const dds::topic::qos::TopicQos& qos,
-          dds::topic::TopicListener<T>* listener,
-          const dds::core::status::StatusMask& mask)
-    : dds::topic::detail::TopicDescription<T>(dp, name, type_name),
-	  qos_(qos),
-    listener_(listener),
-    mask_(mask)
-	  { }
-
-public:
-    /**
-     * Returns a <code>StatusCondition</code> instance associated with
-     * this <code>Entity</code>.
-     */
-    template <typename SELF>
-    ::dds::core::cond::StatusCondition<SELF>
-    status_condition(const SELF& self) const {
-        return ::dds::core::cond::StatusCondition<SELF>
-            (new ::dds::core::cond::detail::StatusCondition<SELF>(self));
-    }
-
-public:
-	const dds::topic::qos::TopicQos& qos() const {
-		return qos_;
-	}
-
-	void qos(const dds::topic::qos::TopicQos& the_qos) {
-		qos_ = the_qos;
-	}
-
-	const ::dds::core::status::InconsistentTopicStatus& inconsistent_topic_status() {
-		return its_;
-	}
-
-private:
-	dds::topic::qos::TopicQos qos_;
-    dds::topic::TopicListener<T>* listener_;
-    const dds::core::status::StatusMask& mask_;
-    ::dds::core::status::InconsistentTopicStatus its_;
-
-};
 
 #endif /* OMG_DDS_TOPIC_DETAIL_TOPIC_HPP_ */

@@ -26,7 +26,6 @@
 #include <dds/core/Time.hpp>
 #include <dds/core/TEntity.hpp>
 #include <dds/core/cond/StatusCondition.hpp>
-#include <dds/domain/types.hpp>
 #include <dds/domain/qos/DomainParticipantQos.hpp>
 
 #include <dds/topic/qos/TopicQos.hpp>
@@ -63,8 +62,6 @@ class dds::domain::TDomainParticipant : public ::dds::core::TEntity<DELEGATE> {
 public:
     typedef dds::domain::DomainParticipantListener Listener;
 
-    typedef ::dds::core::cond::StatusCondition<TDomainParticipant>
-    StatusCondition;
 public:
     /**
      * Create a new <code>DomainParticipant</code> object. 
@@ -76,10 +73,10 @@ public:
      *
      * @param id the id of the domain joined by the new
      *           <code>DomainParticipant</code>.
-     * @param qos the QoS settings for the new <code>DomainParticipant</code>
+     *
      */
-    TDomainParticipant(dds::domain::DomainId id) 
-    : ::dds::core::TEntity<DELEGATE>(new DELEGATE(id)) { }
+    TDomainParticipant(uint32_t did)
+    : ::dds::core::TEntity<DELEGATE>(new DELEGATE(did));
     
     /**
      * Create a new <code>DomainParticipant</code> object.
@@ -92,36 +89,18 @@ public:
      * @param id the id of the domain joined by this <code>DomainParticipant</code>.
      * @param qos the QoS settings for this <code>DomainParticipant</code>
      */
-    TDomainParticipant(dds::domain::DomainId                         id,
-                       const dds::domain::qos::DomainParticipantQos& qos,
-                       dds::domain::DomainParticipantListener*       listener = NULL,
-                       const dds::core::status::StatusMask&          mask = dds::core::status::StatusMask::all())
-    : ::dds::core::TEntity<DELEGATE>(new DELEGATE(id,
-                                                  qos,
-                                                  listener,
-                                                  mask)) { }    
+    TDomainParticipant(uint32_t 	                                       id,
+                       const dds::domain::qos::DomainParticipantQos& 	qos,
+                       dds::domain::DomainParticipantListener*       	listener = NULL,
+                       const dds::core::status::StatusMask&          	mask = dds::core::status::StatusMask::all());
 
 public:
-    OMG_DDS_REF_TYPE(TDomainParticipant, ::dds::core::TEntity, DELEGATE)
+    OMG_DDS_BASIC_REF_TYPE(TDomainParticipant, ::dds::core::TEntity, DELEGATE)
 
 public:
-    ~TDomainParticipant() {
-        OMG_DDS_LOG("MM", "~DomainParticipant()");
-    }
+    ~TDomainParticipant();
 
 public:
-    /**
-     * This operation allows access to the StatusCondition
-     * (Section 7.1.2.1.9, "StatusCondition Class") associated with the Entity.
-     * The returned condition can then be added to a WaitSet (Section 7.1.2.1.6,
-     * WaitSet Class) so that the application can wait for specific status changes
-     * that affect the Entity.
-     *
-     * @return the status condition
-     */
-    StatusCondition status_condition() const{
-        return this->delegate()->template status_condition<TDomainParticipant>(*this);
-    }
 
     /**
      * Register a listener with the <core>DomainParticipant</code>.
@@ -133,16 +112,12 @@ public:
      *  will be notified.
      */
     void listener(Listener* the_listener,
-    		const ::dds::core::status::StatusMask& event_mask) {
-        this->delegate()->listener(the_listener, event_mask);
-    }
+    		const ::dds::core::status::StatusMask& event_mask);
 
     /**
      * Get the listener of this <code>DomainParticipant</code>
      */
-    Listener* listener() const {
-        return this->delegate()->listener();
-    }
+    Listener* listener() const;
 
 
     /**
@@ -151,13 +126,8 @@ public:
      * @return the qos setting.
      */
     const dds::domain::qos::DomainParticipantQos&
-    qos() const {
-        return this->delegate()->qos();
-    }
-
-    void qos(const dds::domain::qos::DomainParticipantQos& the_qos) {
-        this->delegate()->qos(the_qos);
-    }
+    qos() const;
+    void qos(const dds::domain::qos::DomainParticipantQos& the_qos);
 
     /**
      * This operation retrieves the domain_id used to create the
@@ -169,9 +139,7 @@ public:
      *
      * @return the domain id
      */
-    dds::domain::DomainId domain_id() const {
-        return this->delegate()->domain_id();
-    }
+    uint32_t domain_id() const;
 
 
     /**
@@ -188,9 +156,7 @@ public:
      * application is not writing data regularly.
      */
     void
-    assert_liveliness() {
-        this->delegate()->assert_liveliness();
-    }
+    assert_liveliness();
 
 
     /**
@@ -208,9 +174,7 @@ public:
      *              to this <code>DomainParticipant</code>
      */
     bool
-    contains_entity(const ::dds::core::InstanceHandle& handle) {
-        return this->delegate()->contains_entity();
-    }
+    contains_entity(const ::dds::core::InstanceHandle& handle);
 
     /**
      * This operation returns the current value of the time that the service
@@ -218,45 +182,24 @@ public:
      * for the data updates it receives.
      */
     dds::core::Time
-    current_time() {
-        return this->delegate()->current_time();
-    }
+    current_time();
 
 public:
     // --- DomainParticipant QoS Defaults --- //
-    static const ::dds::domain::qos::DomainParticipantQos& default_participant_qos() {
-        return DELEGATE::default_participant_qos();
-    }
-    
-    static void default_participant_qos(const ::dds::domain::qos::DomainParticipantQos& qos) {
-    	DELEGATE::default_participant_qos(qos);
-    }
+    static dds::domain::qos::DomainParticipantQos default_participant_qos();
+    static void default_participant_qos(const ::dds::domain::qos::DomainParticipantQos& qos);
     
     // --- Publisher QoS Defaults --- //
-    const ::dds::pub::qos::PublisherQos& default_publisher_qos() const {
-        return this->delegate()->default_publisher_qos();
-    }
-    void default_publisher_qos(const ::dds::pub::qos::PublisherQos& qos) {
-    	this->delegate()->default_publisher_qos(qos);
-    }
+    dds::pub::qos::PublisherQos default_publisher_qos() const;
+    TDomainParticipant& default_publisher_qos(const ::dds::pub::qos::PublisherQos& qos);
 
     // --- Subscriber QoS Defaults --- //
-    const ::dds::sub::qos::SubscriberQos& default_subscriber_qos() const {
-        return this->delegate()->default_subscriber_qos();
-    }
-    
-    void default_subscriber_qos(const ::dds::sub::qos::SubscriberQos& qos) {
-        this->delegate()->default_subscriber_qos(qos);
-    }
+    dds::sub::qos::SubscriberQos default_subscriber_qos() const;
+    TDomainParticipant& default_subscriber_qos(const ::dds::sub::qos::SubscriberQos& qos);
 
     // --- Topic QoS Defaults --- //
-    const dds::topic::qos::TopicQos& default_topic_qos() const {
-        return this->delegate()->default_topic_qos();
-    }
-    
-    void default_topic_qos(const dds::topic::qos::TopicQos& qos) {
-        this->delegate()->default_topic_qos(qos);
-    }
+    dds::topic::qos::TopicQos default_topic_qos() const;
+    TDomainParticipant& default_topic_qos(const dds::topic::qos::TopicQos& qos);
 
 //=============================================================================
 };

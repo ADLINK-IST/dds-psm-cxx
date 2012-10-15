@@ -22,13 +22,14 @@
 #include <dds/core/macros.hpp>
 #include <dds/core/ref_traits.hpp>
 #include <dds/core/Exception.hpp>
-#include <dds/topic/TopicTraits.hpp>
+#include <dds/pub/DataWriter.hpp>
 #include <dds/pub/detail/AnyDataWriter.hpp>
 
-
-namespace dds { namespace pub {
-class AnyDataWriter;
-} }
+namespace dds {
+	namespace pub {
+		class AnyDataWriter;
+	}
+}
 
 /**
  * This class provides an holder for representing a generic DDS 
@@ -37,93 +38,57 @@ class AnyDataWriter;
 class dds::pub::AnyDataWriter {
 public:
 	template <typename T>
-	AnyDataWriter(const dds::pub::DataWriter<T>& dw)
-	:	holder_(new detail::DWHolder<T>(dw)) { }
+	AnyDataWriter(const dds::pub::DataWriter<T>& dw);
 
 public:
-	const dds::pub::qos::DataWriterQos& qos() const {
-		return holder_->qos();
-	}
+	const dds::pub::qos::DataWriterQos& qos() const;
 
-	void qos(const ::dds::pub::qos::DataWriterQos& q) {
-		holder_->qos(q);
-	}
+	void qos(const ::dds::pub::qos::DataWriterQos& q);
 
-	const std::string& topic_name() const {
-		return holder_->topic_name();
-	}
+	const std::string& topic_name() const;
 
-	const std::string& type_name() const {
-		return holder_->type_name();
-	}
+	const std::string& type_name() const;
 
-	const dds::pub::Publisher& publisher() const {
-		return holder_->publisher();
-	}
+	const dds::pub::Publisher& publisher() const;
 
-	void wait_for_acknowledgments(const dds::core::Duration& timeout) {
-		return holder_->wait_for_acknowledgments(timeout);
-	}
+	void wait_for_acknowledgments(const dds::core::Duration& timeout);
 
-	void close() {
-		holder_->close();
-	}
+	void close();
 
-	void retain(bool b) {
-		holder_->retain(b);
-	}
+	void retain(bool b);
 
 public:
 	inline AnyDataWriter&
-	swap(AnyDataWriter& rhs) {
-		holder_.swap(rhs.holder_);
-		return *this;
-	}
+	swap(AnyDataWriter& rhs);
 
 	template <typename T> AnyDataWriter&
-	operator =(const dds::pub::DataWriter<T>& rhs) {
-		holder_.reset(new detail::DWHolder<T>(rhs));
-		return *this;
-	}
+	operator =(const dds::pub::DataWriter<T>& rhs);
 
 	template <typename T>
-	AnyDataWriter& operator =(const AnyDataWriter& rhs) {
-		holder_ = rhs.holder_;
-		return *this;
-	}
+	AnyDataWriter& operator =(const AnyDataWriter& rhs);
 
-	inline AnyDataWriter& operator =(AnyDataWriter rhs) {
-		rhs.swap(*this);
-		return *this;
-	}
+	inline AnyDataWriter& operator =(AnyDataWriter rhs);
 
 public:
+	/**
+	 * Extracts a typed <code>DataWriter</code> from this.
+	 *
+	 */
 	template <typename T>
-	const dds::pub::DataWriter<T>& get() {
-		OMG_DDS_STATIC_ASSERT(::dds::topic::is_topic_type<T>::value == 1);
-		detail::DWHolder<T>* h = dynamic_cast<detail::DWHolder<T>* >(holder_.get());
-		if (h == 0) {
-			throw ::dds::core::InvalidDowncastError("invalid type");
-		}
-		return h->get();
-	}
+	const dds::pub::DataWriter<T>& get();
 
 public:
 	/**
 	 * Direct access to methods available on the delegate. Notice that
 	 * this should only be used to access proprietary extensions.
 	 */
-	const detail::DWHolderBase* operator->() const {
-		return holder_.get();
-	}
+	const detail::DWHolderBase* operator->() const;
 
 	/**
 	 * Direct access to methods available on the delegate. Notice that
 	 * this should only be used to access proprietary extensions.
 	 */
-	detail::DWHolderBase* operator->() {
-		return holder_.get();
-	}
+	detail::DWHolderBase* operator->();
 
 
 private:

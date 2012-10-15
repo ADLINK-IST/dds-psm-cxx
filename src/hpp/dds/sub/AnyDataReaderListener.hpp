@@ -26,7 +26,7 @@ class AnyDataReader;
 
 class AnyDataReaderListener {
 public:
-    virtual ~AnyDataReaderListener() { }
+    virtual ~AnyDataReaderListener();
 
 public:
     virtual void on_requested_deadline_missed(

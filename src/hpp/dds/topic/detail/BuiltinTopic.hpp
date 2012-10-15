@@ -19,22 +19,22 @@
  * limitations under the License.
  */
 
-#include <idds/topic/BuiltinTopicImpl.hpp>
+#include <foo/bar/topic/BuiltinTopicImpl.hpp>
 #include <dds/topic/TBuiltinTopic.hpp>
 
 namespace dds { namespace topic { namespace detail {
     
-    typedef dds::topic::TParticipantBuiltinTopicData<idds::topic::ParticipantBuiltinTopicDataImpl>
+    typedef dds::topic::TParticipantBuiltinTopicData<foo::bar::topic::ParticipantBuiltinTopicDataImpl>
     ParticipantBuiltinTopicData;
     
     
-    typedef dds::topic::TTopicBuiltinTopicData<idds::topic::TopicBuiltinTopicDataImpl>
+    typedef dds::topic::TTopicBuiltinTopicData<foo::bar::topic::TopicBuiltinTopicDataImpl>
     TopicBuiltinTopicData;
     
-    typedef dds::topic::TPublicationBuiltinTopicData<idds::topic::PublicationBuiltinTopicDataImpl>
+    typedef dds::topic::TPublicationBuiltinTopicData<foo::bar::topic::PublicationBuiltinTopicDataImpl>
     PublicationBuiltinTopicData;
     
-    typedef dds::topic::TSubscriptionBuiltinTopicData<idds::topic::SubscriptionBuiltinTopicDataImpl>
+    typedef dds::topic::TSubscriptionBuiltinTopicData<foo::bar::topic::SubscriptionBuiltinTopicDataImpl>
     SubscriptionBuiltinTopicData;
 
 } } }

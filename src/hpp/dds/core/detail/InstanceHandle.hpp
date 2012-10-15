@@ -20,10 +20,10 @@
  */
 
 #include <dds/core/TInstanceHandle.hpp>
-#include <idds/core/InstanceHandleImpl.hpp>
+#include <foo/bar/core/InstanceHandleImpl.hpp>
 
 namespace dds { namespace core { namespace detail {
-    typedef dds::core::TInstanceHandle<idds::core::InstanceHandleImpl> InstanceHandle; 
+      typedef dds::core::TInstanceHandle<foo::bar::core::InstanceHandleImpl> InstanceHandle;
 } } }
 
 #endif /* !defined(OMG_DDS_CORE_DETAIL_INSTANCE_HANDLE_HPP_) */

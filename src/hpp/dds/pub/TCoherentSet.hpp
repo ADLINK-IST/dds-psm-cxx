@@ -21,10 +21,16 @@
 
 #include <dds/pub/Publisher.hpp>
 
-namespace dds { namespace pub {
+namespace dds {
+	namespace pub {
+		template <typename DELEGATE>
+		class TCoherentSet;
+	}
+}
+
 
 template <typename DELEGATE>
-class TCoherentSet : public dds::core::Value<DELEGATE> {
+class dds::pub::TCoherentSet : public dds::core::Value<DELEGATE> {
 public:
     /**
      * This operation requests that the application will begin a
@@ -57,7 +63,7 @@ public:
      * see both together; otherwise, it may e.g., erroneously
      * interpret that the aircraft is on a collision course.
      */
-    explicit TCoherentSet(const dds::pub::Publisher& pub) : dds::core::Value<DELEGATE>(pub)  {  }
+    explicit TCoherentSet(const dds::pub::Publisher& pub);
 
 public:
     /**
@@ -65,19 +71,16 @@ public:
      * constructor. If there is no matching call to the constructor,
      * the operation will raise the PreconditionNotMetError.
      */
-    void end() { this->delegate().end(); }
+    void end();
 
 public:
     /**
      * This operation terminates the coherent set initiated by the
      * constructor.
      */
-    ~TCoherentSet() {
-    	this->delegate().end();
-    }
+    ~TCoherentSet();
 };
 
-} }
 
 #endif /* OMG_TDDS_PUB_COHERENT_SET_HPP_ */
 

@@ -25,7 +25,7 @@ namespace dds { namespace topic {
 template <typename T>
 class TopicListener {
 public:
-    virtual ~TopicListener() { }
+    virtual ~TopicListener();
 
 public:
     virtual void on_inconsistent_topic(
@@ -37,7 +37,7 @@ public:
 template <typename T>
 class NoOpTopicListener : public virtual TopicListener<T> {
 public:
-    virtual ~NoOpTopicListener() { }
+    virtual ~NoOpTopicListener();
 
 public:
     virtual void on_inconsistent_topic(

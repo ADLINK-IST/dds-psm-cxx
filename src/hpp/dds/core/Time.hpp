@@ -21,11 +21,14 @@
 
 #include <dds/core/types.hpp>
 
-namespace dds { namespace core {
-
-class Duration;
+namespace dds {
+	namespace core {
+		class Duration;
+		class Time;
+	}
+}
     
-class OMG_DDS_API Time {
+class dds::core::Time {
 public:
     static const Time invalid();       // {-1, 0xffffffff}
 
@@ -70,10 +73,10 @@ private:
 };
 
 // Time arithmetic operators.
-const Time operator +(const Time& lhs,      const Duration &rhs);
-const Time operator +(const Duration& lhs,  const Time& rhs);
-const Time operator -(const Time& lhs,      const Duration &rhs);
+const dds::core::Time operator +(const dds::core::Time& lhs,      const dds::core::Duration &rhs);
+const dds::core::Time operator +(const dds::core::Duration& lhs,  const dds::core::Time& rhs);
+const dds::core::Time operator -(const dds::core::Time& lhs,      const dds::core::Duration &rhs);
 
-} } /* namespace dds / namespace core  */
+
 #endif /* OMG_DDS_CORE_TIME_HPP_ */
 

@@ -6,29 +6,22 @@
 namespace dds  { namespace sub {
     template <typename DELEGATE>
     class TRank;
-} }
+  } }
 
 
+/**
+ * This class encapsulate the concept of Rank for a sample.
+ */
 template <typename DELEGATE>
 class dds::sub::TRank : public dds::core::Value<DELEGATE> {
 public:
-    TRank() { }
+  TRank();
     
-    template <typename ARG0> 
-    TRank(const ARG0& arg) 
-    : dds::core::Value<DELEGATE>(arg) { }
+  TRank(int32_t s, int32_t a, int32_t ag);
     
-    int32_t absolute_generation() const {
-        return this->delegate().absolute_generation();
-    }
-    
-    inline int32_t generation() const {
-        return this->delegate().generation();
-    }
-    
-    inline int32_t sample() const {    
-        return this->delegate()->sample();
-    }
+  int32_t 			absolute_generation() const;
+  inline int32_t 	generation() const;
+  inline int32_t 	sample() const;
 };
 
 #endif /* OMG_DDS_SUB_TRANK_HPP_ */

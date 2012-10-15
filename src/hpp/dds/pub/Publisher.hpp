@@ -21,8 +21,10 @@
 
 #include <dds/pub/detail/Publisher.hpp>
 
-namespace dds { namespace pub {
-    typedef dds::pub::detail::Publisher Publisher; 
-} }
+namespace dds {
+	namespace pub {
+    	typedef dds::pub::detail::Publisher Publisher;
+	}
+}
 
 #endif /* OMG_DDS_PUB_PUBLISHER_HPP_ */

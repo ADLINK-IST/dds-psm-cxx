@@ -1,7 +1,6 @@
 #ifndef OMG_DDS_CORE_DETAIL_CONFORMANCE_HPP_
 #define OMG_DDS_CORE_DETAIL_CONFORMANCE_HPP_
 
-
 /* The following macros correspond to the compliance "profiles" of the DDS
  * specification. Implementations shall modify this header to indicate their
  * level of support:
@@ -15,6 +14,7 @@
  * DDS Minimum Profile support is required of all DDS implementations;
  * therefore no corresponding macro is provided.
  */
+
 #define OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT                FULL
 #define OMG_DDS_MULTI_TOPIC_SUPPORT                         FULL
 #define OMG_DDS_PERSISTENCE_SUPPORT                         FULL
@@ -22,6 +22,6 @@
 #define OMG_DDS_OBJECT_MODEL_SUPPORT                        FULL
 #define OMG_DDS_EXTENSIBLE_AND_DYNAMIC_TOPIC_TYPE_SUPPORT   FULL
 
-
+#define OMG_DDS_HAS_PRETTY_PRINT_COUT 1
 
 #endif /* OMG_DDS_CORE_DETAIL_CONFORMANCE_HPP_ */

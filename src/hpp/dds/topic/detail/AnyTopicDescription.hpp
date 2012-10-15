@@ -25,40 +25,13 @@
 
 
 namespace dds { namespace topic { namespace detail {
-class TDHolderBase {
-public:
-    virtual ~TDHolderBase() { }
+	class TDHolderBase;
 
-    virtual const dds::domain::DomainParticipant& domain_participant() const = 0;
+	template <typename T>
+	class TDHolder;
 
-    virtual const std::string& name() const = 0;
+	// Vendors should provide implementation.
 
-    virtual const std::string& type_name() const = 0;
-};
-
-template <typename T>
-class TDHolder : public virtual TDHolderBase {
-public:
-    TDHolder(const dds::topic::TopicDescription<T>& t) : td_(t) { }
-    virtual ~TDHolder() { }
-public:
-    virtual const dds::domain::DomainParticipant& domain_participant() const {
-    	return td_.domain_participant();
-    }
-
-    virtual const std::string& name() const {
-    	return td_.name();
-    }
-
-    virtual const std::string& type_name() const {
-    	return td_.type_name();
-    }
-
-    const dds::topic::TopicDescription<T>& get() const { return td_; }
-
-protected:
-    dds::topic::TopicDescription<T> td_;
-};
 } } }
 
 #endif /* OMG_DDS_TOPIC_DETAIL_ANY_TOPIC_DESCRIPTION_HPP_ */

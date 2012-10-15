@@ -19,6 +19,11 @@
  * limitations under the License.
  */
 
+
+/*
+ * This file is non-normative. The implementation is
+ * provided only as an example.
+ */
 #include <boost/shared_ptr.hpp>
 #include <boost/weak_ptr.hpp>
 #include <boost/static_assert.hpp>

@@ -19,15 +19,12 @@
  * limitations under the License.
  */
 
-#include <dds/core/corefwd.hpp>
-#include <dds/topic/topicfwd.hpp>
-
 
 namespace dds { namespace topic {
 
 class AnyTopicListener {
 public:
-    virtual ~AnyTopicListener() { }
+    virtual ~AnyTopicListener();
 
 public:
     virtual void on_inconsistent_topic(
@@ -38,12 +35,12 @@ public:
     
 class NoOpAnyTopicListener : public virtual AnyTopicListener {
 public:
-    virtual ~NoOpAnyTopicListener() { }
+    virtual ~NoOpAnyTopicListener();
 
 public:
     virtual void on_inconsistent_topic(
             AnyTopic& topic,
-            const dds::core::status::InconsistentTopicStatus& status) { }
+            const dds::core::status::InconsistentTopicStatus& status);
 };
     
 } }

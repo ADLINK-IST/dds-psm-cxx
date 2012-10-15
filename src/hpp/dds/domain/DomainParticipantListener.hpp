@@ -43,7 +43,7 @@ class NoOpDomainParticipantListener :
     public virtual dds::topic::NoOpAnyTopicListener
 {
 public:
-    virtual ~NoOpDomainParticipantListener() { }
+    virtual ~NoOpDomainParticipantListener();
 };
     
 }}

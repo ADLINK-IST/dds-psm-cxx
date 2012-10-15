@@ -20,160 +20,97 @@
  */
 #include <dds/core/detail/conformance.hpp>
 #include <dds/core/TEntity.hpp>
-#include <dds/core/Query.hpp>
 #include <dds/topic/ContentFilteredTopic.hpp>
 #include <dds/topic/TopicInstance.hpp>
-#include <dds/sub/Sample.hpp>
 #include <dds/sub/LoanedSamples.hpp>
+#include <dds/sub/DataReaderEventHandler.hpp>
 
+namespace dds {
+	namespace sub {
+		class Query;
 
+		template <typename T, template <typename Q> class DELEGATE>
+		class DataReader;
 
-namespace dds { namespace sub {
-template <typename T, template <typename Q> class DELEGATE>
-class DataReader;
-
-template <typename T>
-class DataReaderListener;
-} }
-
+		template <typename T>
+		class DataReaderListener;
+	}
+}
 
 template <typename T, template <typename Q> class DELEGATE>
 class dds::sub::DataReader : public dds::core::TEntity< DELEGATE<T> > {
 
 public:
-	typedef T                                            	DataType;
-	typedef ::dds::sub::Sample<T>                           Sample;
-	typedef ::dds::sub::LoanedSamples<T>                    LoanedSamples;
-	typedef ::dds::sub::DataReaderListener<T>		        Listener;
+	typedef T                                        DataType;
+	typedef ::dds::sub::DataReaderListener<T>        Listener;
 
 public:
 
+	/**
+	 * The <code>Selector</code> class is used by the <code>DataReader</code>
+	 * to compose read operations.
+	 */
 	class Selector {
 	public:
-		Selector(DataReader& dr)
-		: impl_(dr.delegate().get()) {}
+		Selector(DataReader& dr);
 
-		Selector& instance(const dds::core::InstanceHandle& h) {
-			impl_.instance(h);
-			return *this;
-		}
+		Selector& instance(const dds::core::InstanceHandle& h);
+		Selector& next_instance(const dds::core::InstanceHandle& h);
+		Selector& filter_state(const dds::sub::status::DataState& s);
+		Selector& filter_content(const dds::sub::Query& query);
 
-		Selector& next_instance(const dds::core::InstanceHandle& h) {
-			impl_.next_instance(h);
-			return *this;
-		}
-
-		Selector& filter_state(const dds::sub::status::DataState& s) {
-			impl_.filter_state(s);
-			return *this;
-		}
-		Selector& filter_content(const dds::core::Query& query) {
-			impl_.filter_content(query);
-			return *this;
-		}
-
-		dds::sub::LoanedSamples<T>
-		read()
-		{
-			return impl_.read();
-		}
-
-		dds::sub::LoanedSamples<T>
-		take()
-		{
-			return impl_.take();
-		}
+		dds::sub::LoanedSamples<T> read();
+		dds::sub::LoanedSamples<T> take();
 
 		// --- Forward Iterators: --- //
-		template <typename SamplesFWIterator, typename InfoFWIterator>
-		void
-		read(SamplesFWIterator sfit,
-				InfoFWIterator ifit,
-				size_t max_samples)
-		{
-			impl_.read(sfit, ifit, max_samples);
-		}
+		template <typename SamplesFWIterator>
+		uint32_t
+		read(SamplesFWIterator sfit, uint32_t max_samples);
 
-		template <typename SamplesFWIterator, typename InfoFWIterator>
-		void
-		take(SamplesFWIterator sfit,
-				InfoFWIterator ifit,
-				size_t max_samples)
-		{
-			impl_.take(sfit, ifit, max_samples);
-		}
-
+		template <typename SamplesFWIterator>
+		uint32_t
+		take(SamplesFWIterator sfit,	uint32_t max_samples);
 
 		// --- Back-Inserting Iterators: --- //
-		template <typename SamplesBIIterator, typename InfoBIIterator>
-		void
-		read(SamplesBIIterator sbit,
-				InfoBIIterator ibit)
-		{
-			impl_.read(sbit, ibit);
-		}
+		template <typename SamplesBIIterator>
+		uint32_t
+		read(SamplesBIIterator sbit);
 
 
-		template <typename SamplesBIIterator, typename InfoBIIterator>
-		void
-		take(SamplesBIIterator sbit,
-				InfoBIIterator ibit)
-		{
-			impl_.take(sbit, ibit);
-		}
-
+		template <typename SamplesBIIterator>
+		uint32_t
+		take(SamplesBIIterator sbit);
 
 	private:
 		typename DELEGATE<T>::Selector impl_;
 	};
 
+	/**
+	 * Selector class enabling the streaming API.
+	 */
 	class ManipulatorSelector {
 	public:
-		ManipulatorSelector(DataReader& dr) : impl_(dr.delegate().get()) { }
+		ManipulatorSelector(DataReader& dr);
 
-		bool read_mode() { return impl_.read_mode(); }
+		bool read_mode();
+		void read_mode(bool b);
 
-		void read_mode(bool b) { impl_.read_mode(b); }
 
-
-		ManipulatorSelector& instance(const dds::core::InstanceHandle& h) {
-			impl_.instance(h);
-			return *this;
-		}
-
-		ManipulatorSelector& next_instance(const dds::core::InstanceHandle& h) {
-			impl_.next_instance(h);
-			return *this;
-		}
-
-		ManipulatorSelector& filter_state(const dds::sub::status::DataState& s) {
-			impl_.filter_state(s);
-			return *this;
-		}
-
-		ManipulatorSelector& filter_content(const dds::core::Query& query) {
-			impl_.filter_content(query);
-			return *this;
-		}
+		ManipulatorSelector& instance(const dds::core::InstanceHandle& h);
+		ManipulatorSelector& next_instance(const dds::core::InstanceHandle& h);
+		ManipulatorSelector& filter_state(const dds::sub::status::DataState& s);
+		ManipulatorSelector& filter_content(const dds::sub::Query& query);
 
 		ManipulatorSelector&
-		operator >>(dds::sub::LoanedSamples<T>& samples) {
-			impl_ >> samples;
-			return *this;
-		}
+		operator >>(dds::sub::LoanedSamples<T>& samples);
 
 		ManipulatorSelector&
-		operator >> (ManipulatorSelector& (manipulator)(ManipulatorSelector&)) {
-			manipulator(*this);
-			return *this;
-		}
+		operator >> (ManipulatorSelector& (manipulator)(ManipulatorSelector&));
 
 		template <typename Functor>
 		ManipulatorSelector
-		operator >> (Functor f) {
-			f(*this);
-			return *this;
-		}
+		operator >> (Functor f);
+
 	private:
 		typename DELEGATE<T>::ManipulatorSelector impl_;
 
@@ -183,54 +120,64 @@ public:
 	OMG_DDS_REF_TYPE(DataReader, dds::core::TEntity, DELEGATE<T>)
 
 public:
-	DataReader(const dds::sub::Subscriber& sub,
-			const dds::topic::Topic<T>& topic) :
-				::dds::core::TEntity< DELEGATE<T> >(new DELEGATE<T>(sub, topic))
-				 { }
 
-
+	/**
+	 * Create a <code>DataReader</code>.
+	 *
+	 * @param sub the subscriber owning this <code>DataReader</code>.
+	 * @param topic the topic associated with this <code>DataReader</code>.
+	 * @param qos the QoS settings for this <code>DataReader</code>.
+	 * @param listener the listener.
+	 * @param mask the event mask associated to the <code>DataReader</code> listener.
+	 */
 	DataReader(const dds::sub::Subscriber& sub,
 			const ::dds::topic::Topic<T>& topic,
-			const dds::sub::qos::DataReaderQos& qos,
+			const dds::sub::qos::DataReaderQos& qos = sub.default_datareader_qos(),
 			dds::sub::DataReaderListener<T>* listener = NULL,
-			const dds::core::status::StatusMask& mask = ::dds::core::status::StatusMask::all())
-	: ::dds::core::TEntity< DELEGATE<T> >(new DELEGATE<T>(sub, topic, qos, listener, mask))
-	{ }
+			const dds::core::status::StatusMask& mask = ::dds::core::status::StatusMask::all());
 
 #ifdef OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT
-	DataReader(const dds::sub::Subscriber& sub,
-			const dds::topic::ContentFilteredTopic<T>& topic)
-	: ::dds::core::TEntity< DELEGATE<T> >(new DELEGATE<T>(sub, topic))
-	{ }
 
-
+	/**
+	 * Create a <code>DataReader</code> for a <code>ContentFilteredTopic</code>.
+	 * This <code>DataReader</code> will only receive that data that mathes the
+	 * <code>Filter</code> associated with the <code>ContentFilteredTopic</code>.
+	 *
+	 * @param sub the subscriber owning this <code>DataReader</code>.
+	 * @param topic the content filtered topic.
+	 * @param qos the QoS settings for this <code>DataReader</code>.
+	 * @param listener the listener.
+	 * @param mask the event mask associated to the <code>DataReader</code> listener.
+	 */
 	DataReader(const dds::sub::Subscriber& sub,
 			const ::dds::topic::ContentFilteredTopic<T>& topic,
-			const dds::sub::qos::DataReaderQos& qos,
+			const dds::sub::qos::DataReaderQos& qos = sub.default_datareader_qos(),
 			dds::sub::DataReaderListener<T>* listener = NULL,
-			const dds::core::status::StatusMask& mask = ::dds::core::status::StatusMask::all())
-	: ::dds::core::TEntity< DELEGATE<T> >(new DELEGATE<T>(sub, topic, qos, listener, mask))
-	{ }
+			const dds::core::status::StatusMask& mask = ::dds::core::status::StatusMask::all());
 #endif /* OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT */
 
 #ifdef OMG_DDS_MULTI_TOPIC_SUPPORT
-	DataReader(const dds::sub::Subscriber& sub,
-			const dds::topic::MultiTopic<T>& topic)
-	: ::dds::core::TEntity< DELEGATE<T> >(new DELEGATE<T>(sub, topic))
-	{ }
 
-
+	/**
+	 * Create a <code>DataReader</code> for a <code>MultiTopic</code>.
+	 * This <code>DataReader</code> will only receive that data that mathes the
+	 * <code>Filter</code> associated with the <code>ContentFilteredTopic</code>.
+	 *
+	 * @param sub the subscriber owning this <code>DataReader</code>.
+	 * @param topic the multi-topic.
+	 * @param qos the QoS settings for this <code>DataReader</code>.
+	 * @param listener the listener.
+	 * @param mask the event mask associated to the <code>DataReader</code> listener.
+	 */
 	DataReader(const dds::sub::Subscriber& sub,
 			const ::dds::topic::MultiTopic<T>& topic,
-			const dds::sub::qos::DataReaderQos& qos,
+			const dds::sub::qos::DataReaderQos& qos = sub.default_datareader_qos(),
 			dds::sub::DataReaderListener<T>* listener = NULL,
-			const dds::core::status::StatusMask& mask = ::dds::core::status::StatusMask::all())
-	: ::dds::core::TEntity< DELEGATE<T> >(new DELEGATE<T>(sub, topic, qos, listener, mask))
-	{ }
+			const dds::core::status::StatusMask& mask = ::dds::core::status::StatusMask::all());
 
 #endif /* OMG_DDS_MULTI_TOPIC_SUPPORT */
 public:
-	~DataReader() { }
+	~DataReader();
 
 
 public:
@@ -240,13 +187,15 @@ public:
 	 * Returns the default read-state (if not changed, it is set to
 	 * ReaderState::any()).
 	 */
-	const dds::sub::status::DataState& default_status_filter() {
-		return this->delegate()->default_status_filter();
-	}
-	DataReader& default_status_filter(const dds::sub::status::DataState& status) {
-		this->delegate()->default_status_filter(status);
-		return *this;
-	}
+	const dds::sub::status::DataState& default_filter_state();
+
+	/**
+	 * Set the default state filter for read/take  operations.
+	 *
+	 * @param state the state mask that will be used to read/take samples.
+	 */
+	DataReader& default_filter_state(const dds::sub::status::DataState& state);
+
 	//== Streaming read/take
 
 	/**
@@ -256,82 +205,114 @@ public:
 	 * dr >> take >> loanedSamples;
 	 *
 	 */
-	DataReader& operator >>(dds::sub::LoanedSamples<T>& ls) {
-		this->delegate() >> ls;
-		return *this;
-	}
+	DataReader& operator >>(dds::sub::LoanedSamples<T>& ls);
 
 	ManipulatorSelector
-	operator >> (ManipulatorSelector& (manipulator)(ManipulatorSelector&)) {
-		ManipulatorSelector selector(*this);
-		manipulator(selector);
-		return selector;
-	}
+	operator >> (ManipulatorSelector& (manipulator)(ManipulatorSelector&));
 
 	template <typename Functor>
 	ManipulatorSelector
-	operator >> (Functor f) {
-		ManipulatorSelector selector(*this);
-		f(selector);
-		return selector;
-	}
+	operator >> (Functor f);
+
+
 	///////////////////////////////////////////////////////////////////////
 public:
 	//== Loan Read/Take API ==================================================
-	LoanedSamples read() {
-		return this->delegate()->read();
-	}
 
-	LoanedSamples take() {
-		return this->delegate()->take();
-	}
+	/**
+	 * Read all samples using the default filter state. The memory used for
+	 * storing the sample may be loaned by the middleware thus allowing zero
+	 * copy operations.
+	 */
+	LoanedSamples<T> read();
+
+	/**
+	 * Take all samples using the default filter state. The memory used for
+	 * storing the sample may be loaned by the middleware thus allowing zero
+	 * copy operations.
+	 */
+	LoanedSamples<T> take();
 
 	//== Copy Read/Take API ==================================================
 
 	// --- Forward Iterators: --- //
-	template <typename SamplesFWIterator, typename InfoFWIterator>
-	void
-	read(SamplesFWIterator sfit,
-			InfoFWIterator ifit,
-			size_t max_samples)
-	{
-		this->delegate()->read(sfit, ifit, max_samples);
-	}
 
-	template <typename SamplesFWIterator, typename InfoFWIterator>
-	void
+	/**
+	 * Read up to <code>max_samples</code> samples using the default filter state.
+	 * The samples are copied into the application provided container using the
+	 * forward iterator parameter.
+	 *
+	 * @param sfit samples forward iterator
+	 * @param max_samples the maximum number of samples to read
+	 * @return the number of read samples.
+	 */
+	template <typename SamplesFWIterator>
+	uint32_t
+	read(SamplesFWIterator sfit,
+			uint32_t max_samples);
+
+	/**
+	 * Take up to <code>max_samples</code> samples using the default filter state.
+	 * The samples are copied into the application provided container using the
+	 * forward iterator parameter.
+	 *
+	 * @param sfit samples forward iterator.
+	 * @param max_samples the maximum number of samples to take.
+	 * @return the number of taken samples.
+	 */
+	template <typename SamplesFWIterator>
+	uint32_t
 	take(SamplesFWIterator sfit,
-			InfoFWIterator ifit,
-			size_t max_samples)
-	{
-		this->delegate()->take(sfit, ifit, max_samples);
-	}
+			uint32_t max_samples);
 
 
 	// --- Back-Inserting Iterators: --- //
-	template <typename SamplesBIIterator, typename InfoBIIterator>
-	void
-	read(SamplesBIIterator sbit,
-			InfoBIIterator ibit)
-	{
-		this->delegate()->read(sbit, ibit);
-	}
 
+	/**
+	 * Read all samples available in the reader cache using the default filter state.
+	 * The samples are copied into the application provided container using a
+	 * back-inserting iterator. Notice that as a consequence of using a back-inserting
+	 * iterator, this operation may allocate memory to resize the underlying container.
+	 *
+	 * @param sbit samples back-inserting iterator.
+	 * @return the number of read samples.
+	 */
+	template <typename SamplesBIIterator>
+	uint32_t
+	read(SamplesBIIterator sbit);
 
-	template <typename SamplesBIIterator, typename InfoBIIterator>
-	void
-	take(SamplesBIIterator sbit,
-			InfoBIIterator ibit)
-	{
-		this->delegate()->take(sbit, ibit);
-	}
+	/**
+	 * Take all samples available in the reader cache samples using the default filter state.
+	 * The samples are copied into the application provided container using a
+	 * back-inserting iterator. Notice that as a consequence of using a back-inserting
+	 * iterator, this operation may allocate memory to resize the underlying container.
+	 *
+	 * @param sbit samples back-inserting iterator.
+	 * @return the number of taken samples.
+	 */
+	template <typename SamplesBIIterator>
+	uint32_t
+	take(SamplesBIIterator sbit);
 public:
 	//========================================================================
 	//== DSL Method for dealing with instances, content and status filters.
-	Selector selector() {
-		Selector selector(*this);
-		return selector;
-	}
+
+	/**
+	 * Get a <code>Selector</code> to perform complex data selections, such as
+	 * per-instance selection, content and status filtering.
+	 *
+	 * The selector can be used as follows:
+	   <pre>
+	      dr.selector()
+	           .instance(handle)
+	           .filter_content(query)
+	           .filter_state(state)
+	        .take(sbit);
+      </pre>
+     * This shows how samples can be taken by selecting a specific instance,
+     * then filtering by state and content.
+	 */
+	Selector selector();
 
 	//========================================================================
 	//== Instance Management
@@ -345,10 +326,7 @@ public:
 	 * If the implementation is not able to check invalid handles, then the
 	 * result in this situation is unspecified.
 	 */
-	dds::topic::TopicInstance<T>& key_value(dds::topic::TopicInstance<T>& i,
-			const dds::core::InstanceHandle& h) {
-		return this->delegate()->key_value(i, h);
-	}
+	dds::topic::TopicInstance<T> key_value(const dds::core::InstanceHandle& h);
 
 	/**
 	 * This operation can be used to retrieve the instance key that corresponds
@@ -359,9 +337,7 @@ public:
 	 * If the implementation is not able to check invalid handles, then the
 	 * result in this situation is unspecified.
 	 */
-	T& key_value(T& sample, const dds::core::InstanceHandle& h) {
-		return this->delegate()->key_value(sample, h);
-	}
+	T& key_value(T& sample, const dds::core::InstanceHandle& h);
 
 	/**
 	 * This operation takes as a parameter an instance and returns a handle
@@ -373,77 +349,91 @@ public:
 	 * to provide an instance handle, the Service will return a TopicInstance
 	 * whose handle will be set to the HANDLE_NIL value.
 	 */
-	const dds::core::InstanceHandle lookup_instance(const T& key) {
-		return this->delegate()->lookup_instance(key);
-	}
+	const dds::core::InstanceHandle
+	lookup_instance(const T& key) const;
 
 	//==========================================================================
+	// -- Entity Navigation API
 public:
-	dds::topic::TopicDescription<DataType> topic_description();
+	/**
+	 * Get the <code>TopicDescription</code> associated with this reader.
+	 */
+	dds::topic::TopicDescription<DataType> topic_description() const;
 
-	// -- Listener Getter/Setter
+	/**
+	 * Get the subscriber owning this reader.
+	 */
+	const dds::sub::Subscriber& subscriber() const;
+
+	/**
+	 * Set/Re-set the listener associated with this reader.
+	 *
+	 * @param the_listener the listener.
+	 * @param event_mask the event mask associated with the listener.
+	 */
 	void listener(Listener* the_listener,
 			const dds::core::status::StatusMask& event_mask);
 
+	/**
+	 * Get the listener associated with this reader.
+	 */
 	Listener* listener() const;
 
 	// -- Qos Getter/Setter
 
-	const dds::sub::qos::DataReaderQos
-	qos() const {
-		return this->delegate()->qos();
-	}
+	/**
+	 * Get the QoS associated with this reader.
+	 */
+	const dds::sub::qos::DataReaderQos&
+	qos() const;
 
-	void qos(const dds::sub::qos::DataReaderQos& the_qos) {
-		this->delegate()->qos(the_qos);
-	}
+	/**
+	 * Set the QoS associated with this reader.
+	 *
+	 * @param the_qos the new QoS.
+	 */
+	void qos(const dds::sub::qos::DataReaderQos& the_qos);
 
-	DataReader& operator << (const dds::sub::qos::DataReaderQos& the_qos) {
-		this->delegate()->qos(the_qos);
-		return *this;
-	}
+	/**
+	 * Get the QoS associated with this reader.
+	 */
+	DataReader& operator << (const dds::sub::qos::DataReaderQos& the_qos);
 
-	DataReader& operator >> (dds::sub::qos::DataReaderQos& the_qos) {
-		the_qos = this->delegate()->qos();
-		return *this;
-	}
+	/**
+	 * Set the QoS associated with this reader.
+	 *
+	 * @param the_qos the new QoS.
+	 */
+	DataReader& operator >> (dds::sub::qos::DataReaderQos& the_qos);
 
+	/**
+	 * Wait for historical data for a given amount of time. This time
+	 * may be set to infinite.
+	 *
+	 * @param timeout the time to wait for historical data.
+	 */
 	void
-	wait_for_historical_data(const dds::core::Duration& timeout) {
-		this->delegate()->wait_for_historical_data(timeout);
-	}
+	wait_for_historical_data(const dds::core::Duration& timeout);
 
 	//========================================================================
 	//== Status API
 	const dds::core::status::LivelinessChangedStatus&
-	liveliness_changed_status() const {
-		return this->delegate()->liveliness_changed_status();
-	}
+	liveliness_changed_status() const;
 
 	const dds::core::status::SampleRejectedStatus&
-	sample_rejected_status() const {
-		return this->delegate()->sample_rejected_status()();
-	}
+	sample_rejected_status() const;
 
 	const dds::core::status::SampleLostStatus&
-	sample_lost_status() const {
-		return this->delegate()->sample_lost_status();
-	}
+	sample_lost_status() const;
 
 	const dds::core::status::RequestedDeadlineMissedStatus&
-	requested_deadline_missed_status() {
-		return this->delegate()->requested_deadline_missed_status();
-	}
+	requested_deadline_missed_status();
 
 	const dds::core::status::RequestedIncompatibleQosStatus&
-	requested_incompatible_qos_status() const {
-		return this->delegate()->requested_incompatible_qos_status();
-	}
+	requested_incompatible_qos_status() const;
 
 	const dds::core::status::SubscriptionMatchedStatus&
-	subscription_matched_status() const {
-		return this->delegate()->subscription_matched_status();
-	}
+	subscription_matched_status() const;
 };
 
 

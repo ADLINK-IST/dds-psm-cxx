@@ -30,29 +30,21 @@ namespace dds { namespace topic {
 template <typename T>
 class dds::topic::TopicInstance {
 public:
-    TopicInstance() {}
+    TopicInstance();
+    TopicInstance(const ::dds::core::InstanceHandle& h);
+    TopicInstance(const ::dds::core::InstanceHandle& h, const T& the_sample);
 
-    TopicInstance(const ::dds::core::InstanceHandle& h)
-    : h_(h), sample_() {}
-
-    TopicInstance(const ::dds::core::InstanceHandle& h, const T& the_sample)
-        : h_(h), sample_(the_sample) { }
 public:
-    operator const ::dds::core::InstanceHandle() const {
-        return h_;
-    }
+    operator const ::dds::core::InstanceHandle() const;
 
-    const ::dds::core::InstanceHandle handle() const {
-        return h_;
-    }
+    const ::dds::core::InstanceHandle handle() const;
 
-    void handle(const ::dds::core::InstanceHandle& h) { h_ = h; }
+    void handle(const ::dds::core::InstanceHandle& h);
+    const T& sample() const;
 
-    const T& sample() const { return sample_; }
+    T& sample();
 
-    T& sample() {return sample_; }
-
-    void sample(const T& the_sample) { sample_ = the_sample; }
+    void sample(const T& the_sample);
 
 private:
     ::dds::core::InstanceHandle h_;

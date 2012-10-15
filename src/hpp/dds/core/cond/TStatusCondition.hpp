@@ -22,10 +22,11 @@
 #include <dds/core/status/State.hpp>
 #include <dds/core/cond/TCondition.hpp>
 #include <dds/core/cond/detail/StatusCondition.hpp>
+#include <dds/core/Entity.hpp>
 
 namespace dds { namespace core { namespace cond {
-	template <typename ENTITY, typename DELEGATE>
-	class StatusCondition;
+	template <typename DELEGATE>
+	class TStatusCondition;
 } } }
 
 /**
@@ -37,21 +38,17 @@ namespace dds { namespace core { namespace cond {
  * The enabled_statuses and its relation to Listener and WaitSet is detailed
  * in Trigger State of the StatusCondition.
  */
-template <typename ENTITY, typename DELEGATE>
-class dds::core::cond::StatusCondition : public dds::core::cond::TCondition<DELEGATE> {
-public:
-	OMG_DDS_REF_TYPE(StatusCondition, dds::core::cond::TCondition, DELEGATE)
-
+template <typename DELEGATE>
+class dds::core::cond::TStatusCondition : public dds::core::cond::TCondition<DELEGATE> {
 public:
 	/**
 	 * Create a <code>StatusCondition</code> (Section 7.1.2.1.9,
-	 * ÒStatusCondition Class) associated with the Entity. The
+	 * StatusCondition Class) associated with the Entity. The
 	 * condition can then be added to a WaitSet (Section 7.1.2.1.6,
-	 * ÒWaitSet Class) so that the application can wait for specific
+	 * WaitSet Class) so that the application can wait for specific
 	 * status changes that affect the Entity.
 	 */
-	StatusCondition(const ENTITY& e)
-	: dds::core::cond::TCondition<DELEGATE>(new DELEGATE(e)) { }
+	TStatusCondition(const dds::core::Entity& e);
 
 public:
 	/**
@@ -68,9 +65,7 @@ public:
 	 * @param status the enabled statuses
 	 */
 	void
-	enabled_statuses(const ::dds::core::status::StatusMask& status) const {
-		this->delegate()->enabled_statuses(status);
-	}
+	enabled_statuses(const ::dds::core::status::StatusMask& status) const;
 
 	/**
 	 * This operation retrieves the list of communication statuses that are
@@ -80,13 +75,9 @@ public:
 	 * set enabled_statuses was never called, the default list
 	 * (see Section 7.1.2.1.9.1).
 	 */
-	const ::dds::core::status::StatusMask enabled_statuses() const {
-		return this->delegate()->enabled_statuses();
-	}
+	const ::dds::core::status::StatusMask enabled_statuses() const;
 
-	const ENTITY& entity() const {
-		return this->delegate()->entity();
-	}
+	const dds::core::Entity& entity() const;
 };
 
 #endif  /* OMG_DDS_CORE_T_STATUS_CONDITION_HPP_ */

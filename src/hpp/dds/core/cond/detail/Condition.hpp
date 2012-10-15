@@ -20,10 +20,16 @@
  */
 
 #include <dds/core/cond/TCondition.hpp>
-#include <idds/core/ConditionImpl.hpp>
-namespace dds { namespace core { namespace cond { namespace detail {
-    typedef dds::core::cond::TCondition<idds::core::ConditionImpl> Condition;
-} } } }
+#include <foo/bar/core/cond/ConditionImpl.hpp>
+namespace dds {
+	namespace core {
+		namespace cond {
+			namespace detail {
+				typedef dds::core::cond::TCondition<foo::bar::core::cond::Condition> Condition;
+			}
+		}
+	}
+}
 
 #endif  /* OMG_DDS_CORE_CONDITION_DETAIL_HPP_ */
 

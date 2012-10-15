@@ -5,55 +5,49 @@
 #include <dds/sub/detail/DataReader.hpp>
 
 
-namespace dds { namespace sub {
-	template <typename T, template <typename Q> class DELEGATE = dds::sub::detail::DataReader>
-	class DataReader;
+namespace dds {
+	namespace sub {
+		template <typename T,
+				  template <typename Q> class DELEGATE = dds::sub::detail::DataReader>
+		class DataReader;
 
-} }
+		class Query;
+	}
+}
+
 
 // = Manipulators
-namespace dds { namespace sub { namespace functors {
-
-	typedef dds::sub::functors::detail::ContentFilterManipulatorFunctor ContentFilterManipulatorFunctor;
-	typedef dds::sub::functors::detail::StateFilterManipulatorFunctor 	StateFilterManipulatorFunctor;
-	typedef dds::sub::functors::detail::InstanceManipulatorFunctor 		InstanceManipulatorFunctor;
-	typedef dds::sub::functors::detail::NextInstanceManipulatorFunctor 	NextInstanceManipulatorFunctor;
-
-} } }
+namespace dds {
+	namespace sub {
+		namespace functors {
+			typedef dds::sub::functors::detail::ContentFilterManipulatorFunctor ContentFilterManipulatorFunctor;
+			typedef dds::sub::functors::detail::StateFilterManipulatorFunctor 	StateFilterManipulatorFunctor;
+			typedef dds::sub::functors::detail::InstanceManipulatorFunctor 		InstanceManipulatorFunctor;
+			typedef dds::sub::functors::detail::NextInstanceManipulatorFunctor 	NextInstanceManipulatorFunctor;
+		}
+	}
+}
 
 namespace dds { namespace sub {
 
 template <typename SELECTOR>
-SELECTOR& read(SELECTOR& selector) {
-	selector.read_mode(true);
-	return selector;
-}
+SELECTOR& read(SELECTOR& selector);
 
 template <typename SELECTOR>
-SELECTOR& take(SELECTOR& selector) {
-	selector.read_mode(false);
-	return selector;
-}
+SELECTOR& take(SELECTOR& selector);
 
-dds::sub::functors::ContentFilterManipulatorFunctor
-filter_content(const dds::core::Query& query) {
-	return dds::sub::functors::ContentFilterManipulatorFunctor(query);
-}
+inline dds::sub::functors::ContentFilterManipulatorFunctor
+filter_content(const dds::sub::Query& query);
 
-dds::sub::functors::StateFilterManipulatorFunctor
-filter_state(const dds::sub::status::DataState& s) {
-	return dds::sub::functors::StateFilterManipulatorFunctor(s);
-}
 
-dds::sub::functors::InstanceManipulatorFunctor
-instance(const dds::core::InstanceHandle& h) {
-	return dds::sub::functors::InstanceManipulatorFunctor(h);
-}
+inline dds::sub::functors::StateFilterManipulatorFunctor
+filter_state(const dds::sub::status::DataState& s);
 
-dds::sub::functors::NextInstanceManipulatorFunctor
-next_instance(const dds::core::InstanceHandle& h) {
-	return dds::sub::functors::NextInstanceManipulatorFunctor(h);
-}
+inline dds::sub::functors::InstanceManipulatorFunctor
+instance(const dds::core::InstanceHandle& h);
+
+inline dds::sub::functors::NextInstanceManipulatorFunctor
+next_instance(const dds::core::InstanceHandle& h);
 
 } }
 

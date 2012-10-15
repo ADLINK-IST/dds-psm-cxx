@@ -28,4 +28,7 @@ namespace dds { namespace core {
     typedef std::vector<InstanceHandle> InstanceHandleSeq;
 } }
 
+inline std::ostream& operator << (std::ostream& os, const dds::core::InstanceHandle& h);
+
+
 #endif /* !defined(OMG_DDS_CORE_INSTANCE_HANDLE_HPP_) */

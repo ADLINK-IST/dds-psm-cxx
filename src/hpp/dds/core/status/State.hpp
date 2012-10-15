@@ -20,7 +20,6 @@
  */
 
 #include <bitset>
-
 #include <dds/core/macros.hpp>
 
 
@@ -33,8 +32,8 @@ public:
 
 public:
     SampleRejectedState() : MaskType() { }
-    SampleRejectedState(const SampleRejectedState& src) : MaskType(src) { }
-    SampleRejectedState(const MaskType& src) : MaskType(src) { }
+	SampleRejectedState(const SampleRejectedState& src) : MaskType(static_cast<int>(src.to_ulong())) { }
+    SampleRejectedState(const MaskType& src) : MaskType(static_cast<int>(src.to_ulong())) { }
 
 public:
     inline static const SampleRejectedState not_rejected() {
@@ -70,12 +69,12 @@ public:
 public:
     StatusMask() { }
     explicit StatusMask(uint64_t mask) : std::bitset<OMG_DDS_STATUS_COUNT>(mask) { }
-    StatusMask(const StatusMask& other) : MaskType(other) { }
+    StatusMask(const StatusMask& other) : MaskType(static_cast<int>(other.to_ulong())) { }
     ~StatusMask() { }
 
 public:
     inline static const StatusMask all() {
-        return StatusMask(~0u);
+        return StatusMask(0x7fe7u);
     }
 
     inline static const StatusMask none() {

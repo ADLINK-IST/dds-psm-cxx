@@ -6,37 +6,31 @@
 #include <dds/sub/GenerationCount.hpp>
 #include <dds/sub/Rank.hpp>
 
-namespace dds { namespace sub {
-
+namespace dds { 
+  namespace sub {
     template <typename DELEGATE>
-    class TSampleInfo : dds::core::Value<DELEGATE> {
-        
-    public:
-        TSampleInfo() { }
-        
-        template <typename ARG0>
-        TSampleInfo(const ARG0& src) : dds::core::Value<DELEGATE>(src) { }
-        
-    public:
-        const dds::core::Time timestamp() const {
-            return this->delegate().timestamp();
-        }
-        
-        const dds::sub::status::DataState state() const {
-            return this->delegate().state();
-        }
-        const dds::sub::GenerationCount generation_count() const {
-            return this->delegate().generation_count();
-        }
-        const dds::sub::Rank rank() const {
-            return this->delegate().rank();
-        }
-        
-        bool valid() const {
-            return this->delegate().valid();
-        }
-    };
-    
-} }
+    class TSampleInfo;
+  }
+}
 
+/**
+ * This class implements the DDS <code>SampleInfo</code>.
+ */
+template <typename DELEGATE>
+class dds::sub::TSampleInfo : dds::core::Value<DELEGATE> {
+
+public:
+  // Required for containers
+  TSampleInfo();
+          
+public:
+  const dds::core::Time 				timestamp() const;
+  const dds::sub::status::DataState 	state() const;
+  dds::sub::GenerationCount 			generation_count() const;
+  dds::sub::Rank 						rank() const;
+  bool 									valid() const;
+  dds::core::InstanceHandle 			instance_handle() const;
+  dds::core::InstanceHandle 			publication_handle() const;
+};
+    
 #endif /* OMG_DDS_SUB_TSAMPLE_INFO_HPP_ */

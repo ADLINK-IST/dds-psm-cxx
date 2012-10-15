@@ -19,11 +19,11 @@
  * limitations under the License.
  */
 
-#include <dds/core/qos/TEntityQos.hpp>
-#include <idds/qos/DataReaderQosImpl.hpp>
+#include <dds/core/TEntityQos.hpp>
+#include <foo/bar/sub/qos/DataReaderQos.hpp>
 
 namespace dds { namespace sub { namespace qos { namespace detail {
-    typedef ::dds::core::qos::TEntityQos< ::idds::qos::DataReaderQosImpl > DataReaderQos;
+	typedef ::dds::core::qos::TEntityQos< ::foo::bar::sub::qos::DataReaderQos> DataReaderQos;
 } } } }
 
 

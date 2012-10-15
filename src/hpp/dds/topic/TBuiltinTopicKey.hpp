@@ -32,9 +32,7 @@ class dds::topic::TBuiltinTopicKey : public ::dds::core::Value<D> {
 public:
     typedef typename D::VALUE_T VALUE_T;
 public:
-    VALUE_T value() const {
-        return this->delegate()->value();
-    }
+    VALUE_T value() const;
 };
 
 #endif /* OMG_DDS_TOPIC_TBUILTIN_TOPIC_KEY_HPP_ */

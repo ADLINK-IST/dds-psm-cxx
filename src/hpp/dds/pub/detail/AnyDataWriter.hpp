@@ -24,6 +24,8 @@
 #include <dds/pub/Publisher.hpp>
 #include <dds/pub/DataWriter.hpp>
 
+// NOTE: This code is non-normative and is provided only as a guide
+// to implementor of this specification.
 
 namespace dds { namespace pub { namespace detail {
     class DWHolderBase;
@@ -74,8 +76,9 @@ public:
     }
 
     virtual const ::dds::pub::Publisher& publisher() const {
-        return dw_.parent();
+        return dw_.publisher();
     }
+
   virtual void wait_for_acknowledgments(const dds::core::Duration& timeout) {
       dw_.wait_for_acknowledgments(timeout);
     }

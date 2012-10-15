@@ -29,64 +29,34 @@ namespace dds { namespace topic {
 class AnyTopicDescription {
 public:
 	template <typename T>
-	inline AnyTopicDescription(const dds::topic::TopicDescription<T>& t)
-	: holder_(new detail::TDHolder<T>(t)) { }
+	inline AnyTopicDescription(const dds::topic::TopicDescription<T>& t);
 
 public:
-	const dds::domain::DomainParticipant& domain_participant() const {
-		return holder_->domain_participant();
-	}
+	const dds::domain::DomainParticipant& domain_participant() const;
 
-	const std::string& name() const {
-		return holder_->name();
-	}
+	const std::string& name() const;
 
-	const std::string& type_name() const {
-		return holder_->type_name();
-	}
+	const std::string& type_name() const;
 
 protected:
-	inline AnyTopicDescription(detail::TDHolderBase* holder)
-	: holder_(holder) { }
+	inline AnyTopicDescription(detail::TDHolderBase* holder);
 
 public:
-	inline AnyTopicDescription& swap(AnyTopicDescription& rhs) {
-		holder_.swap(rhs.holder_);
-		return *this;
-	}
+	inline AnyTopicDescription& swap(AnyTopicDescription& rhs);
 
 	template <typename T>
-	AnyTopicDescription& operator =(const dds::topic::Topic<T>& rhs) {
-		holder_.reset(new detail::TDHolder<T>(rhs));
-		return *this;
-	}
+	AnyTopicDescription& operator =(const dds::topic::Topic<T>& rhs);
 
-	inline AnyTopicDescription& operator =(const AnyTopicDescription& rhs) {
-		if (this != &rhs)
-			holder_ = rhs.holder_;
-
-		return *this;
-	}
+	inline AnyTopicDescription& operator =(const AnyTopicDescription& rhs);
 
 public:
 	template <typename T>
-	const dds::topic::TopicDescription<T>& get() {
-		// OMG_DDS_STATIC_ASSERT(::dds::topic::is_topic_type<T>::value == 1);
-		detail::TDHolder<T>* h = dynamic_cast<detail::TDHolder<T>* >(holder_.get() );
-		if (h == 0) {
-			throw dds::core::InvalidDowncastError("invalid type");
-		}
-		return h->get();
-	}
+	const dds::topic::TopicDescription<T>& get();
 
 public:
-	const detail::TDHolderBase* operator->() const {
-		return holder_.get();
-	}
+	const detail::TDHolderBase* operator->() const;
 
-	detail::TDHolderBase* operator->() {
-		return holder_.get();
-	}
+	detail::TDHolderBase* operator->();
 
 protected:
 	dds::core::smart_ptr_traits<detail::TDHolderBase>::ref_type holder_;

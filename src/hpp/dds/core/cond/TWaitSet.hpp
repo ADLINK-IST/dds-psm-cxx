@@ -22,243 +22,226 @@
 #include <vector>
 
 #include <dds/core/types.hpp>
-#include <dds/core/Condition.hpp>
+#include <dds/core/cond/Condition.hpp>
+
+namespace dds {
+	namespace core {
+		namespace cond {
+			template <typename DELEGATE>
+			class TWaitSet;
+		}
+	}
+}
 
 
-namespace dds { namespace core { namespace cond {
-   /**
-    * A WaitSet object allows an application to wait until one or more of
-    * the attached Condition objects has a trigger_value of TRUE or else
-    * until the timeout expires.
-    * A WaitSet is not necessarily associated with a single DomainParticipant
-    * and could be used to wait on Condition objects associated with different
-    * DomainParticipant objects.
-    */
-   template <typename DELEGATE>
-   class TWaitSet : public dds::core::Reference<DELEGATE> {
-   public:
-       typedef std::vector<dds::core::cond::Condition> ConditionSeq;
+/**
+ * A WaitSet object allows an application to wait until one or more of
+ * the attached Condition objects has a trigger_value of TRUE or else
+ * until the timeout expires.
+ * A WaitSet is not necessarily associated with a single DomainParticipant
+ * and could be used to wait on Condition objects associated with different
+ * DomainParticipant objects.
+ */
+template <typename DELEGATE>
+class dds::core::cond::TWaitSet : public dds::core::Reference<DELEGATE> {
+public:
+	typedef std::vector<dds::core::cond::Condition> ConditionSeq;
 
-   public:
-       OMG_DDS_REF_TYPE(WaitSet, dds::core::Reference, DELEGATE)
+public:
+	OMG_DDS_REF_TYPE(TWaitSet, dds::core::Reference, DELEGATE)
 
-   public:
-       TWaitSet() { }
+public:
+	/**
+	 * Creates a new waitset.
+	 */
+	TWaitSet();
 
-       ~TWaitSet() { }
+	~TWaitSet();
 
-        void close() {
-            this->delegate()->close();
-        }
+public:
+	/**
+	 * This operation allows an application thread to wait for the occurrence
+	 * of certain conditions. If none of the conditions attached to the
+	 * WaitSet have a trigger_value of TRUE, the wait operation will block
+	 * suspending the calling thread.
+	 *
+	 * The wait operation takes a timeout argument that specifies the maximum
+	 * duration for the wait. It this duration is exceeded and none of
+	 * the attached Condition objects is true, wait will continue and the
+	 * returned ConditionSeq will be empty.
+	 *
+	 * It is not allowed for more than one application thread to be waiting
+	 * on the same WaitSet. If the wait operation is invoked on a WaitSet that
+	 * already has a thread blocking on it, the operation will raise
+	 * immediately an exception PreconditionNotMet.
+	 *
+	 * The result of the wait operation is the list of all the attached
+	 * conditions that have a trigger_value of TRUE (i.e., the conditions
+	 * that unblocked the wait).
+	 *
+	 * @param timeout the maximum amount of time for which the wait
+	 * should block while waiting for a condition to be triggered.
+	 *
+	 * @raise PreconditionNotMetException when multiple thread try to invoke
+	 *        the method concurrently.
+	 *
+	 * @return a vector containing the triggered conditions
+	 */
+	const ConditionSeq wait(const dds::core::Duration& timeout);
 
-   public:
-      /**
-       * This operation allows an application thread to wait for the occurrence
-       * of certain conditions. If none of the conditions attached to the
-       * WaitSet have a trigger_value of TRUE, the wait operation will block
-       * suspending the calling thread.
-       *
-       * The wait operation takes a timeout argument that specifies the maximum
-       * duration for the wait. It this duration is exceeded and none of
-       * the attached Condition objects is true, wait will continue and the
-       * returned ConditionSeq will be empty.
-       *
-       * It is not allowed for more than one application thread to be waiting
-       * on the same WaitSet. If the wait operation is invoked on a WaitSet that
-       * already has a thread blocking on it, the operation will raise
-       * immediately an exception PreconditionNotMet.
-       *
-       * The result of the wait operation is the list of all the attached
-       * conditions that have a trigger_value of TRUE (i.e., the conditions
-       * that unblocked the wait).
-       *
-       * @param timeout the maximum amount of time for which the wait
-       * should block while waiting for a condition to be triggered.
-       *
-       * @raise PreconditionNotMetException when multiple thread try to invoke
-       *        the method concurrently.
-       *
-       * @return a vector containing the triggered conditions
-       */
-      const ConditionSeq wait(const dds::core::Duration& timeout) {
-         return this->delegate()->wait(timeout);
-      }
+	/**
+	 * This operation allows an application thread to wait for the occurrence
+	 * of certain conditions. If none of the conditions attached to the
+	 * WaitSet have a trigger_value of TRUE, the wait operation will block
+	 * suspending the calling thread.
+	 *
+	 * The wait operation takes a timeout argument that specifies the maximum
+	 * duration for the wait. It this duration is exceeded and none of
+	 * the attached Condition objects is true, wait will continue and the
+	 * returned ConditionSeq will be empty.
+	 *
+	 * It is not allowed for more than one application thread to be waiting
+	 * on the same WaitSet. If the wait operation is invoked on a WaitSet that
+	 * already has a thread blocking on it, the operation will raise
+	 * immediately an exception PreconditionNotMet.
+	 *
+	 * The result of the wait operation is the list of all the attached
+	 * conditions that have a trigger_value of TRUE (i.e., the conditions
+	 * that unblocked the wait).
+	 *
+	 * @param timeout the maximum amount of time for which the wait
+	 * should block while waiting for a condition to be triggered.
+	 *
+	 * @raise PreconditionNotMetException when multiple thread try to invoke
+	 *        the method concurrently.
+	 *
+	 * @return a vector containing the triggered conditions
+	 */
+	const ConditionSeq wait();
 
-      /**
-       * This operation allows an application thread to wait for the occurrence
-       * of certain conditions. If none of the conditions attached to the
-       * WaitSet have a trigger_value of TRUE, the wait operation will block
-       * suspending the calling thread.
-       *
-       * The wait operation takes a timeout argument that specifies the maximum
-       * duration for the wait. It this duration is exceeded and none of
-       * the attached Condition objects is true, wait will continue and the
-       * returned ConditionSeq will be empty.
-       *
-       * It is not allowed for more than one application thread to be waiting
-       * on the same WaitSet. If the wait operation is invoked on a WaitSet that
-       * already has a thread blocking on it, the operation will raise
-       * immediately an exception PreconditionNotMet.
-       *
-       * The result of the wait operation is the list of all the attached
-       * conditions that have a trigger_value of TRUE (i.e., the conditions
-       * that unblocked the wait).
-       *
-       * @param timeout the maximum amount of time for which the wait
-       * should block while waiting for a condition to be triggered.
-       *
-       * @raise PreconditionNotMetException when multiple thread try to invoke
-       *        the method concurrently.
-       *
-       * @return a vector containing the triggered conditions
-       */
-      const ConditionSeq wait() {
-         return this->delegate()->wait();
-      }
+	/**
+	 * This operation allows an application thread to wait for the occurrence
+	 * of certain conditions. If none of the conditions attached to the
+	 * WaitSet have a trigger_value of TRUE, the wait operation will block
+	 * suspending the calling thread.
+	 *
+	 * The wait operation takes a timeout argument that specifies the maximum
+	 * duration for the wait. It this duration is exceeded and none of
+	 * the attached Condition objects is true, wait will continue and the
+	 * returned ConditionSeq will be empty.
+	 *
+	 * It is not allowed for more than one application thread to be waiting
+	 * on the same WaitSet. If the wait operation is invoked on a WaitSet that
+	 * already has a thread blocking on it, the operation will raise
+	 * immediately an exception PreconditionNotMet.
+	 *
+	 * The result of the wait operation is the list of all the attached
+	 * conditions that have a trigger_value of TRUE (i.e., the conditions
+	 * that unblocked the wait).
+	 *
+	 * @param timeout the maximum amount of time for which the wait
+	 * should block while waiting for a condition to be triggered.
+	 *
+	 * @raise PreconditionNotMetException when multiple thread try to invoke
+	 *        the method concurrently.
+	 *
+	 * @return a vector containing the triggered conditions
+	 */
+	ConditionSeq& wait(ConditionSeq& triggered,
+			const dds::core::Duration& timeout);
 
-        /**
-         * This operation allows an application thread to wait for the occurrence
-         * of certain conditions. If none of the conditions attached to the
-         * WaitSet have a trigger_value of TRUE, the wait operation will block
-         * suspending the calling thread.
-         *
-         * The wait operation takes a timeout argument that specifies the maximum
-         * duration for the wait. It this duration is exceeded and none of
-         * the attached Condition objects is true, wait will continue and the
-         * returned ConditionSeq will be empty.
-         *
-         * It is not allowed for more than one application thread to be waiting
-         * on the same WaitSet. If the wait operation is invoked on a WaitSet that
-         * already has a thread blocking on it, the operation will raise
-         * immediately an exception PreconditionNotMet.
-         *
-         * The result of the wait operation is the list of all the attached
-         * conditions that have a trigger_value of TRUE (i.e., the conditions
-         * that unblocked the wait).
-         *
-         * @param timeout the maximum amount of time for which the wait
-         * should block while waiting for a condition to be triggered.
-         *
-         * @raise PreconditionNotMetException when multiple thread try to invoke
-         *        the method concurrently.
-         *
-         * @return a vector containing the triggered conditions
-         */
-        ConditionSeq& wait(ConditionSeq& triggered,
-                           const dds::core::Duration& timeout) {
-            return this->delegate()->wait(triggered, timeout);
-        }
-       
-        /**
-         * This operation allows an application thread to wait for the occurrence
-         * of certain conditions. If none of the conditions attached to the
-         * WaitSet have a trigger_value of TRUE, the wait operation will block
-         * suspending the calling thread.
-         *
-         * The wait operation takes a timeout argument that specifies the maximum
-         * duration for the wait. It this duration is exceeded and none of
-         * the attached Condition objects is true, wait will continue and the
-         * returned ConditionSeq will be empty.
-         *
-         * It is not allowed for more than one application thread to be waiting
-         * on the same WaitSet. If the wait operation is invoked on a WaitSet that
-         * already has a thread blocking on it, the operation will raise
-         * immediately an exception PreconditionNotMet.
-         *
-         * The result of the wait operation is the list of all the attached
-         * conditions that have a trigger_value of TRUE (i.e., the conditions
-         * that unblocked the wait).
-         *
-         * @param timeout the maximum amount of time for which the wait
-         * should block while waiting for a condition to be triggered.
-         *
-         * @raise PreconditionNotMetException when multiple thread try to invoke
-         *        the method concurrently.
-         *
-         * @return a vector containing the triggered conditions
-         */
-        ConditionSeq& wait(ConditionSeq& triggered) {
-            return this->delegate()->wait(triggered);
-        }
+	/**
+	 * This operation allows an application thread to wait for the occurrence
+	 * of certain conditions. If none of the conditions attached to the
+	 * WaitSet have a trigger_value of TRUE, the wait operation will block
+	 * suspending the calling thread.
+	 *
+	 * The wait operation takes a timeout argument that specifies the maximum
+	 * duration for the wait. It this duration is exceeded and none of
+	 * the attached Condition objects is true, wait will continue and the
+	 * returned ConditionSeq will be empty.
+	 *
+	 * It is not allowed for more than one application thread to be waiting
+	 * on the same WaitSet. If the wait operation is invoked on a WaitSet that
+	 * already has a thread blocking on it, the operation will raise
+	 * immediately an exception PreconditionNotMet.
+	 *
+	 * The result of the wait operation is the list of all the attached
+	 * conditions that have a trigger_value of TRUE (i.e., the conditions
+	 * that unblocked the wait).
+	 *
+	 * @param timeout the maximum amount of time for which the wait
+	 * should block while waiting for a condition to be triggered.
+	 *
+	 * @raise PreconditionNotMetException when multiple thread try to invoke
+	 *        the method concurrently.
+	 *
+	 * @return a vector containing the triggered conditions
+	 */
+	ConditionSeq& wait(ConditionSeq& triggered);
 
-    public:
-      /**
-       * Waits for at least one of the attached conditions to  trigger and then
-       * dispatches the events.
-       *
-       */
-      void dispatch() {
-          this->delegate()->dispatch();
-      }
+public:
+	/**
+	 * Waits for at least one of the attached conditions to  trigger and then
+	 * dispatches the events.
+	 *
+	 */
+	void dispatch();
 
-      /**
-       * Waits for at least one of the attached conditions to  trigger and then
-       * dispatches the events, or, times out and unblocks.
-       *
-       */
-      void dispatch(const dds::core::Duration& timeout) {
-         this->delegate()->dispatch(timeout);
-      }
+	/**
+	 * Waits for at least one of the attached conditions to  trigger and then
+	 * dispatches the events, or, times out and unblocks.
+	 *
+	 */
+	void dispatch(const dds::core::Duration& timeout);
 
-    public:
-      /**
-       * A synonym for attach_condition.
-       */
-      WaitSet& operator +=(const dds::core::cond::Condition& cond) {
-         return this->delegate()->attach_condition(cond);
-      }
+public:
+	/**
+	 * A synonym for attach_condition.
+	 */
+	WaitSet& operator +=(const dds::core::cond::Condition& cond);
 
-      /**
-       * A synonym for detach_condition.
-       */
-      WaitSet& operator -=(const dds::core::cond::Condition& cond) {
-         return this->delegate()->detach_condition(cond);
-      }
+	/**
+	 * A synonym for detach_condition.
+	 */
+	WaitSet& operator -=(const dds::core::cond::Condition& cond);
 
-      /**
-       * Attaches a Condition to the WaitSet. It is possible to attach a
-       * Condition on a WaitSet that is currently being waited upon
-       * (via the wait operation). In this case, if the Condition has a
-       * trigger_value of TRUE, then attaching the condition will unblock
-       * the WaitSet. Adding a Condition that is already attached to the WaitSet
-       * has no effect.
-       *
-       * @param cond the condition to be attached to this waitset.
-       */
-      void attach_condition(const dds::core::cond::Condition& cond) {
-          this->delegate()->attach_condition(cond);
-      }
+	/**
+	 * Attaches a Condition to the WaitSet. It is possible to attach a
+	 * Condition on a WaitSet that is currently being waited upon
+	 * (via the wait operation). In this case, if the Condition has a
+	 * trigger_value of TRUE, then attaching the condition will unblock
+	 * the WaitSet. Adding a Condition that is already attached to the WaitSet
+	 * has no effect.
+	 *
+	 * @param cond the condition to be attached to this waitset.
+	 */
+	WaitSet& attach_condition(const dds::core::cond::Condition& cond);
 
-      /**
-       * Detaches a Condition from the WaitSet. If the Condition was not
-       * attached to the WaitSet, the operation will return false.
-       *
-       * @param cond the condition to detach from this WaitSet
-       * @return true if the condition was found and detached, false if the
-       *         condition was not part of the WaitSet.
-       */
-      bool detach_condition(const dds::core::cond::Condition& cond) {
-          return this->delegate()->detach_condition(cond);
-      }
+	/**
+	 * Detaches a Condition from the WaitSet. If the Condition was not
+	 * attached to the WaitSet, the operation will return false.
+	 *
+	 * @param cond the condition to detach from this WaitSet
+	 * @return true if the condition was found and detached, false if the
+	 *         condition was not part of the WaitSet.
+	 */
+	bool detach_condition(const dds::core::cond::Condition& cond);
 
-      /**
-       * This operation retrieves the list of attached conditions.
-       *
-       * @return the list of attached conditions.
-       */
-      const ConditionSeq conditions() {
-         return this->delegate()->conditions();
-      }
+	/**
+	 * This operation retrieves the list of attached conditions.
+	 *
+	 * @return the list of attached conditions.
+	 */
+	const ConditionSeq conditions();
 
-        /**
-         * This operation retrieves the list of attached conditions.
-         *
-         * @return the list of attached conditions.
-         */
-        ConditionSeq& conditions(ConditionSeq& conds) const {
-            return this->delegate()->conditions(conds);
-        }
-   };
-} } }
+	/**
+	 * This operation retrieves the list of attached conditions.
+	 *
+	 * @return the list of attached conditions.
+	 */
+	ConditionSeq& conditions(ConditionSeq& conds) const;
+};
+
 #endif /* OMG_TDDS_CORE_WAIT_SET_HPP_ */
 

@@ -20,10 +20,9 @@
  */
 
 #include <dds/sub/TSubscriber.hpp>
-#include <idds/sub/SubscriberImpl.hpp>
-
+#include <foo/bar/sub/Subscriber.hpp>
 namespace dds { namespace sub { namespace detail {
-    typedef dds::sub::TSubscriber< ::idds::sub::SubscriberImpl > Subscriber; 
+    typedef dds::sub::TSubscriber<foo::bar::sub::Subscriber> Subscriber;
 } } }
 
 

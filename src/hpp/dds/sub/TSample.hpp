@@ -19,33 +19,41 @@
  * limitations under the License.
  */
 
-#include <dds/core/Exception.hpp>
 #include <dds/core/Value.hpp>
-#include <dds/core/Time.hpp>
 #include <dds/sub/SampleInfo.hpp>
 
-namespace dds { namespace sub {
-    template <typename T, template <typename Q> class DELEGATE>
-    class Sample;
-} }
-    
+namespace dds {
+	namespace sub {
+		template <typename T, template <typename Q> class DELEGATE>
+		class Sample;
+	}
+}
+
+/**
+ * This class encapsulate the data and meta-data associated with
+ * DDS samples.
+ */
 template <typename T, template <typename Q> class DELEGATE>
 class dds::sub::Sample : public dds::core::Value< DELEGATE<T> >
 {
 public:
-	typedef T DataType;
+   typedef T DataType;
 
 public:
-	Sample(const T& data) : dds::core::Value< DELEGATE<T> >(data) { }
+   /**
+    * Create a sample with invalid data.
+    */
+   Sample() : dds::core::Value< DELEGATE<T> >();
 
-	Sample(const Sample& other) : dds::core::Value< DELEGATE<T> >(other.data()) { }
+   Sample(const T& data, const SampleInfo& info);
 
-	const DataType& data() const {
-		return this->delegate().data();
-	}
-	const SampleInfo& info() const {
-		return this->delegate().info();
-	}
+   Sample(const Sample& other);
+
+   const DataType& data() const;
+   void data(const DataType& d);
+
+   const SampleInfo& info() const;
+   void info(const SampleInfo& i);
 };
 
 

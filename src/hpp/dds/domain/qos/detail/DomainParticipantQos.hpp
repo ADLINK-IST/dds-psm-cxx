@@ -20,13 +20,19 @@
  */
 
 
-#include <dds/core/qos/TEntityQos.hpp>
-#include <idds/qos/DomainParticipantQosImpl.hpp>
+#include <dds/core/TEntityQos.hpp>
+#include <foo/bar/domain/qos/DomainParticipantQos.hpp>
 
 
-namespace dds {namespace domain { namespace qos { namespace detail {
-    typedef ::dds::core::qos::TEntityQos< idds::qos::DomainParticipantQosImpl > 
-    DomainParticipantQos;
-} } } }
+namespace dds {
+	namespace domain {
+		namespace qos {
+			namespace detail {
+			typedef ::dds::core::qos::TEntityQos< foo::bar::domain::qos::DomainParticipantQos >
+			DomainParticipantQos;
+			}
+		}
+	}
+}
 
 #endif /* OMG_DDS_DOMAIN_QOS_DETAIL_DOMAINPARTICIPANTQOS_HPP_ */

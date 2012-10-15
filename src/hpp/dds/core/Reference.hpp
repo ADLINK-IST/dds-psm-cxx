@@ -24,8 +24,6 @@
 #include <dds/core/Exception.hpp>
 
 
-//TODO: Move required parts in the "detail" namespace
-
 namespace dds { namespace core {
 
 
@@ -42,18 +40,15 @@ public:
     /**
      * Creates a "null" reference.
      */
-    explicit Reference(dds::core::null_type&) : impl_(0) {
-       OMG_DDS_LOG("MM", "Reference(dds::core::null_type&)");
-    }
+    explicit Reference(dds::core::null_type&);
+
 public:
     /**
      * Creates a reference from another.
      *
      * @param ref the other reference
      */
-    explicit Reference(const Reference& ref) : impl_(ref.delegate()) {
-        OMG_DDS_LOG("MM", "Reference(const Reference& ref)");
-    }
+    explicit Reference(const Reference& ref);
 
     /**
      * Enables safe assignment from other reference types.
@@ -61,39 +56,18 @@ public:
      * @param ref the other reference
      */
     template <typename D>
-    explicit Reference(const Reference<D>& ref)
-    {
-        OMG_DDS_STATIC_ASSERT((dds::core::is_base_of<DELEGATE_T,  D>::value));
-        OMG_DDS_LOG("MM", "Reference(const Reference<D>& ref)");
-        impl_ = ref.delegate();
-    }
+    explicit Reference(const Reference<D>& ref);
 
-    template <typename R>
-    explicit Reference(const R& that) {
-        OMG_DDS_STATIC_ASSERT((dds::core::is_base_of<DELEGATE_T, typename R::DELEGATE_T>::value));
-        impl_ = that.delegate();
-    }
-
-    explicit Reference(DELEGATE_T* p) : impl_(p) {
-        OMG_DDS_LOG("MM", "Reference(DELEGATE_T* p)");
-    }
-
-    explicit Reference(const DELEGATE_REF_T& ref) : impl_(ref) {
-        OMG_DDS_LOG("MM", "Reference(const DELEGATE_REF_T& ref)");
-    }
+    explicit Reference(DELEGATE_T* p);
 
 public:
     /**
      * Destroys a reference.
      */
-    ~Reference() {
-        OMG_DDS_LOG("MM", "~Reference()");
-    }
+    ~Reference();
 
 public:
-    operator DELEGATE_REF_T() const {
-        return impl_;
-    }
+    operator DELEGATE_REF_T() const;
 
     /**
      * Compares two reference objects and returns true if they are equal.
@@ -103,9 +77,7 @@ public:
      * @param ref the other reference object
      */
     template <typename R>
-    bool operator==(const R& ref) const {
-        return this->delegate() == ref.delegate();
-    }
+    bool operator==(const R& ref) const;
 
     /**
      * Compares two reference objects and returns true if they are not-equal.
@@ -115,26 +87,13 @@ public:
      * @param ref the other reference object
      */
     template <typename R>
-    bool operator!=(const R& ref) const {
-        return this->delegate() != ref.delegate();
-    }
+    bool operator!=(const R& ref) const;
 
     template <typename D>
-    Reference& operator=(const Reference<D>& that) {
-        OMG_DDS_STATIC_ASSERT((dds::core::is_base_of<DELEGATE_T, D>::value));
-        if (this != (Reference*)&that) {
-            *this = Reference<DELEGATE_T>(that);
-        }
-        return *this;
-    }
+    Reference& operator=(const Reference<D>& that);
 
     template <typename R>
-    Reference& operator=(const R& rhs) {
-        OMG_DDS_STATIC_ASSERT((dds::core::is_base_of< DELEGATE_T, typename R::DELEGATE_T>::value));
-        if (this != (Reference*)&rhs)
-            *this = Reference<DELEGATE_T>(rhs);
-        return *this;
-    }
+    Reference& operator=(const R& rhs);
 
     /**
      * Special assignment operators that takes care of assigning <i>null</i>
@@ -147,18 +106,12 @@ public:
      *    my_ref = dds::null;
      */
     Reference&
-    operator=(const null_type) {
-        DELEGATE_REF_T tmp;
-        impl_ = tmp;
-        return *this;
-    }
+    operator=(const null_type);
 
     /**
      * Returns true if this reference object is nil, meaning pointing to null.
      */
-    bool is_nil() const {
-        return this->delegate().get() == 0;
-    }
+    bool is_nil() const;
 
     /**
      * Special <code>operator==</code> used to check if this reference object
@@ -173,9 +126,7 @@ public:
      * @return true if this reference is null.
      */
     bool
-    operator==(const null_type) const {
-        return this->is_nil();
-    }
+    operator==(const null_type) const;
 
     /**
      * Special <code>operator!=</code> used to check if this reference object
@@ -189,9 +140,7 @@ public:
      *
      * @return true if this reference is null.
      */
-    bool operator!=(const null_type nil) const {
-        return !(this->is_nil());
-    }
+    bool operator!=(const null_type nil) const;
 
 private:
     // -- disallow dynamic allocation for reference types
@@ -201,14 +150,12 @@ private:
 
 public:
     /**
-     * Returns a reference to the uderlying delegate. This can be used
+     * Returns a reference to the underlying delegate. This can be used
      * to invoke non-standard extensions provided by the DDS implementor.
      *
      * @return a reference to delegate.
      */
-    const DELEGATE_REF_T& delegate() const {
-        return impl_;
-    }
+    const DELEGATE_REF_T& delegate() const;
 
     /**
      * Returns a reference to the underlying delegate. This can be used
@@ -216,9 +163,7 @@ public:
      *
      * @return a reference to delegate.
      */
-    DELEGATE_REF_T& delegate() {
-        return impl_;
-    }
+    DELEGATE_REF_T& delegate();
 
     /**
      * The <code>operator->()</code> is provided to be able to directly
@@ -236,9 +181,7 @@ public:
      *
      * @return a reference to delegate.
      */
-    DELEGATE* operator->() {
-        return impl_.get();
-    }
+    DELEGATE* operator->();
 
     /**
      * The <code>operator->()</code> is provided to be able to directly
@@ -256,9 +199,7 @@ public:
      *
      * @return a reference to delegate.
      */
-    const DELEGATE* operator->() const {
-        return impl_.get();
-    }
+    const DELEGATE* operator->() const;
 
 protected:
     DELEGATE_REF_T impl_;
@@ -267,11 +208,9 @@ protected:
 
 } } /* namespace dds / namespace core */
 
-template <class D> bool operator == (dds::core::null_type, const dds::core::Reference<D> & r)
-{return r.is_nil();}
+template <class D> bool operator == (dds::core::null_type, const dds::core::Reference<D> & r);
 
-template <class D> bool operator != (dds::core::null_type, const dds::core::Reference<D> & r)
-{ return !r.is_nil(); }
+template <class D> bool operator != (dds::core::null_type, const dds::core::Reference<D> & r);
 
 #endif /* OMG_DDS_CORE_REFERENCE_HPP_ */
 

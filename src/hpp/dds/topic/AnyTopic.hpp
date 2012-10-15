@@ -29,45 +29,25 @@ namespace dds { namespace topic {
 class AnyTopic {
 public:
     template <typename T>
-    inline AnyTopic(const dds::topic::Topic<T>& t)
-    : holder_(new detail::THolder<T>(t)) { }
+    AnyTopic(const dds::topic::Topic<T>& t);
+
 
 public:
-     const dds::domain::DomainParticipant& domain_participant() const {
-    	 return holder_->domain_participant();
-     }
+     const dds::domain::DomainParticipant& domain_participant() const;
 
-     const dds::core::status::InconsistentTopicStatus& inconsistent_topic_status() {
-    	 return holder_->inconsistent_topic_status();
-     }
+     const dds::core::status::InconsistentTopicStatus& inconsistent_topic_status();
 
-       const dds::topic::qos::TopicQos& qos() const {
-    	   return holder_->qos();
-       }
+       const dds::topic::qos::TopicQos& qos() const;
 
-       void qos(const dds::topic::qos::TopicQos& q) {
-    	   holder_->qos(q);
-       }
+       void qos(const dds::topic::qos::TopicQos& q);
 
 public:
     template <typename T>
-    const Topic<T>& get() {
-    	OMG_DDS_STATIC_ASSERT(::dds::topic::is_topic_type<T>::value == 1);
-        detail::THolder<T>* h = dynamic_cast<detail::THolder<T>* >(holder_.get());
-        if (h == 0) {
-            throw dds::core::InvalidDowncastError("invalid type");
-        }
-        return h->get();
-    }
-
+    const Topic<T>& get();
 public:
-    inline const detail::THolderBase* operator->() const {
-        return holder_.get();
-    }
+    inline const detail::THolderBase* operator->() const;
 
-    detail::THolderBase* operator->() {
-        return holder_.get();
-    }
+    detail::THolderBase* operator->();
 
 private:
     dds::core::smart_ptr_traits<detail::THolderBase>::ref_type holder_;

@@ -19,11 +19,11 @@
  * limitations under the License.
  */
 
-#include <dds/core/qos/TEntityQos.hpp>
-#include <idds/qos/SubscriberQosImpl.hpp>
+#include <dds/core/TEntityQos.hpp>
+#include <foo/bar/sub/qos/SubscriberQos.hpp>
 
 namespace dds { namespace sub { namespace qos { namespace detail {
-    typedef ::dds::core::qos::TEntityQos< ::idds::qos::SubscriberQosImpl > SubscriberQos;
+	typedef ::dds::core::qos::TEntityQos< ::foo::bar::sub::qos::SubscriberQos> SubscriberQos;
 } } } }
 
 #endif /* OMG_DDS_SUB_QOS_DETAIL_SUBSCRIBER_QOS_HPP_ */

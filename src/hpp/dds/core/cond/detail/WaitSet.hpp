@@ -19,75 +19,17 @@
  * limitations under the License.
  */
 
-#include <vector>
-#include <iostream>
+#include <dds/core/cond/TWaitSet.hpp>
+#include <foo/bar/core/cond/WaitSet.hpp>
 
-#include <dds/core/Duration.hpp>
-#include <dds/core/cond/Condition.hpp>
+namespace dds {
+	namespace core {
+		namespace cond {
+			namespace detail {
+				typedef dds::core::cond::TWaitSet<foo::bar::core::cond::WaitSet> WaitSet;
+			}
+		}
+	}
+}
 
-
-namespace dds { namespace core { namespace cond { namespace detail {
-
-    class WaitSet {
-    public:
-        typedef std::vector<dds::core::cond::Condition> ConditionSeqType;
-
-    public:
-        WaitSet() { }
-        ~WaitSet() { }
-        void close();
-
-    public:
-        const ConditionSeqType wait(const dds::core::Duration& timeout) {
-            std::cout << "wait(timeout)" << std::endl;
-            return ConditionSeqType();
-        }
-
-        const ConditionSeqType wait() {
-            std::cout << "wait()" << std::endl;
-            return ConditionSeqType();
-        }
-
-        ConditionSeqType& wait(ConditionSeqType& triggered,
-                               const dds::core::Duration& timeout) {
-            std::cout << "wait(triggered, timeout)" << std::endl;
-            return triggered;
-        }
-
-        ConditionSeqType& wait(ConditionSeqType& triggered) {
-            std::cout << "wait(triggered)" << std::endl;
-            return triggered;
-        }
-
-    public:
-        void dispatch() {
-            std::cout << "dispatch()" << std::endl;
-        }
-
-        void dispatch(const dds::core::Duration& timeout) {
-            std::cout << "dispatch(timeout)" << std::endl;
-        }
-
-    public:
-        void attach_condition(const dds::core::cond::Condition& cond) {
-            std::cout << "attach_condition(condition)" << std::endl;
-        }
-        
-        bool detach_condition(const dds::core::cond::Condition& cond) {
-            std::cout << "detach_condition(condition)" << std::endl;
-            return false;
-        }
-
-        const ConditionSeqType conditions() {
-            std::cout << "conditions()" << std::endl;
-            return ConditionSeqType();
-        }
-
-        ConditionSeqType& conditions(ConditionSeqType& conds) const {
-            std::cout << "conditions(conditions)" << std::endl;
-            return conds;
-        }
-    };
-
-} } } }
 #endif /* OMG_DDS_CORE_DETAIL_WAITSET_HPP_ */

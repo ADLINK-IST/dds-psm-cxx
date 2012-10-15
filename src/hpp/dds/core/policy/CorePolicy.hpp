@@ -19,9 +19,10 @@
  * limitations under the License.
  */
 
+#include <dds/core/policy/PolicyKind.hpp>
 #include <dds/core/policy/detail/CorePolicy.hpp>
 #include <dds/core/policy/detail/QosPolicyCount.hpp>
-#include <dds/core/policy/PolicyKind.hpp>
+
 
 
 //==============================================================================

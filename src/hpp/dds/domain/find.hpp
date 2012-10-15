@@ -31,7 +31,8 @@ namespace dds { namespace domain {
   *
   * @param id the domain id
   */
-DomainParticipant find(DomainId id);
+OMG_DDS_API
+DomainParticipant find(uint32_t id);
 
 } }
 

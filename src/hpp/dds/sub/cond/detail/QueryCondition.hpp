@@ -21,34 +21,19 @@
 
 #include <dds/sub/cond/detail/ReadCondition.hpp>
 
-
-namespace dds { namespace sub { namespace cond { namespace detail {
-
 #ifdef OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT
- 
-template <typename T>
-class QueryCondition : public ReadCondition<T> {
-public:
-    QueryCondition(const dds::sub::DataReader<T>& dr,
-    			   const dds::sub::status::DataState& status,
-    			   const dds::core::Query& query)
-    : ReadCondition<T>(dr, status), query_(query) { }
 
-    virtual ~QueryCondition() { }
+namespace dds {
+   namespace sub {
+      namespace cond {
+         namespace detail {
+            class QueryCondition;
+            // For Implementor to fills in
 
-    const dds::core::Query& query() {
-    	return query_;
-    }
-
-public:
-    // TODO
-
-private:
-    dds::core::Query query_;
-};
-
+         }
+      }
+   }
+}
 #endif  // OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT
-
-} } } }
 
 #endif /* OMG_DDS_SUB_DETAIL_QUERY_CONDITION_HPP_ */

@@ -26,21 +26,13 @@ namespace dds { namespace core { namespace policy {
 template <typename D>
 class TQosPolicyCount : public dds::core::Value<D> {
 public:
-    TQosPolicyCount(QosPolicyId policy_id, int32_t count)
-        : dds::core::Value<D>(policy_id, count)
-    { }
+    TQosPolicyCount(QosPolicyId policy_id, int32_t count);
 
-    TQosPolicyCount(const TQosPolicyCount& other) 
-        : dds::core::Value<D>(other.policy_id(), other.count())
-    { }
+    TQosPolicyCount(const TQosPolicyCount& other);
 public:
-    QosPolicyId policy_id() const {
-        return this->delegate().policy_id();
-    }
+    QosPolicyId policy_id() const;
 
-    int32_t count() const {
-        return this->delegate().count();
-    }
+    int32_t count() const;
 };
 
 } } }

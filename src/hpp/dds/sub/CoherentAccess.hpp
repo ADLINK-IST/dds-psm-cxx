@@ -25,8 +25,5 @@ namespace dds { namespace sub {
 	typedef dds::sub::detail::CoherentAccess CoherentAccess;
 } }
 
-namespace dds { namespace sub {
-
-} }
 
 #endif /* OMG_DDS_SUB_COHERENT_ACCESS_HPP_ */

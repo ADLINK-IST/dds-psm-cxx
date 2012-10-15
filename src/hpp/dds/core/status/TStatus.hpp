@@ -30,135 +30,78 @@ namespace dds { namespace core { namespace status {
 template <typename D>
 class TInconsistentTopicStatus : public dds::core::Value<D> {
 public:
-    TInconsistentTopicStatus() : dds::core::Value<D>() { }
+    TInconsistentTopicStatus();
 
 public:
-    int32_t total_count() const {
-        return this->delegate().total_count();
-    }
-
-    int32_t total_count_change() const {
-        return this->delegate().total_count_change();
-    }
+    int32_t total_count() const;
+    int32_t total_count_change() const;
 };
 
 template <typename D>
 class TSampleLostStatus : public dds::core::Value<D> {
 public:
-    TSampleLostStatus() : dds::core::Value<D>() {}
+    TSampleLostStatus();
 
 public:
-    int32_t total_count() const {
-        return this->delegate().total_count();
-    }
-
-    int32_t total_count_change() const {
-        return this->delegate().total_count_change();
-    }
+    int32_t total_count() const;
+    int32_t total_count_change() const;
 };
 
 
 template <typename D>
 class TSampleRejectedStatus : public dds::core::Value<D> {
 public:
-	TSampleRejectedStatus() : dds::core::Value<D>() { }
+	TSampleRejectedStatus();
 
 public:
-    int32_t total_count() const {
-        return this->delegate().total_count();
-    }
-
-    int32_t total_count_change() const {
-        return this->delegate().total_count_change();
-    }
-
-    const dds::core::status::SampleRejectedState last_reason() const {
-        return this->delegate().last_reason();
-    }
-
-    const dds::core::InstanceHandle last_instance_handle() const {
-        return this->delegate().last_instance_handle();
-    }
+    int32_t total_count() const;
+    int32_t total_count_change() const;
+    const dds::core::status::SampleRejectedState last_reason() const;
+    const dds::core::InstanceHandle last_instance_handle() const;
 };
 
 template <typename D>
 class TLivelinessLostStatus : public dds::core::Value<D> {
 public:
-    TLivelinessLostStatus() : dds::core::Value<D>() { }
+    TLivelinessLostStatus();
 
 public:
-    int32_t total_count() const {
-        return this->delegate().total_count();
-    }
-
-    int32_t total_count_change() const {
-        return this->delegate().total_count_change();
-    }
+    int32_t total_count() const;
+    int32_t total_count_change() const;
 };
 
 template <typename D>
 class TLivelinessChangedStatus : public dds::core::Value<D> {
 public:
-    TLivelinessChangedStatus() : dds::core::Value<D>() { }
+    TLivelinessChangedStatus();
 
 public:
-    int32_t alive_count() const {
-        return this->delegate().alive_count();
-    }
-
-    int32_t not_alive_count() const {
-        return this->delegate().not_alive_count();
-    }
-
-    int32_t alive_count_change() const {
-        return this->delegate().alive_count();
-    }
-
-    int32_t not_alive_count_change() const {
-        return this->delegate().not_alive_count();
-    }
-
-    const dds::core::InstanceHandle last_publication_handle() const {
-        return this->delegate().last_instance_handle();
-    }
+    int32_t alive_count() const;
+    int32_t not_alive_count() const;
+    int32_t alive_count_change() const;
+    int32_t not_alive_count_change() const;
+    const dds::core::InstanceHandle last_publication_handle() const;
 };
 
 template <typename D>
 class TOfferedDeadlineMissedStatus : public dds::core::Value<D> {
 public:
-    TOfferedDeadlineMissedStatus() : dds::core::Value<D>() { }
+    TOfferedDeadlineMissedStatus();
 
 public:
-    int32_t total_count() const {
-        return this->delegate().total_count();
-    }
-
-    int32_t total_count_change() const {
-        return this->delegate().total_count_change();
-    }
-
-    const dds::core::InstanceHandle last_instance_handle() const {
-        return this->delegate().last_instance_handle();
-    }
+    int32_t total_count() const;
+    int32_t total_count_change() const;
+    const dds::core::InstanceHandle last_instance_handle() const;
 };
 
 template <typename D>
 class TRequestedDeadlineMissedStatus : public dds::core::Value<D> {
 public:
-    TRequestedDeadlineMissedStatus() : dds::core::Value<D>() { }
-
+    TRequestedDeadlineMissedStatus();
 public:
-    int32_t total_count() const {
-        return this->delegate().total_count();
-    }
-
-    int32_t total_count_change() const {
-        return this->delegate().total_count_change();
-    }
-
-    const dds::core::InstanceHandle last_instance_handle() const {
-        return this->delegate().last_instance_handle();
-    }
+    int32_t total_count() const;
+    int32_t total_count_change() const;
+    const dds::core::InstanceHandle last_instance_handle() const;
 };
 
 
@@ -166,22 +109,12 @@ public:
 template <typename D>
 class TOfferedIncompatibleQosStatus : public dds::core::Value<D>{
 public:
-    TOfferedIncompatibleQosStatus()
-    : dds::core::Value<D>() { }
+    TOfferedIncompatibleQosStatus();
 
 public:
-    int32_t total_count() const {
-        return this->delegate().total_count();
-    }
-
-    int32_t total_count_change() const {
-        return this->delegate().total_count_change();
-    }
-
-    dds::core::policy::QosPolicyId last_policy_id() const {
-        return this->delegate().last_policy_id();
-    }
-
+    int32_t total_count() const;
+    int32_t total_count_change() const;
+    dds::core::policy::QosPolicyId last_policy_id() const;
     const dds::core::policy::QosPolicyCountSeq policies() const;
 
     dds::core::policy::QosPolicyCountSeq&
@@ -191,26 +124,13 @@ public:
 template <typename D>
 class TRequestedIncompatibleQosStatus : public dds::core::Value<D> {
 public:
-    TRequestedIncompatibleQosStatus()
-    : dds::core::Value<D>() { }
+    TRequestedIncompatibleQosStatus();
 
 public:
-    int32_t total_count() const {
-        return this->delegate().total_count();
-    }
-
-    int32_t total_count_change() const {
-        return this->delegate().total_count_change();
-    }
-
-    dds::core::policy::QosPolicyId last_policy_id() const {
-        return this->delegate().last_policy_id();
-    }
-
-    const dds::core::policy::QosPolicyCountSeq policies() const {
-        return this->delegate().policies();
-    }
-
+    int32_t total_count() const;
+    int32_t total_count_change() const;
+    dds::core::policy::QosPolicyId last_policy_id() const;
+    const dds::core::policy::QosPolicyCountSeq policies() const;
     dds::core::policy::QosPolicyCountSeq&
     policies(dds::core::policy::QosPolicyCountSeq& dst) const;
 };
@@ -218,55 +138,27 @@ public:
 template <typename D>
 class TPublicationMatchedStatus : public dds::core::Value<D> {
 public:
-    TPublicationMatchedStatus() : dds::core::Value<D>() { }
+    TPublicationMatchedStatus() : dds::core::Value<D>();
 
 public:
-    int32_t total_count() const {
-        return this->delegate().total_count();
-    }
-
-    int32_t total_count_change() const {
-        return this->delegate().total_count_change();
-    }
-
-    int32_t current_count() const {
-        return this->delegate().current_count();
-    }
-
-    int32_t current_count_change() const {
-        return this->delegate().current_count_change();
-    }
-
-    const dds::core::InstanceHandle last_subscription_handle() const {
-        return this->delegate().last_subscription_handle();
-    }
+    int32_t total_count() const;
+    int32_t total_count_change() const;
+    int32_t current_count() const;
+    int32_t current_count_change() const;
+    const dds::core::InstanceHandle last_subscription_handle() const;
 };
 
 template <typename D>
 class TSubscriptionMatchedStatus : public dds::core::Value<D> {
 public:
-    TSubscriptionMatchedStatus() : dds::core::Value<D>() { }
+    TSubscriptionMatchedStatus();
 
 public:
-    int32_t total_count() const {
-        return this->delegate().total_count();
-    }
-
-    int32_t total_count_change() const {
-        return this->delegate().total_count_change();
-    }
-
-    int32_t current_count() const {
-        return this->delegate().current_count();
-    }
-
-    int32_t current_count_change() const {
-        return this->delegate().current_count_change();
-    }
-
-    const dds::core::InstanceHandle last_publication_handle() const {
-        return this->delegate().last_publication_handle();
-    }
+    int32_t total_count() const;
+    int32_t total_count_change() const;
+    int32_t current_count() const;
+    int32_t current_count_change() const;
+    const dds::core::InstanceHandle last_publication_handle() const;
 };
 
 } } }/* namespace tdds::core::status */

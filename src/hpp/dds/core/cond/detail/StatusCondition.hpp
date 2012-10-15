@@ -19,36 +19,20 @@
  * limitations under the License.
  */
 
-#include <dds/core/status/State.hpp>
-#include <idds/core/ConditionImpl.hpp>
 
+#include <dds/core/cond/StatusCondition.hpp>
+#include <foo/bar/core/cond/StatusCondition.hpp>
 
-namespace dds { namespace core { namespace cond {namespace detail {
-
-	template <typename ENTITY>
-    class StatusCondition : public idds::core::ConditionImpl {
-    public:
-
-
-    	StatusCondition(const ENTITY& entity) : entity_(entity) { }
-
-        void enabled_statuses(const dds::core::status::StatusMask& status) {
-            mask_ = status;
-        } 
-
-        const dds::core::status::StatusMask enabled_statuses() const {
-            return mask_;
-        }
-
-        ENTITY entity() const {
-			return entity_;
+namespace dds {
+	namespace core {
+		namespace cond {
+			namespace detail {
+				typedef dds::core::cond::StatusCondition<foo::bar::core::cond::StatusCondition> StatusCondition;
+			}
 		}
-    private:
-		ENTITY entity_;
-        dds::core::status::StatusMask mask_;
-    };
+	}
+}
 
-} } } }
 #endif  /* OMG_DDS_CORE_DETAIL_STATUS_CONDITION_HPP_ */
 
 
