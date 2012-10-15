@@ -3,7 +3,6 @@
 
 #include <dds/core/ddscore.hpp>
 #include <dds/domain/ddsdomain.hpp>
-// #include <dds/pub/Publisher.hpp>
 #include <dds/topic/ddstopic.hpp>
 
 #include <dds/sub/ddssub.hpp>
