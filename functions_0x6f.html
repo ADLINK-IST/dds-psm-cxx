@@ -221,8 +221,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>operator const ::dds::core::InstanceHandle()
 : <a class="el" href="classdds_1_1topic_1_1_topic_instance.html#a9fecb68cf3d9ece9dc977916e1563e2f">dds::topic::TopicInstance&lt; T &gt;</a>
 </li>
+<li>operator const D &amp;()
+: <a class="el" href="classdds_1_1core_1_1_value.html#ae627046f0461e6d35d7ed864a8946f6a">dds::core::Value&lt; D &gt;</a>
+</li>
+<li>operator const DELEGATE_REF_T &amp;()
+: <a class="el" href="classdds_1_1core_1_1_reference.html#ae5c019eb285d9786a75620edd0a4ba91">dds::core::Reference&lt; DELEGATE &gt;</a>
+</li>
+<li>operator D &amp;()
+: <a class="el" href="classdds_1_1core_1_1_value.html#afaf76517febc957b35b316f8c06dcf12">dds::core::Value&lt; D &gt;</a>
+</li>
 <li>operator DELEGATE_REF_T()
 : <a class="el" href="classdds_1_1core_1_1_reference.html#ab854cd19e4556ca0a9e49d51d6041d34">dds::core::Reference&lt; DELEGATE &gt;</a>
+</li>
+<li>operator DELEGATE_REF_T &amp;()
+: <a class="el" href="classdds_1_1core_1_1_reference.html#a6e30d68985ca187b16562617d4a7b9f9">dds::core::Reference&lt; DELEGATE &gt;</a>
 </li>
 <li>operator uint32_t()
 : <a class="el" href="classdds_1_1domain_1_1_t_domain_id.html#a3e85988b2e1d87578acfca77b2612fd2">dds::domain::TDomainId&lt; DELEGATE &gt;</a>
@@ -243,12 +255,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classdds_1_1core_1_1_duration.html#a728c63e03d9e6e4aca801dd5cf084820">dds::core::Duration</a>
 </li>
 <li>operator-=()
-: <a class="el" href="classdds_1_1core_1_1cond_1_1_t_wait_set.html#a228184d6d49f1f08db787c4b44e90b74">dds::core::cond::TWaitSet&lt; DELEGATE &gt;</a>
+: <a class="el" href="classdds_1_1core_1_1_time.html#a573069c8553d0e9d9c317c8b5c66882e">dds::core::Time</a>
+, <a class="el" href="classdds_1_1core_1_1cond_1_1_t_wait_set.html#a228184d6d49f1f08db787c4b44e90b74">dds::core::cond::TWaitSet&lt; DELEGATE &gt;</a>
 , <a class="el" href="classdds_1_1core_1_1_duration.html#a4ee7b6bbf9a54e3b9a8865bb2232915e">dds::core::Duration</a>
-, <a class="el" href="classdds_1_1core_1_1_time.html#a573069c8553d0e9d9c317c8b5c66882e">dds::core::Time</a>
 </li>
 <li>operator-&gt;()
-: <a class="el" href="classdds_1_1core_1_1_value.html#a948a6f4576c26fe7e44c551a56f4d038">dds::core::Value&lt; D &gt;</a>
+: <a class="el" href="classdds_1_1sub_1_1_any_data_reader.html#a5095112a8b3981be9850bc85ec4a3b92">dds::sub::AnyDataReader</a>
 , <a class="el" href="classdds_1_1core_1_1_reference.html#a9d7b1e243019f3924745bf708d2ba954">dds::core::Reference&lt; DELEGATE &gt;</a>
 , <a class="el" href="classdds_1_1core_1_1_value.html#a6cef4b7b7f27c3769c87489bc6b798f7">dds::core::Value&lt; D &gt;</a>
 , <a class="el" href="classdds_1_1pub_1_1_any_data_writer.html#a7eaece393dd133177e5faf2b1cc8fdc7">dds::pub::AnyDataWriter</a>
@@ -262,12 +274,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>operator&lt;&lt;()
 : <a class="el" href="classdds_1_1core_1_1_t_entity_qos.html#a884dd5d552b6400b66051c594f8a70e1">dds::core::TEntityQos&lt; DELEGATE &gt;</a>
-, <a class="el" href="classdds_1_1pub_1_1_data_writer.html#adfb43e049ef76235740d73302c35823e">dds::pub::DataWriter&lt; T, DELEGATE &gt;</a>
 , <a class="el" href="class_data_state.html#a9978756a776a9fae8ba1a0a1fc28cddb">DataState</a>
+, <a class="el" href="classdds_1_1pub_1_1_data_writer.html#adfb43e049ef76235740d73302c35823e">dds::pub::DataWriter&lt; T, DELEGATE &gt;</a>
 , <a class="el" href="classdds_1_1pub_1_1_t_publisher.html#adbdc1a8d9b28dcf7eb709931aeec25b0">dds::pub::TPublisher&lt; DELEGATE &gt;</a>
 , <a class="el" href="class_data_state.html#aa14a40efde57526b308a0f991128db65">DataState</a>
-, <a class="el" href="classdds_1_1sub_1_1_data_reader.html#adca4f39da1b4d8398ada8ed0d762c7fa">dds::sub::DataReader&lt; T, DELEGATE &gt;</a>
 , <a class="el" href="classdds_1_1pub_1_1_data_writer.html#a48f31cf731acdee984e058125629ca5f">dds::pub::DataWriter&lt; T, DELEGATE &gt;</a>
+, <a class="el" href="classdds_1_1sub_1_1_data_reader.html#adca4f39da1b4d8398ada8ed0d762c7fa">dds::sub::DataReader&lt; T, DELEGATE &gt;</a>
+, <a class="el" href="classdds_1_1pub_1_1_data_writer.html#a9fe77c13e4eeee65433b2bd15f527ebc">dds::pub::DataWriter&lt; T, DELEGATE &gt;</a>
 </li>
 <li>operator&lt;=()
 : <a class="el" href="classdds_1_1core_1_1_duration.html#a386efdd7e14435a428c21c45af9fc38a">dds::core::Duration</a>
@@ -275,19 +288,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>operator=()
 : <a class="el" href="classdds_1_1topic_1_1_any_topic_description.html#a478f20c6dc5dbe6e8391e9c7c49361a7">dds::topic::AnyTopicDescription</a>
-, <a class="el" href="classdds_1_1pub_1_1_any_data_writer.html#af11d19db835c8efb136e39e763545080">dds::pub::AnyDataWriter</a>
-, <a class="el" href="classdds_1_1core_1_1_t_instance_handle.html#ad11d4ef14f0b89a3bb2b7d57ee92c2f1">dds::core::TInstanceHandle&lt; DELEGATE &gt;</a>
+, <a class="el" href="classdds_1_1pub_1_1_any_data_writer.html#a18666b1c1e51efc2fbee91c04ac5d7dc">dds::pub::AnyDataWriter</a>
 , <a class="el" href="classdds_1_1topic_1_1_any_topic_description.html#afeedfc004ffb3e2439afe39a3947acfa">dds::topic::AnyTopicDescription</a>
+, <a class="el" href="classdds_1_1sub_1_1_any_data_reader.html#a7fbac0bbccc7fbae2ddd4c53d9e276fa">dds::sub::AnyDataReader</a>
+, <a class="el" href="classdds_1_1core_1_1_t_instance_handle.html#ad11d4ef14f0b89a3bb2b7d57ee92c2f1">dds::core::TInstanceHandle&lt; DELEGATE &gt;</a>
 , <a class="el" href="classdds_1_1core_1_1_reference.html#a8b48ff278da444975519203d45f6f609">dds::core::Reference&lt; DELEGATE &gt;</a>
-, <a class="el" href="classdds_1_1core_1_1_t_entity_qos.html#aa46823bb8a2c148dda05df17db8e24d5">dds::core::TEntityQos&lt; DELEGATE &gt;</a>
+, <a class="el" href="classdds_1_1pub_1_1_any_data_writer.html#af11d19db835c8efb136e39e763545080">dds::pub::AnyDataWriter</a>
 , <a class="el" href="classdds_1_1core_1_1_reference.html#a8a77e8793c55541dd0c2a8bfb3cd1a15">dds::core::Reference&lt; DELEGATE &gt;</a>
+, <a class="el" href="classdds_1_1core_1_1_t_entity_qos.html#aa46823bb8a2c148dda05df17db8e24d5">dds::core::TEntityQos&lt; DELEGATE &gt;</a>
 , <a class="el" href="classdds_1_1core_1_1_value.html#ad78a562d097b30ce3dca30e0f1c6d66e">dds::core::Value&lt; D &gt;</a>
 , <a class="el" href="classdds_1_1sub_1_1_any_data_reader.html#a7916223b3166baebd3aa14498bf3a162">dds::sub::AnyDataReader</a>
-, <a class="el" href="classdds_1_1pub_1_1_any_data_writer.html#af5d74cfe0d374f1b9abe6a86c1d1f527">dds::pub::AnyDataWriter</a>
+, <a class="el" href="classdds_1_1core_1_1_reference.html#a1552f9f52091531d9f25681dbbb27dbf">dds::core::Reference&lt; DELEGATE &gt;</a>
 </li>
 <li>operator==()
-: <a class="el" href="classdds_1_1core_1_1_time.html#a4b567910023d0c1a0f1782f94f20eba4">dds::core::Time</a>
-, <a class="el" href="classdds_1_1core_1_1_value.html#a2dd6829015363c58a93d606d76205681">dds::core::Value&lt; D &gt;</a>
+: <a class="el" href="classdds_1_1core_1_1_value.html#a2dd6829015363c58a93d606d76205681">dds::core::Value&lt; D &gt;</a>
+, <a class="el" href="classdds_1_1core_1_1_time.html#a4b567910023d0c1a0f1782f94f20eba4">dds::core::Time</a>
 , <a class="el" href="classdds_1_1core_1_1_reference.html#a0df735ee4a9486961d3e02c4649b24fe">dds::core::Reference&lt; DELEGATE &gt;</a>
 , <a class="el" href="classdds_1_1core_1_1_duration.html#a68ca1ba15102e4f24dd74256e60a4de3">dds::core::Duration</a>
 , <a class="el" href="classdds_1_1core_1_1_t_instance_handle.html#a9a40baf867a3cbaa5e65e0deba9c8ce8">dds::core::TInstanceHandle&lt; DELEGATE &gt;</a>
@@ -297,21 +312,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="classdds_1_1core_1_1_duration.html#a5d18517acb726d54cff2a5ad59b2cfd8">dds::core::Duration</a>
 </li>
 <li>operator&gt;=()
-: <a class="el" href="classdds_1_1core_1_1_time.html#acfbdee29a2be6d39511f74dbfe0e8d9a">dds::core::Time</a>
-, <a class="el" href="classdds_1_1core_1_1_duration.html#a7e7da744921951c7ad0dfcaee607887a">dds::core::Duration</a>
+: <a class="el" href="classdds_1_1core_1_1_duration.html#a7e7da744921951c7ad0dfcaee607887a">dds::core::Duration</a>
+, <a class="el" href="classdds_1_1core_1_1_time.html#acfbdee29a2be6d39511f74dbfe0e8d9a">dds::core::Time</a>
 </li>
 <li>operator&gt;&gt;()
-: <a class="el" href="classdds_1_1sub_1_1_data_reader.html#a494134aadef0d9fed2c838b7e579519e">dds::sub::DataReader&lt; T, DELEGATE &gt;</a>
+: <a class="el" href="classdds_1_1pub_1_1_data_writer.html#a33578f340ce5dd52b23b171e8256596c">dds::pub::DataWriter&lt; T, DELEGATE &gt;</a>
+, <a class="el" href="classdds_1_1pub_1_1_t_publisher.html#aa0757bb7b8314f2687179a3836ab27af">dds::pub::TPublisher&lt; DELEGATE &gt;</a>
+, <a class="el" href="classdds_1_1sub_1_1_data_reader.html#ab155cea1cef7f24ba6e92f2be525c1e9">dds::sub::DataReader&lt; T, DELEGATE &gt;</a>
 , <a class="el" href="class_data_state.html#ae40042c538632fe41352db7004bb1d12">DataState</a>
-, <a class="el" href="classdds_1_1pub_1_1_data_writer.html#a33578f340ce5dd52b23b171e8256596c">dds::pub::DataWriter&lt; T, DELEGATE &gt;</a>
+, <a class="el" href="classdds_1_1sub_1_1_data_reader_1_1_manipulator_selector.html#ade7e89e184fe66f199976a74a97d2173">dds::sub::DataReader&lt; T, DELEGATE &gt;::ManipulatorSelector</a>
+, <a class="el" href="classdds_1_1core_1_1_t_entity_qos.html#adc813a1a83c94fc989458b4e941de533">dds::core::TEntityQos&lt; DELEGATE &gt;</a>
 , <a class="el" href="classdds_1_1sub_1_1_data_reader_1_1_manipulator_selector.html#a5b0c42fbe0b20a4f1cb56d7e9d42fb32">dds::sub::DataReader&lt; T, DELEGATE &gt;::ManipulatorSelector</a>
 , <a class="el" href="classdds_1_1sub_1_1_data_reader.html#a2a1360f2b3ea5922d88972738a8cce80">dds::sub::DataReader&lt; T, DELEGATE &gt;</a>
 , <a class="el" href="class_data_state.html#a5a59bb04a44b3dbf6a3479fa587c115f">DataState</a>
-, <a class="el" href="classdds_1_1sub_1_1_data_reader_1_1_manipulator_selector.html#ade7e89e184fe66f199976a74a97d2173">dds::sub::DataReader&lt; T, DELEGATE &gt;::ManipulatorSelector</a>
-, <a class="el" href="classdds_1_1pub_1_1_t_publisher.html#aa0757bb7b8314f2687179a3836ab27af">dds::pub::TPublisher&lt; DELEGATE &gt;</a>
-, <a class="el" href="classdds_1_1sub_1_1_data_reader.html#ab155cea1cef7f24ba6e92f2be525c1e9">dds::sub::DataReader&lt; T, DELEGATE &gt;</a>
-, <a class="el" href="classdds_1_1core_1_1_t_entity_qos.html#adc813a1a83c94fc989458b4e941de533">dds::core::TEntityQos&lt; DELEGATE &gt;</a>
-, <a class="el" href="classdds_1_1sub_1_1_data_reader_1_1_manipulator_selector.html#a35fe64153c2a2dc6374ce584659c76ce">dds::sub::DataReader&lt; T, DELEGATE &gt;::ManipulatorSelector</a>
 , <a class="el" href="classdds_1_1sub_1_1_data_reader.html#a3c8c07160aee3a06a137276bfe25f9be">dds::sub::DataReader&lt; T, DELEGATE &gt;</a>
 </li>
 <li>optional()
@@ -321,18 +334,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classdds_1_1core_1_1policy_1_1_t_presentation.html#a5ccd3074d185a4f01f1293ccb9340f2f">dds::core::policy::TPresentation&lt; D &gt;</a>
 </li>
 <li>OutOfResourcesError()
-: <a class="el" href="classdds_1_1core_1_1_out_of_resources_error.html#ad05cc78298776e9414a7d45b034b9b94">dds::core::OutOfResourcesError</a>
+: <a class="el" href="classdds_1_1core_1_1_out_of_resources_error.html#a53f5df9296f4126e184b1b6d3232ab8e">dds::core::OutOfResourcesError</a>
 </li>
 <li>ownership()
-: <a class="el" href="classdds_1_1topic_1_1_t_subscription_builtin_topic_data.html#a1e939b311d568d64bcc788ce01d3b5f7">dds::topic::TSubscriptionBuiltinTopicData&lt; D &gt;</a>
-, <a class="el" href="classdds_1_1topic_1_1_t_publication_builtin_topic_data.html#abfd44e20df23ba9c484c5f79b8b76d6f">dds::topic::TPublicationBuiltinTopicData&lt; D &gt;</a>
+: <a class="el" href="classdds_1_1topic_1_1_t_publication_builtin_topic_data.html#abfd44e20df23ba9c484c5f79b8b76d6f">dds::topic::TPublicationBuiltinTopicData&lt; D &gt;</a>
+, <a class="el" href="classdds_1_1topic_1_1_t_subscription_builtin_topic_data.html#a1e939b311d568d64bcc788ce01d3b5f7">dds::topic::TSubscriptionBuiltinTopicData&lt; D &gt;</a>
 , <a class="el" href="classdds_1_1topic_1_1_t_topic_builtin_topic_data.html#afb992e0bb26b50372ad1f7812aa5e980">dds::topic::TTopicBuiltinTopicData&lt; D &gt;</a>
 </li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 15 2012 15:47:38 for DDS-PSM-C++ by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 15 2012 22:58:34 for DDS-PSM-C++ by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

@@ -488,7 +488,9 @@
             <topic label="delegate" href="classdds_1_1core_1_1_reference.html#a1c51554cd2c88aa386730377fc87356f"/>
             <topic label="delegate" href="classdds_1_1core_1_1_reference.html#a17f8a06f128338a6733e65e8fa665478"/>
             <topic label="is_nil" href="classdds_1_1core_1_1_reference.html#aa848aad5a5553c4b8e388954c3f5bf63"/>
+            <topic label="operator const DELEGATE_REF_T &amp;" href="classdds_1_1core_1_1_reference.html#ae5c019eb285d9786a75620edd0a4ba91"/>
             <topic label="operator DELEGATE_REF_T" href="classdds_1_1core_1_1_reference.html#ab854cd19e4556ca0a9e49d51d6041d34"/>
+            <topic label="operator DELEGATE_REF_T &amp;" href="classdds_1_1core_1_1_reference.html#a6e30d68985ca187b16562617d4a7b9f9"/>
             <topic label="operator!=" href="classdds_1_1core_1_1_reference.html#a1d08e6b9d1a68929182e9182cdf6ce5a"/>
             <topic label="operator!=" href="classdds_1_1core_1_1_reference.html#a9a4b97d71faec882d3228c5ea6fd7117"/>
             <topic label="operator-&gt;" href="classdds_1_1core_1_1_reference.html#a9d7b1e243019f3924745bf708d2ba954"/>
@@ -597,6 +599,8 @@
             <topic label="~Value" href="classdds_1_1core_1_1_value.html#a92bfa2b84ebde8e9cd81cb91e32ef9ec"/>
             <topic label="delegate" href="classdds_1_1core_1_1_value.html#a8ec96261b909693b7345696101aada12"/>
             <topic label="delegate" href="classdds_1_1core_1_1_value.html#af2abae23fdc886af35667e0aefd9a7a2"/>
+            <topic label="operator const D &amp;" href="classdds_1_1core_1_1_value.html#ae627046f0461e6d35d7ed864a8946f6a"/>
+            <topic label="operator D &amp;" href="classdds_1_1core_1_1_value.html#afaf76517febc957b35b316f8c06dcf12"/>
             <topic label="operator!=" href="classdds_1_1core_1_1_value.html#a9bea3593f947b8d86a07f819e60e83bb"/>
             <topic label="operator-&gt;" href="classdds_1_1core_1_1_value.html#a6cef4b7b7f27c3769c87489bc6b798f7"/>
             <topic label="operator-&gt;" href="classdds_1_1core_1_1_value.html#a948a6f4576c26fe7e44c551a56f4d038"/>
@@ -703,7 +707,8 @@
           </topic>
           <topic label="DataWriter" href="classdds_1_1pub_1_1_data_writer.html">
             <topic label="Listener" href="classdds_1_1pub_1_1_data_writer.html#acad30fd2c1cc23fcd73b9a799743727f"/>
-            <topic label="DataWriter" href="classdds_1_1pub_1_1_data_writer.html#aa5500aa80bc07615474034cceaab3971"/>
+            <topic label="DataWriter" href="classdds_1_1pub_1_1_data_writer.html#ae97634478fb88516bd4193196ed3a412"/>
+            <topic label="DataWriter" href="classdds_1_1pub_1_1_data_writer.html#a59c77dd3d524f44b7ffb6f3fbcc7ee94"/>
             <topic label="~DataWriter" href="classdds_1_1pub_1_1_data_writer.html#aa9bb612ef7c44d59d534f9a0ce348c33"/>
             <topic label="assert_liveliness" href="classdds_1_1pub_1_1_data_writer.html#a906117803b9d584a8320b895e8ca1361"/>
             <topic label="dispose_instance" href="classdds_1_1pub_1_1_data_writer.html#a61492678ada8449bfb2a98869a1a9da0"/>
@@ -866,7 +871,8 @@
             </topic>
             <topic label="DataType" href="classdds_1_1sub_1_1_data_reader.html#a5aa616b2927fd8d4ad234c26ceed13e4"/>
             <topic label="Listener" href="classdds_1_1sub_1_1_data_reader.html#a35c75e4847d5bc95ab72d7c64f2451da"/>
-            <topic label="DataReader" href="classdds_1_1sub_1_1_data_reader.html#a001245998d019ceba7d48cc72e236011"/>
+            <topic label="DataReader" href="classdds_1_1sub_1_1_data_reader.html#adfb0369ca408857cac5a09dd871b1250"/>
+            <topic label="DataReader" href="classdds_1_1sub_1_1_data_reader.html#aa13332a58982c39fe67ecdaa66857bbd"/>
             <topic label="~DataReader" href="classdds_1_1sub_1_1_data_reader.html#aef027249fc2c68406668b1dea512a195"/>
             <topic label="default_filter_state" href="classdds_1_1sub_1_1_data_reader.html#a8408e0a7915d8a706d76daa910f51ca9"/>
             <topic label="default_filter_state" href="classdds_1_1sub_1_1_data_reader.html#a5059da78d72f51793f85e16194d062a2"/>
@@ -2260,7 +2266,9 @@
                   <topic label="delegate" href="classdds_1_1core_1_1_reference.html#a1c51554cd2c88aa386730377fc87356f"/>
                   <topic label="delegate" href="classdds_1_1core_1_1_reference.html#a17f8a06f128338a6733e65e8fa665478"/>
                   <topic label="is_nil" href="classdds_1_1core_1_1_reference.html#aa848aad5a5553c4b8e388954c3f5bf63"/>
+                  <topic label="operator const DELEGATE_REF_T &amp;" href="classdds_1_1core_1_1_reference.html#ae5c019eb285d9786a75620edd0a4ba91"/>
                   <topic label="operator DELEGATE_REF_T" href="classdds_1_1core_1_1_reference.html#ab854cd19e4556ca0a9e49d51d6041d34"/>
+                  <topic label="operator DELEGATE_REF_T &amp;" href="classdds_1_1core_1_1_reference.html#a6e30d68985ca187b16562617d4a7b9f9"/>
                   <topic label="operator!=" href="classdds_1_1core_1_1_reference.html#a1d08e6b9d1a68929182e9182cdf6ce5a"/>
                   <topic label="operator!=" href="classdds_1_1core_1_1_reference.html#a9a4b97d71faec882d3228c5ea6fd7117"/>
                   <topic label="operator-&gt;" href="classdds_1_1core_1_1_reference.html#a9d7b1e243019f3924745bf708d2ba954"/>
@@ -2389,6 +2397,8 @@
                   <topic label="~Value" href="classdds_1_1core_1_1_value.html#a92bfa2b84ebde8e9cd81cb91e32ef9ec"/>
                   <topic label="delegate" href="classdds_1_1core_1_1_value.html#a8ec96261b909693b7345696101aada12"/>
                   <topic label="delegate" href="classdds_1_1core_1_1_value.html#af2abae23fdc886af35667e0aefd9a7a2"/>
+                  <topic label="operator const D &amp;" href="classdds_1_1core_1_1_value.html#ae627046f0461e6d35d7ed864a8946f6a"/>
+                  <topic label="operator D &amp;" href="classdds_1_1core_1_1_value.html#afaf76517febc957b35b316f8c06dcf12"/>
                   <topic label="operator!=" href="classdds_1_1core_1_1_value.html#a9bea3593f947b8d86a07f819e60e83bb"/>
                   <topic label="operator-&gt;" href="classdds_1_1core_1_1_value.html#a6cef4b7b7f27c3769c87489bc6b798f7"/>
                   <topic label="operator-&gt;" href="classdds_1_1core_1_1_value.html#a948a6f4576c26fe7e44c551a56f4d038"/>
@@ -2571,7 +2581,8 @@
               <topic label="DataWriter.hpp" href="_data_writer_8hpp.html">
                 <topic label="DataWriter" href="classdds_1_1pub_1_1_data_writer.html">
                   <topic label="Listener" href="classdds_1_1pub_1_1_data_writer.html#acad30fd2c1cc23fcd73b9a799743727f"/>
-                  <topic label="DataWriter" href="classdds_1_1pub_1_1_data_writer.html#aa5500aa80bc07615474034cceaab3971"/>
+                  <topic label="DataWriter" href="classdds_1_1pub_1_1_data_writer.html#ae97634478fb88516bd4193196ed3a412"/>
+                  <topic label="DataWriter" href="classdds_1_1pub_1_1_data_writer.html#a59c77dd3d524f44b7ffb6f3fbcc7ee94"/>
                   <topic label="~DataWriter" href="classdds_1_1pub_1_1_data_writer.html#aa9bb612ef7c44d59d534f9a0ce348c33"/>
                   <topic label="assert_liveliness" href="classdds_1_1pub_1_1_data_writer.html#a906117803b9d584a8320b895e8ca1361"/>
                   <topic label="dispose_instance" href="classdds_1_1pub_1_1_data_writer.html#a61492678ada8449bfb2a98869a1a9da0"/>
@@ -3004,7 +3015,8 @@
                   </topic>
                   <topic label="DataType" href="classdds_1_1sub_1_1_data_reader.html#a5aa616b2927fd8d4ad234c26ceed13e4"/>
                   <topic label="Listener" href="classdds_1_1sub_1_1_data_reader.html#a35c75e4847d5bc95ab72d7c64f2451da"/>
-                  <topic label="DataReader" href="classdds_1_1sub_1_1_data_reader.html#a001245998d019ceba7d48cc72e236011"/>
+                  <topic label="DataReader" href="classdds_1_1sub_1_1_data_reader.html#adfb0369ca408857cac5a09dd871b1250"/>
+                  <topic label="DataReader" href="classdds_1_1sub_1_1_data_reader.html#aa13332a58982c39fe67ecdaa66857bbd"/>
                   <topic label="~DataReader" href="classdds_1_1sub_1_1_data_reader.html#aef027249fc2c68406668b1dea512a195"/>
                   <topic label="default_filter_state" href="classdds_1_1sub_1_1_data_reader.html#a8408e0a7915d8a706d76daa910f51ca9"/>
                   <topic label="default_filter_state" href="classdds_1_1sub_1_1_data_reader.html#a5059da78d72f51793f85e16194d062a2"/>
