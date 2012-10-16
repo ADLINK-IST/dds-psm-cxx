@@ -143,6 +143,8 @@ Functions</h2></td></tr>
 <tr class="memitem:ac2b9144698c8a2f7143394d6d8e65e76"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedds_1_1topic.html#ac2b9144698c8a2f7143394d6d8e65e76">discover</a> (BinIterator begin)</td></tr>
 <tr class="memitem:a4fc3db98e72102b289bce5455d207931"><td class="memTemplParams" colspan="2">template&lt;typename TOPIC &gt; </td></tr>
 <tr class="memitem:a4fc3db98e72102b289bce5455d207931"><td class="memTemplItemLeft" align="right" valign="top">TOPIC&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedds_1_1topic.html#a4fc3db98e72102b289bce5455d207931">find</a> (const <a class="el" href="namespacedds_1_1domain.html#a3a1911fa3805185eeeee871ad190ee80">dds::domain::DomainParticipant</a> &amp;dp, const std::string &amp;topic_name)</td></tr>
+<tr class="memitem:abb61374545962192e86ba0aef1468b28"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:abb61374545962192e86ba0aef1468b28"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdds_1_1topic_1_1_topic.html">Topic</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedds_1_1topic.html#abb61374545962192e86ba0aef1468b28">get</a> (const <a class="el" href="classdds_1_1topic_1_1_any_topic.html">AnyTopic</a> &amp;at)</td></tr>
 <tr class="memitem:aa19680a38f9c0b05e917142b1128452f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedds_1_1topic.html#aa19680a38f9c0b05e917142b1128452f">ignore</a> (const <a class="el" href="namespacedds_1_1domain.html#a3a1911fa3805185eeeee871ad190ee80">dds::domain::DomainParticipant</a> &amp;dp, const <a class="el" href="namespacedds_1_1core.html#a8ee18acd2002fb15f2650f5c7cb055d0">dds::core::InstanceHandle</a> &amp;handle)</td></tr>
 <tr class="memitem:a9359593a7f780c664b8dd2ca49e4cdea"><td class="memTemplParams" colspan="2">template&lt;typename FwdIterator &gt; </td></tr>
 <tr class="memitem:a9359593a7f780c664b8dd2ca49e4cdea"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedds_1_1topic.html#a9359593a7f780c664b8dd2ca49e4cdea">ignore</a> (const <a class="el" href="namespacedds_1_1domain.html#a3a1911fa3805185eeeee871ad190ee80">dds::domain::DomainParticipant</a> &amp;dp, FwdIterator begin, FwdIterator end)</td></tr>
@@ -311,6 +313,25 @@ template&lt;typename TOPIC &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="abb61374545962192e86ba0aef1468b28"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classdds_1_1topic_1_1_topic.html">Topic</a>&lt;T&gt; dds::topic::get </td>
+          <td>(</td>
+          <td class="paramtype">const AnyTopic &amp;&#160;</td>
+          <td class="paramname"><em>at</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Extracts a typed <code><a class="el" href="classdds_1_1topic_1_1_topic.html">Topic</a></code> from an <code><a class="el" href="classdds_1_1topic_1_1_any_topic.html">AnyTopic</a></code>. </p>
+
+</div>
+</div>
 <a class="anchor" id="aa19680a38f9c0b05e917142b1128452f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -374,7 +395,7 @@ template&lt;typename FwdIterator &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 15 2012 22:58:34 for DDS-PSM-C++ by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Oct 16 2012 13:46:10 for DDS-PSM-C++ by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
