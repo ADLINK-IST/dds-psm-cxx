@@ -59,7 +59,7 @@ public:
 public:
 	TInstanceHandle& operator=(const TInstanceHandle& that);
 
-	bool operator==(const TInstanceHandle& that);
+	bool operator==(const TInstanceHandle& that) const;
 
 
 public:
