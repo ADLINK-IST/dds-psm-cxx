@@ -24,35 +24,44 @@
 #include <dds/topic/detail/AnyTopic.hpp>
 #include <dds/topic/TopicDescription.hpp>
 
-namespace dds { namespace topic {
+namespace dds { 
+  namespace topic {
+    class AnyTopic;
 
-class AnyTopic {
-public:
+  /**
+   * Extracts a typed <code>Topic</code> from an 
+   * <code>AnyTopic</code>.
+   */
     template <typename T>
-    AnyTopic(const dds::topic::Topic<T>& t);
+    Topic<T> get(const AnyTopic& at);
+  }
+}
+class dds::topic::AnyTopic {
+public:
+  template <typename T>
+  AnyTopic(const dds::topic::Topic<T>& t);
 
 
 public:
-     const dds::domain::DomainParticipant& domain_participant() const;
+  const dds::domain::DomainParticipant& domain_participant() const;
 
-     const dds::core::status::InconsistentTopicStatus& inconsistent_topic_status();
+  const dds::core::status::InconsistentTopicStatus& inconsistent_topic_status();
 
-       const dds::topic::qos::TopicQos& qos() const;
+  const dds::topic::qos::TopicQos& qos() const;
 
-       void qos(const dds::topic::qos::TopicQos& q);
+  void qos(const dds::topic::qos::TopicQos& q);
 
 public:
-    template <typename T>
-    const Topic<T>& get();
+  template <typename T>
+  Topic<T> get();
 public:
-    inline const detail::THolderBase* operator->() const;
+  inline const detail::THolderBase* operator->() const;
 
-    detail::THolderBase* operator->();
+  detail::THolderBase* operator->();
 
 private:
-    dds::core::smart_ptr_traits<detail::THolderBase>::ref_type holder_;
+  dds::core::smart_ptr_traits<detail::THolderBase>::ref_type holder_;
 };
 
-}}
 
 #endif /* OMG_DDS_TOPIC_ANY_TOPIC_HPP_ */

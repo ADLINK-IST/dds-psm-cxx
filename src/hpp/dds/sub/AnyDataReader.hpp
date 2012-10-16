@@ -24,8 +24,21 @@
 #include <dds/sub/detail/AnyDataReader.hpp>
 
 
-namespace dds { namespace sub {
-class AnyDataReader {
+namespace dds { 
+  namespace sub {
+
+    class AnyDataReader;
+   
+  /**
+   * Extracts a typed <code>DataReader</code> from an 
+   * <code>AnyDataReader</code>.
+   */
+    template <typename T>
+    DataReader<T> get(const AnyDataReader& adr);
+  }
+}
+
+class dds::sub::AnyDataReader {
 public:
     template <typename T>
     AnyDataReader(const dds::sub::DataReader<T>& dr);
@@ -53,7 +66,5 @@ public:
 private:
     dds::core::smart_ptr_traits<detail::DRHolderBase>::ref_type holder_;
 };
-
-}}
 
 #endif /* OMG_DDS_SUB_ANY_DATA_READER_HPP_ */
