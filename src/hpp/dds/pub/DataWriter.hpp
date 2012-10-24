@@ -28,13 +28,13 @@
 #include <dds/pub/detail/DataWriter.hpp>
 
 namespace dds {
-	namespace pub {
-		template <typename T,
-		template <typename Q> class DELEGATE = dds::pub::detail::DataWriter >
-		class DataWriter;
+namespace pub {
+template <typename T,
+template <typename Q> class DELEGATE = dds::pub::detail::DataWriter >
+class DataWriter;
 
-		template <typename T> class DataWriterListener;
-	}
+template <typename T> class DataWriterListener;
+}
 }
 
 template <typename T, template <typename Q> class DELEGATE>
@@ -49,13 +49,16 @@ public:
 public:
 
 	/**
-	 * Create a <code>DataWriter</code>.
+	 * Create a <code>DataWriter</code>. The QoS will be set to pub.default_datawriter_qos().
 	 *
 	 * @param pub the publisher
 	 * @param topic the <code>Topic</code> associated with this <code>DataWriter</code>
+	 * @param qos the <code>DataWriter</code> qos.
+	 * @param listener the <code>DataWriter</code> listener.
+	 * @param mask the listener event mask.
 	 */
 	DataWriter(const dds::pub::Publisher& pub,
-		   const ::dds::topic::Topic<T>& topic);
+			const ::dds::topic::Topic<T>& topic);
 
 	/**
 	 * Create a <code>DataWriter</code>.
@@ -180,7 +183,7 @@ public:
 	operator <<(DataWriter& (*manipulator)(DataWriter&));
 
 	//==========================================================================
-			//== Instance Management
+	//== Instance Management
 	/**
 	 * Register an instance.
 	 *

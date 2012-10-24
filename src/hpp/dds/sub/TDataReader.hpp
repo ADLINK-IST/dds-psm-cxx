@@ -26,15 +26,15 @@
 #include <dds/sub/DataReaderEventHandler.hpp>
 
 namespace dds {
-	namespace sub {
-		class Query;
+namespace sub {
+class Query;
 
-		template <typename T, template <typename Q> class DELEGATE>
-		class DataReader;
+template <typename T, template <typename Q> class DELEGATE>
+class DataReader;
 
-		template <typename T>
-		class DataReaderListener;
-	}
+template <typename T>
+class DataReaderListener;
+}
 }
 
 template <typename T, template <typename Q> class DELEGATE>
@@ -49,6 +49,8 @@ public:
 	/**
 	 * The <code>Selector</code> class is used by the <code>DataReader</code>
 	 * to compose read operations.
+	 *
+	 * By default the instance is nil,
 	 */
 	class Selector {
 	public:
@@ -120,15 +122,15 @@ public:
 	OMG_DDS_REF_TYPE(DataReader, dds::core::TEntity, DELEGATE<T>)
 
 public:
-
 	/**
-	 * Create a <code>DataReader</code>.
+	 * Create a <code>DataReader</code>. The QoS will be the same as
+	 * "sub.default_datareader_qos()".
 	 *
 	 * @param sub the subscriber owning this <code>DataReader</code>.
 	 * @param topic the topic associated with this <code>DataReader</code>.
 	 */
 	DataReader(const dds::sub::Subscriber& sub,
-		   const ::dds::topic::Topic<T>& topic);
+			const ::dds::topic::Topic<T>& topic);
 	/**
 	 * Create a <code>DataReader</code>.
 	 *
@@ -147,13 +149,16 @@ public:
 #ifdef OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT
 
 	/**
-	 * Create a <code>DataReader</code>.
+	 * Create a <code>DataReader</code> for a <code>ContentFilteredTopic</code>.
+	 * This <code>DataReader</code> will only receive that data that mathes the
+	 * <code>Filter</code> associated with the <code>ContentFilteredTopic</code>.
+	 * The QoS will be set to sub.default_datareader_qos().
 	 *
 	 * @param sub the subscriber owning this <code>DataReader</code>.
 	 * @param topic the content filtered topic.
 	 */
 	DataReader(const dds::sub::Subscriber& sub,
-		   const ::dds::topic::ContentFilteredTopic<T>& topic);
+			const ::dds::topic::ContentFilteredTopic<T>& topic);
 
 	/**
 	 * Create a <code>DataReader</code> for a <code>ContentFilteredTopic</code>.
@@ -167,7 +172,7 @@ public:
 	 * @param mask the event mask associated to the <code>DataReader</code> listener.
 	 */
 	DataReader(const dds::sub::Subscriber& sub,
-		   const ::dds::topic::ContentFilteredTopic<T>& topic,
+			const ::dds::topic::ContentFilteredTopic<T>& topic,
 			const dds::sub::qos::DataReaderQos& qos,
 			dds::sub::DataReaderListener<T>* listener = NULL,
 			const dds::core::status::StatusMask& mask = ::dds::core::status::StatusMask::all());
@@ -175,17 +180,18 @@ public:
 
 #ifdef OMG_DDS_MULTI_TOPIC_SUPPORT
 
-
 	/**
-	 * Create a <code>DataReader</code> for a <code>MultiTopic</code>.
-	 * This <code>DataReader</code> will only receive that data that mathes the
-	 * <code>Filter</code> associated with the <code>ContentFilteredTopic</code>.
-	 *
-	 * @param sub the subscriber owning this <code>DataReader</code>.
-	 * @param topic the multi-topic.
-	 */
-	DataReader(const dds::sub::Subscriber& sub,
-		   const ::dds::topic::MultiTopic<T>& topic);
+		 * Create a <code>DataReader</code> for a <code>MultiTopic</code>.
+		 * This <code>DataReader</code> will only receive that data that mathes the
+		 * <code>Filter</code> associated with the <code>ContentFilteredTopic</code>.
+		 * The QoS will be set to sub.default_datareader_qos().
+		 *
+		 * @param sub the subscriber owning this <code>DataReader</code>.
+		 * @param topic the multi-topic.
+		 */
+		DataReader(const dds::sub::Subscriber& sub,
+				const ::dds::topic::MultiTopic<T>& topic);
+
 
 	/**
 	 * Create a <code>DataReader</code> for a <code>MultiTopic</code>.
@@ -200,7 +206,7 @@ public:
 	 */
 	DataReader(const dds::sub::Subscriber& sub,
 			const ::dds::topic::MultiTopic<T>& topic,
-			const dds::sub::qos::DataReaderQos& qos = sub.default_datareader_qos(),
+			const dds::sub::qos::DataReaderQos& qos,
 			dds::sub::DataReaderListener<T>* listener = NULL,
 			const dds::core::status::StatusMask& mask = ::dds::core::status::StatusMask::all());
 
@@ -338,8 +344,8 @@ public:
 	           .filter_state(state)
 	        .take(sbit);
       </pre>
-     * This shows how samples can be taken by selecting a specific instance,
-     * then filtering by state and content.
+	 * This shows how samples can be taken by selecting a specific instance,
+	 * then filtering by state and content.
 	 */
 	Selector selector();
 

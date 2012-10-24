@@ -19,6 +19,7 @@
  * limitations under the License.
  */
 
+#include <dds/core/conformance.hpp>
 #include <dds/core/types.hpp>
 #include <dds/core/ref_traits.hpp>
 #include <dds/core/cond/StatusCondition.hpp>
@@ -28,11 +29,11 @@
 
 
 namespace dds { namespace topic {
-    template <typename T, template <typename Q> class DELEGATE>
-    class Topic;
+template <typename T, template <typename Q> class DELEGATE>
+class Topic;
 
-    template <typename T>
-    class TopicListener;
+template <typename T>
+class TopicListener;
 } }
 /**
  * Topic is the most basic description of the data to be published and
@@ -55,6 +56,27 @@ public:
 
 	~Topic() {}
 public:
+	/**
+	 * Create a new topic.
+	 *
+	 * @param dp the domain participant on which the topic will be defined.
+	 * @param topic_name the topic's name. The QoS will be set to
+	 *  dp.default_topic_qos().
+	 */
+	Topic(const dds::domain::DomainParticipant& dp,
+			const std::string& topic_name);
+
+	/**
+	 * Create a new topic.The QoS will be set to
+	 *  dp.default_topic_qos().
+	 *
+	 * @param dp the domain participant on which the topic will be defined.
+	 * @param topic_name the topic's name.
+	 * @param type_name the name associated with the topic type.
+	 */
+	Topic(const dds::domain::DomainParticipant& dp,
+			const std::string& topic_name,
+			const std::string& type_name);
 
 	/**
 	 * Create a new topic.
@@ -67,7 +89,7 @@ public:
 	 */
 	Topic(const dds::domain::DomainParticipant& dp,
 			const std::string& topic_name,
-			const dds::topic::qos::TopicQos& qos = dp.default_topic_qos(),
+			const dds::topic::qos::TopicQos& qos,
 			dds::topic::TopicListener<T>* listener = NULL,
 			const dds::core::status::StatusMask& mask = dds::core::status::StatusMask::all());
 
@@ -84,9 +106,45 @@ public:
 	Topic(const dds::domain::DomainParticipant& dp,
 			const std::string& topic_name,
 			const std::string& type_name,
-			const dds::topic::qos::TopicQos& qos = dp.default_topic_qos(),
+			const dds::topic::qos::TopicQos& qos,
 			dds::topic::TopicListener<T>* listener = NULL,
 			const dds::core::status::StatusMask& mask = dds::core::status::StatusMask::all());
+
+#if defined (OMG_DDS_X_TYPE_DYNAMIC_TYPE_SUPPORT)
+	/**
+	 * Create a new topic with a dynamic type description. Notice that in this
+	 * case the data type has to be DynamicData. Thus the Topic type will be
+	 *  <code>Topic<DynamicData></code>
+	 *
+	 * @param dp the domain participant on which the topic will be defined.
+	 * @param topic_name the topic's name. The QoS will be set to
+	 *  dp.default_topic_qos().
+	 *  @param type the topic type
+	 */
+	Topic(const dds::domain::DomainParticipant& dp,
+			const std::string& topic_name,
+			const dds::core::xtypes::DynamicType type);
+
+	/**
+	 Create a new topic with a dynamic type description. Notice that in this
+	 * case the data type has to be DynamicData. Thus the Topic type will be
+	 *  <code>Topic<DynamicData></code>
+	 *
+	 * @param dp the domain participant on which the topic will be defined.
+	 * @param topic_name the topic's name.
+	 * @param type the topic type
+	 * @param qos the topic listener.
+	 * @param listener the topic listener.
+	 * @param mask the listener event mask.
+	 */
+	Topic(const dds::domain::DomainParticipant& dp,
+			const std::string& topic_name,
+			const dds::core::xtypes::DynamicType type
+			const dds::topic::qos::TopicQos& qos,
+			dds::topic::TopicListener<T>* listener = NULL,
+			const dds::core::status::StatusMask& mask = dds::core::status::StatusMask::all());
+
+#endif /* OMG_DDS_X_TYPE_DYNAMIC_TYPE_SUPPORT */
 
 public:
 	/**
@@ -121,8 +179,8 @@ public:
 	 * DomainEntities they apply to is provided in Section 7.1.4.1,
 	 * Communication Status, on page 120.
 	 */
-	 const ::dds::core::status::InconsistentTopicStatus&
-	 inconsistent_topic_status() const;
+	const ::dds::core::status::InconsistentTopicStatus&
+	inconsistent_topic_status() const;
 };
 
 
