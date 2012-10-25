@@ -12,9 +12,9 @@
 #include <dds/topic/detail/Filter.hpp>
 
 namespace dds {
-   namespace topic {
-      typedef TFilter<detail::Filter> Filter;
-   }
+  namespace topic {
+    typedef TFilter<detail::Filter> Filter;
+  }
 }
 
 

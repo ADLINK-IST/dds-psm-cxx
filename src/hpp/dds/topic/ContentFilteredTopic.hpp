@@ -23,8 +23,8 @@
 #include <dds/topic/TContentFilteredTopic.hpp>
 
 namespace dds { namespace topic {
-    template <typename T, template <typename Q> class DELEGATE = dds::topic::detail::ContentFilteredTopic>
-    class ContentFilteredTopic;
+  template <typename T, template <typename Q> class DELEGATE = dds::topic::detail::ContentFilteredTopic>
+  class ContentFilteredTopic;
 } }
 
 #endif /* OMG_DDS_TOPIC_CONTENT_FILTERED_TOPIC_HPP_ */

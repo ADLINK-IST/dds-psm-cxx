@@ -5,7 +5,7 @@
 #include <dds/sub/detail/SampleInfo.hpp>
 
 namespace dds { namespace sub { 
-    typedef detail::SampleInfo SampleInfo;
+  typedef detail::SampleInfo SampleInfo;
 } }
 
 

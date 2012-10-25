@@ -22,7 +22,7 @@ class dds::sub::TSampleInfo : dds::core::Value<DELEGATE> {
 public:
   // Required for containers
   TSampleInfo();
-          
+
 public:
   const dds::core::Time 				timestamp() const;
   const dds::sub::status::DataState 	state() const;
@@ -32,5 +32,5 @@ public:
   dds::core::InstanceHandle 			instance_handle() const;
   dds::core::InstanceHandle 			publication_handle() const;
 };
-    
+
 #endif /* OMG_DDS_SUB_TSAMPLE_INFO_HPP_ */

@@ -23,10 +23,10 @@
 #include <dds/core/Value.hpp>
 
 namespace dds {
-   namespace topic {
-      template<typename D>
-      class TFilter;
-   }
+  namespace topic {
+    template<typename D>
+    class TFilter;
+  }
 }
 
 /**
@@ -36,48 +36,48 @@ namespace dds {
 template<typename D>
 class dds::topic::TFilter: public dds::core::Value<D> {
 public:
-   // Random access iterators
-   typedef typename D::iterator iterator;
-   typedef typename D::const_iterator const_iterator;
+  // Random access iterators
+  typedef typename D::iterator iterator;
+  typedef typename D::const_iterator const_iterator;
 
 public:
-   TFilter(const std::string& query_expression);
+  TFilter(const std::string& query_expression);
 
-   template<typename FWIterator>
-   TFilter(const std::string& query_expression, const FWIterator& params_begin,
-         const FWIterator& params_end);
+  template<typename FWIterator>
+  TFilter(const std::string& query_expression, const FWIterator& params_begin,
+      const FWIterator& params_end);
 
-   TFilter(const std::string& query_expression,
-         const std::vector<std::string>& params);
+  TFilter(const std::string& query_expression,
+      const std::vector<std::string>& params);
 
-   const std::string& expression() const;
+  const std::string& expression() const;
 
-   /**
-    * Provides the begin iterator to the parameter list.
-    */
-   const_iterator begin() const;
+  /**
+   * Provides the begin iterator to the parameter list.
+   */
+  const_iterator begin() const;
 
-   /**
-    * The end iterator to the parameter list.
-    */
-   const_iterator end() const;
+  /**
+   * The end iterator to the parameter list.
+   */
+  const_iterator end() const;
 
-   /**
-    * Provides the begin iterator to the parameter list.
-    */
-   iterator begin();
+  /**
+   * Provides the begin iterator to the parameter list.
+   */
+  iterator begin();
 
-   /**
-    * The end iterator to the parameter list.
-    */
-   iterator end();
+  /**
+   * The end iterator to the parameter list.
+   */
+  iterator end();
 
-   template<typename FWIterator>
-   void parameters(const FWIterator& begin, const FWIterator end);
+  template<typename FWIterator>
+  void parameters(const FWIterator& begin, const FWIterator end);
 
-   void add_parameter(const std::string& param);
+  void add_parameter(const std::string& param);
 
-   uint32_t parameters_length() const;
+  uint32_t parameters_length() const;
 };
 
 #endif /* DDS_TOPIC_TFILTER__HPP_ */

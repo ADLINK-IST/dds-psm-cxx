@@ -22,9 +22,9 @@
 #include <dds/sub/detail/Sample.hpp>
 
 namespace dds {
-	namespace sub {
-		typedef detail::Sample Sample;
-	}
+  namespace sub {
+    typedef detail::Sample Sample;
+  }
 }
 
 #endif /* OMG_DDS_SUB_SAMPLE_HPP_ */

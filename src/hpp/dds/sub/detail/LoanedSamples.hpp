@@ -5,7 +5,7 @@
 #include <foo/bar/sub/LoanedSamples.hpp>
 
 namespace dds { namespace sub { namespace detail {
-    typedef dds::sub::TLoanedSamples
-    class LoanedSamples { };
+  typedef dds::sub::TLoanedSamples
+      class LoanedSamples { };
 } } }
 #endif /* OMG_SUB_DETAIL_LOANED_SAMPLES_HPP_ */

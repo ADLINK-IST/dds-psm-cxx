@@ -23,16 +23,16 @@
 #include <dds/core/Value.hpp>
 
 namespace dds { namespace topic {
-    template <typename D>
-    class TBuiltinTopicKey;
+  template <typename D>
+  class TBuiltinTopicKey;
 } }
 
 template <typename D>
 class dds::topic::TBuiltinTopicKey : public ::dds::core::Value<D> {
 public:
-    typedef typename D::VALUE_T VALUE_T;
+  typedef typename D::VALUE_T VALUE_T;
 public:
-    VALUE_T value() const;
+  VALUE_T value() const;
 };
 
 #endif /* OMG_DDS_TOPIC_TBUILTIN_TOPIC_KEY_HPP_ */

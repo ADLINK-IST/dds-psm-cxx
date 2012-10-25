@@ -30,63 +30,63 @@
  *
  */
 namespace dds {
-   namespace sub {
-      class Query;
-   }
+  namespace sub {
+    class Query;
+  }
 }
 
 class dds::sub::Query: public dds::core::Value<detail::Query> {
 public:
-   typedef detail::Query DELEGATE;
+  typedef detail::Query DELEGATE;
 public:
-   // Random access iterators
-   typedef DELEGATE::iterator iterator;
-   typedef DELEGATE::const_iterator const_iterator;
+  // Random access iterators
+  typedef DELEGATE::iterator iterator;
+  typedef DELEGATE::const_iterator const_iterator;
 
 public:
-   template<typename T>
-   Query(const dds::sub::DataReader<T>& dr, const std::string& query_expression);
+  template<typename T>
+  Query(const dds::sub::DataReader<T>& dr, const std::string& query_expression);
 
-   template<typename T, typename FWIterator>
-   Query(const dds::sub::DataReader<T>& dr, const std::string& query_expression,
-         const FWIterator& params_begin, const FWIterator& params_end);
+  template<typename T, typename FWIterator>
+  Query(const dds::sub::DataReader<T>& dr, const std::string& query_expression,
+      const FWIterator& params_begin, const FWIterator& params_end);
 
-   template<typename T>
-   Query(const dds::sub::DataReader<T>& dr, const std::string& query_expression,
-         const std::vector<std::string>& params);
+  template<typename T>
+  Query(const dds::sub::DataReader<T>& dr, const std::string& query_expression,
+      const std::vector<std::string>& params);
 
-   const std::string& expression() const;
+  const std::string& expression() const;
 
-   void expression(const std::string& expr);
+  void expression(const std::string& expr);
 
-   /**
-    * Provides the begin iterator to the parameter list.
-    */
-   const_iterator begin() const;
+  /**
+   * Provides the begin iterator to the parameter list.
+   */
+  const_iterator begin() const;
 
-   /**
-    * The end iterator to the parameter list.
-    */
-   const_iterator end() const;
+  /**
+   * The end iterator to the parameter list.
+   */
+  const_iterator end() const;
 
-   /**
-    * Provides the begin iterator to the parameter list.
-    */
-   iterator begin();
+  /**
+   * Provides the begin iterator to the parameter list.
+   */
+  iterator begin();
 
-   /**
-    * The end iterator to the parameter list.
-    */
-   iterator end();
+  /**
+   * The end iterator to the parameter list.
+   */
+  iterator end();
 
-   template<typename FWIterator>
-   void parameters(const FWIterator& begin, const FWIterator end);
+  template<typename FWIterator>
+  void parameters(const FWIterator& begin, const FWIterator end);
 
-   void add_parameter(const std::string& param);
+  void add_parameter(const std::string& param);
 
-   uint32_t parameters_length() const;
+  uint32_t parameters_length() const;
 
-   const AnyDataReader& data_reader() const;
+  const AnyDataReader& data_reader() const;
 };
 
 #endif /* DDS_CORE_TQUERY_HPP_ */

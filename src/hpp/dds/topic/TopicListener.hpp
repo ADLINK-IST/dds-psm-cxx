@@ -22,29 +22,29 @@
 
 namespace dds { namespace topic {
 
-template <typename T>
-class TopicListener {
-public:
+  template <typename T>
+  class TopicListener {
+  public:
     virtual ~TopicListener();
 
-public:
+  public:
     virtual void on_inconsistent_topic(
-            Topic<T>& topic,
-            const dds::core::status::InconsistentTopicStatus& status) = 0;
-};
-    
-    
-template <typename T>
-class NoOpTopicListener : public virtual TopicListener<T> {
-public:
+        Topic<T>& topic,
+        const dds::core::status::InconsistentTopicStatus& status) = 0;
+  };
+
+
+  template <typename T>
+  class NoOpTopicListener : public virtual TopicListener<T> {
+  public:
     virtual ~NoOpTopicListener();
 
-public:
+  public:
     virtual void on_inconsistent_topic(
-            Topic<T>& topic,
-            const dds::core::status::InconsistentTopicStatus& status) { }
-};
-    
+        Topic<T>& topic,
+        const dds::core::status::InconsistentTopicStatus& status) { }
+  };
+
 } }
 
 #endif /* OMG_DDS_TOPIC_TOPIC_LISTENER_HPP_ */

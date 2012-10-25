@@ -29,7 +29,7 @@
 #ifdef OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT
 
 namespace dds { namespace sub { namespace cond {
-	class QueryCondition;
+  class QueryCondition;
 } } }
 
 /**
@@ -46,50 +46,50 @@ namespace dds { namespace sub { namespace cond {
  */
 class dds::sub::cond::QueryCondition : public dds::sub::cond::TReadCondition<detail::QueryCondition> {
 public:
-	typedef detail::QueryCondition DELEGATE;
+  typedef detail::QueryCondition DELEGATE;
 public:
-	// Random access iterators
-	typedef DELEGATE::iterator iterator;
-	typedef DELEGATE::const_iterator const_iterator;
+  // Random access iterators
+  typedef DELEGATE::iterator iterator;
+  typedef DELEGATE::const_iterator const_iterator;
 public:
-	// OMG_DDS_REF_TYPE(TQueryCondition, dds::sub::cond::TReadCondition, DELEGATE)
+  // OMG_DDS_REF_TYPE(TQueryCondition, dds::sub::cond::TReadCondition, DELEGATE)
 
-	QueryCondition(const dds::sub::Query& query,
-				   const dds::sub::status::DataState& status);
+  QueryCondition(const dds::sub::Query& query,
+      const dds::sub::status::DataState& status);
 
-	~QueryCondition();
+  ~QueryCondition();
 
 public:
 
-	void expression(const std::string& expr);
-	const std::string& expression();
+  void expression(const std::string& expr);
+  const std::string& expression();
 
-	/**
-	 * Provides the begin iterator to the parameter list.
-	 */
-	const_iterator begin() const;
+  /**
+   * Provides the begin iterator to the parameter list.
+   */
+  const_iterator begin() const;
 
-	/**
-	 * The end iterator to the parameter list.
-	 */
-	const_iterator end() const;
+  /**
+   * The end iterator to the parameter list.
+   */
+  const_iterator end() const;
 
-	/**
-	 * Provides the begin iterator to the parameter list.
-	 */
-	iterator begin();
+  /**
+   * Provides the begin iterator to the parameter list.
+   */
+  iterator begin();
 
-	/**
-	 * The end iterator to the parameter list.
-	 */
-	iterator end();
+  /**
+   * The end iterator to the parameter list.
+   */
+  iterator end();
 
-	template<typename FWIterator>
-	void parameters(const FWIterator& begin, const FWIterator end);
+  template<typename FWIterator>
+  void parameters(const FWIterator& begin, const FWIterator end);
 
-	void add_parameter(const std::string& param);
+  void add_parameter(const std::string& param);
 
-	uint32_t parameters_length() const;
+  uint32_t parameters_length() const;
 };
 
 #endif  // OMG_DDS_CONTENT_SUBSCRIPTION_SUPPORT

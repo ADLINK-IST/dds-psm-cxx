@@ -22,7 +22,7 @@
 #include <dds/topic/detail/BuiltinTopicKey.hpp>
 
 namespace dds { namespace topic {
-    typedef dds::topic::detail::BuiltinTopicKey BuiltinTopicKey;
+  typedef dds::topic::detail::BuiltinTopicKey BuiltinTopicKey;
 } }
 
 

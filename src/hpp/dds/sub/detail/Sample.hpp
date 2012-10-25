@@ -22,11 +22,11 @@
 #include <foo/bar/sub/Sample.hpp>
 
 namespace dds {
-	namespace sub {
-		namespace detail {
-			typedef dds::sub::TSample<foo::bar::sub::Sample> Sample;
-		}
-	}
+  namespace sub {
+    namespace detail {
+      typedef dds::sub::TSample<foo::bar::sub::Sample> Sample;
+    }
+  }
 }
 
 #endif /* OMG_DDS_PUB_DETAIL_SAMPLE_HPP_ */

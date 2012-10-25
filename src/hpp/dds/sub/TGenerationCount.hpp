@@ -4,9 +4,9 @@
 #include <dds/core/Value.hpp>
 
 namespace dds { namespace sub {
-    template <typename DELEGATE>
-    class TGenerationCount;
-  } }
+  template <typename DELEGATE>
+  class TGenerationCount;
+} }
 
 template <typename DELEGATE>
 class dds::sub::TGenerationCount : public dds::core::Value<DELEGATE> {

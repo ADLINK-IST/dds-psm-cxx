@@ -4,7 +4,7 @@
 #include <dds/sub/qos/detail/DataReaderQos.hpp>
 
 namespace dds { namespace sub { namespace qos { 
-    typedef dds::sub::qos::detail::DataReaderQos DataReaderQos;
+  typedef dds::sub::qos::detail::DataReaderQos DataReaderQos;
 } } } 
 
 

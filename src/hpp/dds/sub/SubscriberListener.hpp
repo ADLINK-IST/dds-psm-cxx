@@ -19,27 +19,27 @@
  * limitations under the License.
  */
 
- 
+
 namespace dds { namespace sub {
 
 
-class SubscriberListener : public virtual AnyDataReaderListener {
-public:
+  class SubscriberListener : public virtual AnyDataReaderListener {
+  public:
     virtual ~SubscriberListener();
 
-public:
+  public:
     virtual void on_data_on_readers(Subscriber& sub) = 0;
-};
+  };
 
-class NoOpSubscriberListener :
-    public virtual SubscriberListener,
-    public virtual NoOpAnyDataReaderListener {
-public:
+  class NoOpSubscriberListener :
+  public virtual SubscriberListener,
+  public virtual NoOpAnyDataReaderListener {
+  public:
     virtual ~NoOpSubscriberListener();
 
-public:
+  public:
     virtual void on_data_on_readers(Subscriber& sub);
-};
+  };
 
 } }
 

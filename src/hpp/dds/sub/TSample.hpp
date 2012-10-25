@@ -23,10 +23,10 @@
 #include <dds/sub/SampleInfo.hpp>
 
 namespace dds {
-	namespace sub {
-		template <typename T, template <typename Q> class DELEGATE>
-		class Sample;
-	}
+  namespace sub {
+    template <typename T, template <typename Q> class DELEGATE>
+    class Sample;
+  }
 }
 
 /**
@@ -37,23 +37,23 @@ template <typename T, template <typename Q> class DELEGATE>
 class dds::sub::Sample : public dds::core::Value< DELEGATE<T> >
 {
 public:
-   typedef T DataType;
+  typedef T DataType;
 
 public:
-   /**
-    * Create a sample with invalid data.
-    */
-   Sample() : dds::core::Value< DELEGATE<T> >();
+  /**
+   * Create a sample with invalid data.
+   */
+  Sample() : dds::core::Value< DELEGATE<T> >();
 
-   Sample(const T& data, const SampleInfo& info);
+  Sample(const T& data, const SampleInfo& info);
 
-   Sample(const Sample& other);
+  Sample(const Sample& other);
 
-   const DataType& data() const;
-   void data(const DataType& d);
+  const DataType& data() const;
+  void data(const DataType& d);
 
-   const SampleInfo& info() const;
-   void info(const SampleInfo& i);
+  const SampleInfo& info() const;
+  void info(const SampleInfo& i);
 };
 
 

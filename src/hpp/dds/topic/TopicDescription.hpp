@@ -23,9 +23,9 @@
 #include <dds/topic/TTopicDescription.hpp>
 
 namespace dds { namespace topic {
-    template <typename T,
-    template <typename Q> class DELEGATE = dds::topic::detail::TopicDescription>
-    class TopicDescription;
+  template <typename T,
+  template <typename Q> class DELEGATE = dds::topic::detail::TopicDescription>
+  class TopicDescription;
 } }
 
 

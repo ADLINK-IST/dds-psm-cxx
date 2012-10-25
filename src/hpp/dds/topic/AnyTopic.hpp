@@ -28,10 +28,10 @@ namespace dds {
   namespace topic {
     class AnyTopic;
 
-  /**
-   * Extracts a typed <code>Topic</code> from an 
-   * <code>AnyTopic</code>.
-   */
+    /**
+     * Extracts a typed <code>Topic</code> from an
+     * <code>AnyTopic</code>.
+     */
     template <typename T>
     Topic<T> get(const AnyTopic& at);
   }

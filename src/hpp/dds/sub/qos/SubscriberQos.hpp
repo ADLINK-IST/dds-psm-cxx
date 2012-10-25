@@ -22,7 +22,7 @@
 #include <dds/sub/qos/detail/SubscriberQos.hpp>
 
 namespace dds { namespace sub { namespace qos { 
-    typedef dds::sub::qos::detail::SubscriberQos SubscriberQos;
+  typedef dds::sub::qos::detail::SubscriberQos SubscriberQos;
 } } } 
 
 

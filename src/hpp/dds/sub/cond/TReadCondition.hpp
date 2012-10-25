@@ -23,8 +23,8 @@
 #include <dds/core/cond/TCondition.hpp>
 
 namespace dds { namespace sub { namespace cond {
-   template <typename DELEGATE>
-	class TReadCondition;
+  template <typename DELEGATE>
+  class TReadCondition;
 } } }
 
 /**
@@ -42,25 +42,25 @@ namespace dds { namespace sub { namespace cond {
 template <typename DELEGATE>
 class dds::sub::cond::TReadCondition : public dds::core::cond::TCondition<DELEGATE> {
 public:
-   OMG_DDS_REF_TYPE(TReadCondition, dds::core::cond::TCondition, DELEGATE)
+  OMG_DDS_REF_TYPE(TReadCondition, dds::core::cond::TCondition, DELEGATE)
 
 public:
-	template <typename T>
-	TReadCondition(const dds::sub::DataReader<T>& dr, const dds::sub::status::DataState& status);
+  template <typename T>
+  TReadCondition(const dds::sub::DataReader<T>& dr, const dds::sub::status::DataState& status);
 
-	template <typename T, typename FUN>
-	TReadCondition(const dds::sub::DataReader<T>& dr, const dds::sub::status::DataState& status, const FUN& functor);
+  template <typename T, typename FUN>
+  TReadCondition(const dds::sub::DataReader<T>& dr, const dds::sub::status::DataState& status, const FUN& functor);
 
-    ~TReadCondition();
+  ~TReadCondition();
 
 public:
-    /**
-     * This operation returns the set of sample-states that are taken into
-     * account to determine the trigger_value of the ReadCondition. These are
-     * the sample-states specified when the ReadCondition was created.
-     */
-    const dds::sub::status::DataState state_filter() const;
-    const AnyDataReader& data_reader() const;
+  /**
+   * This operation returns the set of sample-states that are taken into
+   * account to determine the trigger_value of the ReadCondition. These are
+   * the sample-states specified when the ReadCondition was created.
+   */
+  const dds::sub::status::DataState state_filter() const;
+  const AnyDataReader& data_reader() const;
 
 };
 

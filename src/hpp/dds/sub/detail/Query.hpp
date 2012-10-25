@@ -10,11 +10,11 @@
 
 #include <foo/bar/sub/Query.hpp>
 namespace dds {
-   namespace sub {
-      namespace detail {
-         typedef foo::bar::sub::Query Query;
-      }
-   }
+  namespace sub {
+    namespace detail {
+      typedef foo::bar::sub::Query Query;
+    }
+  }
 }
 
 

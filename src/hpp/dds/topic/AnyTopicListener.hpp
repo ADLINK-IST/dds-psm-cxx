@@ -22,27 +22,27 @@
 
 namespace dds { namespace topic {
 
-class AnyTopicListener {
-public:
+  class AnyTopicListener {
+  public:
     virtual ~AnyTopicListener();
 
-public:
+  public:
     virtual void on_inconsistent_topic(
-            AnyTopic& topic,
-            const dds::core::status::InconsistentTopicStatus& status) = 0;
-};
-    
-    
-class NoOpAnyTopicListener : public virtual AnyTopicListener {
-public:
+        AnyTopic& topic,
+        const dds::core::status::InconsistentTopicStatus& status) = 0;
+  };
+
+
+  class NoOpAnyTopicListener : public virtual AnyTopicListener {
+  public:
     virtual ~NoOpAnyTopicListener();
 
-public:
+  public:
     virtual void on_inconsistent_topic(
-            AnyTopic& topic,
-            const dds::core::status::InconsistentTopicStatus& status);
-};
-    
+        AnyTopic& topic,
+        const dds::core::status::InconsistentTopicStatus& status);
+  };
+
 } }
 
 #endif /* OMG_DDS_TOPIC_ANY_TOPIC_LISTENER_HPP_ */

@@ -24,11 +24,11 @@
 #include <dds/sub/cond/detail/ReadCondition.hpp>
 
 namespace dds {
-   namespace sub {
-      namespace cond {
-         typedef detail::ReadCondition ReadCondition;
-      }
-   }
+  namespace sub {
+    namespace cond {
+      typedef detail::ReadCondition ReadCondition;
+    }
+  }
 }
 
 #endif /* OMG_DDS_SUB_COND_READ_CONDITION_HPP_ */

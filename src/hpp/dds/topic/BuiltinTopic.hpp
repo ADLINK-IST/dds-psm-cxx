@@ -23,14 +23,14 @@
 
 namespace dds { namespace topic { 
 
-    typedef dds::topic::detail::ParticipantBuiltinTopicData ParticipantTopicData;
-        
-        
-    typedef dds::topic::detail::TopicBuiltinTopicData TopicBuiltinTopicData;
-        
-    typedef dds::topic::detail::PublicationBuiltinTopicData PublicationBuiltinTopicData;
-        
-    typedef dds::topic::detail::SubscriptionBuiltinTopicData SubscriptionBuiltinTopicData;
+  typedef dds::topic::detail::ParticipantBuiltinTopicData ParticipantTopicData;
+
+
+  typedef dds::topic::detail::TopicBuiltinTopicData TopicBuiltinTopicData;
+
+  typedef dds::topic::detail::PublicationBuiltinTopicData PublicationBuiltinTopicData;
+
+  typedef dds::topic::detail::SubscriptionBuiltinTopicData SubscriptionBuiltinTopicData;
 
 } } 
 
