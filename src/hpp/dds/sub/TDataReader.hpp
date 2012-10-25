@@ -57,9 +57,10 @@ public:
     Selector(DataReader& dr);
 
     Selector& instance(const dds::core::InstanceHandle& h);
-    Selector& next_instance(const dds::core::InstanceHandle& h);
-    Selector& filter_state(const dds::sub::status::DataState& s);
-    Selector& filter_content(const dds::sub::Query& query);
+    Selector& instance(const dds::core::InstanceHandle& h);
+    Selector& state(const dds::sub::status::DataState& s);
+    Selector& content(const dds::sub::Query& query);
+    Selector& max_samples(uint32_t n);
 
     dds::sub::LoanedSamples<T> read();
     dds::sub::LoanedSamples<T> take();
@@ -97,11 +98,11 @@ public:
     bool read_mode();
     void read_mode(bool b);
 
-
+    ManipulatorSelector& max_samples(uint32_t n);
     ManipulatorSelector& instance(const dds::core::InstanceHandle& h);
     ManipulatorSelector& next_instance(const dds::core::InstanceHandle& h);
-    ManipulatorSelector& filter_state(const dds::sub::status::DataState& s);
-    ManipulatorSelector& filter_content(const dds::sub::Query& query);
+    ManipulatorSelector& state(const dds::sub::status::DataState& s);
+    ManipulatorSelector& content(const dds::sub::Query& query);
 
     ManipulatorSelector&
     operator >>(dds::sub::LoanedSamples<T>& samples);
@@ -258,6 +259,8 @@ public:
    * Read all samples using the default filter state. The memory used for
    * storing the sample may be loaned by the middleware thus allowing zero
    * copy operations.
+   * Implementation should strike to makethis read implementation
+   * exception safe.
    */
   LoanedSamples<T> read();
 
@@ -265,6 +268,8 @@ public:
    * Take all samples using the default filter state. The memory used for
    * storing the sample may be loaned by the middleware thus allowing zero
    * copy operations.
+   * Implementation should strike to make this read implementation
+   * exception safe.
    */
   LoanedSamples<T> take();
 
@@ -338,16 +343,16 @@ public:
    *
    * The selector can be used as follows:
 	   <pre>
-	      dr.selector()
+	      dr.select()
 	           .instance(handle)
-	           .filter_content(query)
-	           .filter_state(state)
+	           .content(query)
+	           .state(state)
 	        .take(sbit);
       </pre>
    * This shows how samples can be taken by selecting a specific instance,
    * then filtering by state and content.
    */
-  Selector selector();
+  Selector select();
 
   //========================================================================
   //== Instance Management
