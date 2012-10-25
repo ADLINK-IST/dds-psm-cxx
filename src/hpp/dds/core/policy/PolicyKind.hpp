@@ -24,72 +24,72 @@
 
 namespace dds { namespace core { namespace policy {
 
-namespace OwnershipKind {
-enum Type {
-	SHARED
+  namespace OwnershipKind {
+    enum Type {
+      SHARED
 
 #ifdef  OMG_DDS_OWNERSHIP_SUPPORT
-	,
-	EXCLUSIVE
+      ,
+      EXCLUSIVE
 #endif  // OMG_DDS_OWNERSHIP_SUPPORT
-}; }
+    }; }
 
 
 
-namespace DurabilityKind {
-enum Type {
-	VOLATILE,
-	TRANSIENT_LOCAL
+  namespace DurabilityKind {
+    enum Type {
+      VOLATILE,
+      TRANSIENT_LOCAL
 
 #ifdef  OMG_DDS_PERSISTENCE_SUPPORT
-	,
-	TRANSIENT,
-	PERSISTENT
+      ,
+      TRANSIENT,
+      PERSISTENT
 #endif  // #ifdef  OMG_DDS_PERSISTENCE_SUPPORT
-}; }
+    }; }
 
-namespace PresentationAccessScopeKind  {
-enum Type {
-	INSTANCE,
-	TOPIC
+  namespace PresentationAccessScopeKind  {
+    enum Type {
+      INSTANCE,
+      TOPIC
 
 #ifdef  OMG_DDS_OBJECT_MODEL_SUPPORT
-	,
-	GROUP
+      ,
+      GROUP
 #endif  // OMG_DDS_OBJECT_MODEL_SUPPORT
-}; }
-namespace ReliabilityKind {
-enum Type {
-	BEST_EFFORT,
-	RELIABLE
-}; }
+    }; }
+  namespace ReliabilityKind {
+    enum Type {
+      BEST_EFFORT,
+      RELIABLE
+    }; }
 
-namespace DestinationOrderKind {
-enum Type {
-	BY_RECEPTION_TIMESTAMP,
-	BY_SOURCE_TIMESTAMP
-}; }
+  namespace DestinationOrderKind {
+    enum Type {
+      BY_RECEPTION_TIMESTAMP,
+      BY_SOURCE_TIMESTAMP
+    }; }
 
-namespace HistoryKind {
-enum Type {
-	KEEP_LAST,
-	KEEP_ALL
-};}
+  namespace HistoryKind {
+    enum Type {
+      KEEP_LAST,
+      KEEP_ALL
+    };}
 
-namespace LivelinessKind {
-enum Type {
-	AUTOMATIC,
-	MANUAL_BY_PARTICIPANT,
-	MANUAL_BY_TOPIC
-}; }
+  namespace LivelinessKind {
+    enum Type {
+      AUTOMATIC,
+      MANUAL_BY_PARTICIPANT,
+      MANUAL_BY_TOPIC
+    }; }
 
-namespace TypeConsistencyEnforcementKind {
-enum Type {
-	EXACT_TYPE_TYPE_CONSISTENCY,
-	EXACT_NAME_TYPE_CONSISTENCY,
-	DECLARED_TYPE_CONSISTENCY,
-	ASSIGNABLE_TYPE_CONSISTENCY
-}; }
+  namespace TypeConsistencyEnforcementKind {
+    enum Type {
+      EXACT_TYPE_TYPE_CONSISTENCY,
+      EXACT_NAME_TYPE_CONSISTENCY,
+      DECLARED_TYPE_CONSISTENCY,
+      ASSIGNABLE_TYPE_CONSISTENCY
+    }; }
 
 } } }
 #endif /* OMG_DDS_CORE_POLICY_POLICYKIND_HPP_ */

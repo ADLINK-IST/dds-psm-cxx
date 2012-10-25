@@ -21,9 +21,9 @@
 
 
 namespace dds {
-    namespace core {
-        const int32_t LENGTH_UNLIMITED = -1;
-    }
+  namespace core {
+    const int32_t LENGTH_UNLIMITED = -1;
+  }
 }
 
 #endif  // !defined(OMG_DDS_CORE_LENGTH_UNLIMITED_HPP_)

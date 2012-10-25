@@ -27,91 +27,91 @@
 
 namespace dds { namespace core { namespace status {
 
-template <typename D>
-class TInconsistentTopicStatus : public dds::core::Value<D> {
-public:
+  template <typename D>
+  class TInconsistentTopicStatus : public dds::core::Value<D> {
+  public:
     TInconsistentTopicStatus();
 
-public:
+  public:
     int32_t total_count() const;
     int32_t total_count_change() const;
-};
+  };
 
-template <typename D>
-class TSampleLostStatus : public dds::core::Value<D> {
-public:
+  template <typename D>
+  class TSampleLostStatus : public dds::core::Value<D> {
+  public:
     TSampleLostStatus();
 
-public:
+  public:
     int32_t total_count() const;
     int32_t total_count_change() const;
-};
+  };
 
 
-template <typename D>
-class TSampleRejectedStatus : public dds::core::Value<D> {
-public:
-	TSampleRejectedStatus();
+  template <typename D>
+  class TSampleRejectedStatus : public dds::core::Value<D> {
+  public:
+    TSampleRejectedStatus();
 
-public:
+  public:
     int32_t total_count() const;
     int32_t total_count_change() const;
     const dds::core::status::SampleRejectedState last_reason() const;
     const dds::core::InstanceHandle last_instance_handle() const;
-};
+  };
 
-template <typename D>
-class TLivelinessLostStatus : public dds::core::Value<D> {
-public:
+  template <typename D>
+  class TLivelinessLostStatus : public dds::core::Value<D> {
+  public:
     TLivelinessLostStatus();
 
-public:
+  public:
     int32_t total_count() const;
     int32_t total_count_change() const;
-};
+  };
 
-template <typename D>
-class TLivelinessChangedStatus : public dds::core::Value<D> {
-public:
+  template <typename D>
+  class TLivelinessChangedStatus : public dds::core::Value<D> {
+  public:
     TLivelinessChangedStatus();
 
-public:
+  public:
     int32_t alive_count() const;
     int32_t not_alive_count() const;
     int32_t alive_count_change() const;
     int32_t not_alive_count_change() const;
     const dds::core::InstanceHandle last_publication_handle() const;
-};
+  };
 
-template <typename D>
-class TOfferedDeadlineMissedStatus : public dds::core::Value<D> {
-public:
+  template <typename D>
+  class TOfferedDeadlineMissedStatus : public dds::core::Value<D> {
+  public:
     TOfferedDeadlineMissedStatus();
 
-public:
+  public:
     int32_t total_count() const;
     int32_t total_count_change() const;
     const dds::core::InstanceHandle last_instance_handle() const;
-};
+  };
 
-template <typename D>
-class TRequestedDeadlineMissedStatus : public dds::core::Value<D> {
-public:
+  template <typename D>
+  class TRequestedDeadlineMissedStatus : public dds::core::Value<D> {
+  public:
     TRequestedDeadlineMissedStatus();
-public:
+  public:
     int32_t total_count() const;
     int32_t total_count_change() const;
     const dds::core::InstanceHandle last_instance_handle() const;
-};
+  };
 
 
 
-template <typename D>
-class TOfferedIncompatibleQosStatus : public dds::core::Value<D>{
-public:
+  template <typename D>
+  class TOfferedIncompatibleQosStatus : public dds::core::Value<D>{
+  public:
     TOfferedIncompatibleQosStatus();
 
-public:
+  public:
     int32_t total_count() const;
     int32_t total_count_change() const;
     dds::core::policy::QosPolicyId last_policy_id() const;
@@ -119,47 +119,47 @@ public:
 
     dds::core::policy::QosPolicyCountSeq&
     policies(dds::core::policy::QosPolicyCountSeq& dst) const;
-};
+  };
 
-template <typename D>
-class TRequestedIncompatibleQosStatus : public dds::core::Value<D> {
-public:
+  template <typename D>
+  class TRequestedIncompatibleQosStatus : public dds::core::Value<D> {
+  public:
     TRequestedIncompatibleQosStatus();
 
-public:
+  public:
     int32_t total_count() const;
     int32_t total_count_change() const;
     dds::core::policy::QosPolicyId last_policy_id() const;
     const dds::core::policy::QosPolicyCountSeq policies() const;
     dds::core::policy::QosPolicyCountSeq&
     policies(dds::core::policy::QosPolicyCountSeq& dst) const;
-};
+  };
 
-template <typename D>
-class TPublicationMatchedStatus : public dds::core::Value<D> {
-public:
+  template <typename D>
+  class TPublicationMatchedStatus : public dds::core::Value<D> {
+  public:
     TPublicationMatchedStatus() : dds::core::Value<D>();
 
-public:
+  public:
     int32_t total_count() const;
     int32_t total_count_change() const;
     int32_t current_count() const;
     int32_t current_count_change() const;
     const dds::core::InstanceHandle last_subscription_handle() const;
-};
+  };
 
-template <typename D>
-class TSubscriptionMatchedStatus : public dds::core::Value<D> {
-public:
+  template <typename D>
+  class TSubscriptionMatchedStatus : public dds::core::Value<D> {
+  public:
     TSubscriptionMatchedStatus();
 
-public:
+  public:
     int32_t total_count() const;
     int32_t total_count_change() const;
     int32_t current_count() const;
     int32_t current_count_change() const;
     const dds::core::InstanceHandle last_publication_handle() const;
-};
+  };
 
 } } }/* namespace tdds::core::status */
 

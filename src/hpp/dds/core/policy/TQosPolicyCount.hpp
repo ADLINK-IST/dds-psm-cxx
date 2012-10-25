@@ -23,17 +23,17 @@
 
 namespace dds { namespace core { namespace policy {
 
-template <typename D>
-class TQosPolicyCount : public dds::core::Value<D> {
-public:
+  template <typename D>
+  class TQosPolicyCount : public dds::core::Value<D> {
+  public:
     TQosPolicyCount(QosPolicyId policy_id, int32_t count);
 
     TQosPolicyCount(const TQosPolicyCount& other);
-public:
+  public:
     QosPolicyId policy_id() const;
 
     int32_t count() const;
-};
+  };
 
 } } }
 

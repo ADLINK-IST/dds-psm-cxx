@@ -24,8 +24,8 @@
 
 
 namespace dds { namespace core {
-    typedef dds::core::detail::InstanceHandle InstanceHandle; 
-    typedef std::vector<InstanceHandle> InstanceHandleSeq;
+  typedef dds::core::detail::InstanceHandle InstanceHandle;
+  typedef std::vector<InstanceHandle> InstanceHandleSeq;
 } }
 
 inline std::ostream& operator << (std::ostream& os, const dds::core::InstanceHandle& h);

@@ -23,11 +23,11 @@
 #include <dds/topic/TopicTraits.hpp>
 
 namespace dds { namespace topic {
-    template <typename T, 
-    template <typename Q> class DELEGATE>
-    class TopicDescription;
+  template <typename T,
+  template <typename Q> class DELEGATE>
+  class TopicDescription;
 } }
-    
+
 
 /**
  * TopicDescription represents the fact that both publications and
@@ -40,32 +40,32 @@ namespace dds { namespace topic {
 template <typename T, template <typename Q> class DELEGATE>
 class dds::topic::TopicDescription : public ::dds::core::TEntity< DELEGATE<T> > {
 public:
-    typedef T DataType;
+  typedef T DataType;
 
 public:
-    OMG_DDS_REF_TYPE(TopicDescription, ::dds::core::TEntity, DELEGATE<T>)
+  OMG_DDS_REF_TYPE(TopicDescription, ::dds::core::TEntity, DELEGATE<T>)
 
 public:
-    virtual ~TopicDescription();
+  virtual ~TopicDescription();
 
 public:
-    /**
-     * Get the name used to create the TopicDescription.
-     */
-    const std::string& name() const;
+  /**
+   * Get the name used to create the TopicDescription.
+   */
+  const std::string& name() const;
 
-    /**
-     * The type_name used to create the TopicDescription.
-     */
-    const std::string& type_name() const;
-    
-    const dds::domain::DomainParticipant& domain_participant() const;
+  /**
+   * The type_name used to create the TopicDescription.
+   */
+  const std::string& type_name() const;
+
+  const dds::domain::DomainParticipant& domain_participant() const;
 
 protected:
-    
-    TopicDescription(const dds::domain::DomainParticipant& dp,
-                     const std::string& name, 
-                     const std::string& type_name = dds::topic::topic_type_name<T>::value());
+
+  TopicDescription(const dds::domain::DomainParticipant& dp,
+      const std::string& name,
+      const std::string& type_name = dds::topic::topic_type_name<T>::value());
 };
 
 

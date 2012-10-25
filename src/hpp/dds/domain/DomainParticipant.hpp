@@ -22,7 +22,7 @@
 #include <dds/domain/detail/DomainParticipant.hpp>
 
 namespace dds { namespace domain { 
-    typedef dds::domain::detail::DomainParticipant DomainParticipant;
+  typedef dds::domain::detail::DomainParticipant DomainParticipant;
 } } 
 
 #endif /* OMG_DDS_DOMAIN_DOMAINPARTICIPANT_HPP_ */

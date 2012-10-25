@@ -29,11 +29,11 @@ namespace dds {
   namespace pub {
     class AnyDataWriter;
 
-  /**
-   * Extracts a typed <code>DataWriter</code> from an 
-   * <code>AnyDataWriter</code>.
-   *
-   */
+    /**
+     * Extracts a typed <code>DataWriter</code> from an
+     * <code>AnyDataWriter</code>.
+     *
+     */
     template <typename T>
     DataWriter<T> get(const AnyDataWriter& adw);
   }

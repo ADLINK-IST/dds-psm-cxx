@@ -24,9 +24,9 @@
 
 
 namespace dds {
-   namespace core {
-      typedef TQosProvider<detail::QosProvider> QosProvider;
-   }
+  namespace core {
+    typedef TQosProvider<detail::QosProvider> QosProvider;
+  }
 }
 
 #endif /* OMG_DDS_CORE_QOS_PROVIDER_HPP_ */

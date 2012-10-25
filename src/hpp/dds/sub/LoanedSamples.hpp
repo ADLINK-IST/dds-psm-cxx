@@ -7,10 +7,10 @@
 #include <dds/sub/detail/LoanedSamples.hpp>
 
 namespace dds {
-	namespace sub {
-		template <typename T,
-				  template <typename Q> class DELEGATE = detail::LoanedSamples>
-		class LoanedSamples;
+  namespace sub {
+    template <typename T,
+    template <typename Q> class DELEGATE = detail::LoanedSamples>
+    class LoanedSamples;
   } 
 }
 
@@ -18,7 +18,7 @@ namespace dds {
  * This class encapsulate and automates the management of loaned samples.
  */
 template <typename T,
-	  template <typename Q> class DELEGATE>
+template <typename Q> class DELEGATE>
 class dds::sub::LoanedSamples
 {
 public:
@@ -30,12 +30,12 @@ public:
 
 public:
   LoanedSamples();
-  
+
   /**
    * Implicitly return the loan.
    */
   ~LoanedSamples();
-  
+
 
 public:
   const_iterator begin() const;
@@ -47,7 +47,7 @@ public:
   DELEGATE_REF_T& delegate();
 
   uint32_t length() const;
-  
+
 private:
   DELEGATE_REF_T delegate_;
 };

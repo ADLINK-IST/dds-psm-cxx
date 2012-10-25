@@ -23,12 +23,12 @@
 
 
 namespace dds {
-	namespace core {
-		namespace cond {
-			template <typename DELEGATE>
-			class TGuardCondition;
-		}
-	}
+  namespace core {
+    namespace cond {
+      template <typename DELEGATE>
+      class TGuardCondition;
+    }
+  }
 }
 
 /**
@@ -43,30 +43,30 @@ namespace dds {
 template <typename DELEGATE>
 class dds::core::cond::TGuardCondition : public TCondition<DELEGATE> {
 public:
-    OMG_DDS_REF_TYPE_NODC(TGuardCondition, TCondition, DELEGATE)
+  OMG_DDS_REF_TYPE_NODC(TGuardCondition, TCondition, DELEGATE)
 
 public:
-    TGuardCondition();
+  TGuardCondition();
 
-    ~TGuardCondition();
-
-public:
-
-    /**
-     * Registers a custom handler with this condition.
-     */
-    template <typename Functor>
-    void handler(const Functor& func);
-
-    /**
-     * Resets the handler for this condition. After the invocation of this
-     * method no handler will be registered with this condition.
-     */
-    void reset_handler();
+  ~TGuardCondition();
 
 public:
 
-    void trigger_value(bool value);
+  /**
+   * Registers a custom handler with this condition.
+   */
+  template <typename Functor>
+  void handler(const Functor& func);
+
+  /**
+   * Resets the handler for this condition. After the invocation of this
+   * method no handler will be registered with this condition.
+   */
+  void reset_handler();
+
+public:
+
+  void trigger_value(bool value);
 
 };
 

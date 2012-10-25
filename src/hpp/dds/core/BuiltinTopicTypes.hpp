@@ -14,12 +14,12 @@
 
 #if defined (OMG_DDS_X_TYPES_BUILTIN_TOPIC_TYPES_SUPPORT)
 namespace dds {
-	namespace core {
-	    typedef TBytesTopicType<detail::BytesTopicType> BytesTopicType;
-	    typedef TStringTopicType<detail::StringTopicType> StringTopicType;
-	    typedef TKeyedBytesTopicType<detail::KeyedBytesTopicType> KeyedBytesTopicType;
-	    typedef TKeyedStringTopicType<detail::KeyedStringTopicType> KeyedStringTopicType;
-	}
+  namespace core {
+    typedef TBytesTopicType<detail::BytesTopicType> BytesTopicType;
+    typedef TStringTopicType<detail::StringTopicType> StringTopicType;
+    typedef TKeyedBytesTopicType<detail::KeyedBytesTopicType> KeyedBytesTopicType;
+    typedef TKeyedStringTopicType<detail::KeyedStringTopicType> KeyedStringTopicType;
+  }
 }
 
 #endif

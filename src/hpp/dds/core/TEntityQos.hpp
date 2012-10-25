@@ -23,10 +23,10 @@
 
 
 namespace dds {
-	namespace core {
-		template <typename DELEGATE>
-		class TEntityQos;
-	}
+  namespace core {
+    template <typename DELEGATE>
+    class TEntityQos;
+  }
 }
 
 /* Acts as a container for Qos policies allowing to set and retrieve all
@@ -35,53 +35,53 @@ namespace dds {
 template <typename DELEGATE>
 class dds::core::TEntityQos : public dds::core::Value<DELEGATE> {
 public:
-    TEntityQos();
-    
-    TEntityQos(const TEntityQos& other);
+  TEntityQos();
 
-    template <typename T>
-    TEntityQos(const TEntityQos<T>& qos);
+  TEntityQos(const TEntityQos& other);
 
-public:
-    ~TEntityQos();
+  template <typename T>
+  TEntityQos(const TEntityQos<T>& qos);
 
 public:
-    /**
-     * Generic method for setting a policy applicable to this QoS object.
-     * Available policies depends on the actual instantiation of the template
-     * class, which might be DomainParticipantQos, TopicQos, PublisherQos, etc.
-     *
-     * @param p the policy to be set for this QoS instance.
-     */
-    template <typename POLICY>
-    TEntityQos& policy(const POLICY& p);
+  ~TEntityQos();
 
-    /**
-     * Generic method for obtaining the value set for a specific policy
-     * belonging to this QoS instance.
-     *
-     * @return
-     */
-    template <typename POLICY>
-    const POLICY& policy() const;
+public:
+  /**
+   * Generic method for setting a policy applicable to this QoS object.
+   * Available policies depends on the actual instantiation of the template
+   * class, which might be DomainParticipantQos, TopicQos, PublisherQos, etc.
+   *
+   * @param p the policy to be set for this QoS instance.
+   */
+  template <typename POLICY>
+  TEntityQos& policy(const POLICY& p);
 
-    /**
-     * Generic method for obtaining the value set for a specific policy
-     * belonging to this QoS instance.
-     *
-     * @return
-     */
-    template <typename POLICY>
-    POLICY& policy();
+  /**
+   * Generic method for obtaining the value set for a specific policy
+   * belonging to this QoS instance.
+   *
+   * @return
+   */
+  template <typename POLICY>
+  const POLICY& policy() const;
 
-    template <typename POLICY>
-    TEntityQos& operator << (const POLICY& p);
+  /**
+   * Generic method for obtaining the value set for a specific policy
+   * belonging to this QoS instance.
+   *
+   * @return
+   */
+  template <typename POLICY>
+  POLICY& policy();
 
-    template <typename POLICY>
-    const TEntityQos& operator >> (POLICY& p) const;
+  template <typename POLICY>
+  TEntityQos& operator << (const POLICY& p);
 
-    template <typename T>
-    TEntityQos<DELEGATE>& operator = (const TEntityQos<T>& other);
+  template <typename POLICY>
+  const TEntityQos& operator >> (POLICY& p) const;
+
+  template <typename T>
+  TEntityQos<DELEGATE>& operator = (const TEntityQos<T>& other);
 
 };
 /* namespace tdds / namespace core / namespace qos */

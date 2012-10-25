@@ -22,54 +22,54 @@
 #include <dds/core/types.hpp>
 
 namespace dds {
-	namespace core {
-		class Duration;
-		class Time;
-	}
+  namespace core {
+    class Duration;
+    class Time;
+  }
 }
-    
+
 class dds::core::Time {
 public:
-    static const Time invalid();       // {-1, 0xffffffff}
+  static const Time invalid();       // {-1, 0xffffffff}
 
 public:
-    static const Time from_microsecs(int64_t microseconds);
-    static const Time from_millisecs(int64_t milliseconds);
-    static const Time from_secs(double seconds);
+  static const Time from_microsecs(int64_t microseconds);
+  static const Time from_millisecs(int64_t milliseconds);
+  static const Time from_secs(double seconds);
 
 public:
-	Time();
-    explicit Time(int64_t sec, uint32_t nanosec = 0);
+  Time();
+  explicit Time(int64_t sec, uint32_t nanosec = 0);
 
 public:
-    int64_t sec() const;
-    void    sec(int64_t s);
+  int64_t sec() const;
+  void    sec(int64_t s);
 
-    uint32_t nanosec() const;
-    void     nanosec(uint32_t ns);
-
-public:
-    int compare(const Time& that);
-	bool operator >(const Time& that);
-	bool operator >=(const Time& that);
-
-	bool operator ==(const Time& that);
-
-	bool operator <=(const Time& that);
-	bool operator <(const Time& that);
+  uint32_t nanosec() const;
+  void     nanosec(uint32_t ns);
 
 public:
-    Time& operator+=(const Duration& a_ti);
-    Time& operator-=(const Duration& a_ti);
-    
+  int compare(const Time& that);
+  bool operator >(const Time& that);
+  bool operator >=(const Time& that);
+
+  bool operator ==(const Time& that);
+
+  bool operator <=(const Time& that);
+  bool operator <(const Time& that);
+
 public:
-    int64_t to_millisecs() const;
-    void to_microsecs(int64_t microsec);
-    double to_secs() const;
-    
+  Time& operator+=(const Duration& a_ti);
+  Time& operator-=(const Duration& a_ti);
+
+public:
+  int64_t to_millisecs() const;
+  void to_microsecs(int64_t microsec);
+  double to_secs() const;
+
 private:
-    int64_t sec_;
-    uint32_t nsec_;
+  int64_t sec_;
+  uint32_t nsec_;
 };
 
 // Time arithmetic operators.

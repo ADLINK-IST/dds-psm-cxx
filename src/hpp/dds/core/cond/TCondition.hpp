@@ -23,12 +23,12 @@
 
 
 namespace dds {
-namespace core {
-namespace cond {
-template <typename DELEGATE>
-class TCondition;
-}
-}
+  namespace core {
+    namespace cond {
+      template <typename DELEGATE>
+      class TCondition;
+    }
+  }
 }
 /**
  * A Condition is a root class for all the conditions that may be attached
@@ -40,21 +40,21 @@ class TCondition;
 template <typename DELEGATE>
 class dds::core::cond::TCondition : public dds::core::Reference<DELEGATE> {
 public:
-	OMG_DDS_REF_TYPE(TCondition, dds::core::Reference, DELEGATE)
+  OMG_DDS_REF_TYPE(TCondition, dds::core::Reference, DELEGATE)
 
 public:
-	~TCondition();
+  ~TCondition();
 
 public:
-	/**
-	 * Dispatches the functors that have been registered with the condition.
-	 */
-	void dispatch();
+  /**
+   * Dispatches the functors that have been registered with the condition.
+   */
+  void dispatch();
 
-	/**
-	 * This operation retrieves the trigger_value of the Condition.
-	 */
-	bool trigger_value() const;
+  /**
+   * This operation retrieves the trigger_value of the Condition.
+   */
+  bool trigger_value() const;
 
 };
 

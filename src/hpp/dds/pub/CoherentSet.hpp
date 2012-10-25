@@ -4,7 +4,7 @@
 #include <dds/pub/detail/CoherentSet.hpp>
 
 namespace dds { namespace pub { 
-    typedef dds::pub::detail::CoherentSet CoherentSet;
+  typedef dds::pub::detail::CoherentSet CoherentSet;
 } } 
 
 

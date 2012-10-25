@@ -24,15 +24,15 @@
 namespace dds { namespace domain {
 
 
-/**
-  * This operation retrieves a previously created <code>DomainParticipant</code>
-  * belonging to specified domain_id. If no such DomainParticipant
-  * exists, the operation will return a <it>nil</it> value.
-  *
-  * @param id the domain id
-  */
-OMG_DDS_API
-DomainParticipant find(uint32_t id);
+  /**
+   * This operation retrieves a previously created <code>DomainParticipant</code>
+   * belonging to specified domain_id. If no such DomainParticipant
+   * exists, the operation will return a <it>nil</it> value.
+   *
+   * @param id the domain id
+   */
+  OMG_DDS_API
+  DomainParticipant find(uint32_t id);
 
 } }
 

@@ -27,14 +27,14 @@
 namespace dds { namespace core {
 
 
-/**
- * The <code>Reference</code> class defines the abstract behavior for those
- * type defined as "reference-type" in the DDS-PSM-CXX specification.
- */
-template <typename DELEGATE>
-class Reference
-{
-public:
+  /**
+   * The <code>Reference</code> class defines the abstract behavior for those
+   * type defined as "reference-type" in the DDS-PSM-CXX specification.
+   */
+  template <typename DELEGATE>
+  class Reference
+  {
+  public:
     DECLARE_TYPE_TRAITS(DELEGATE)
 
     /**
@@ -42,7 +42,7 @@ public:
      */
     explicit Reference(dds::core::null_type&);
 
-public:
+  public:
     /**
      * Creates a reference from another.
      *
@@ -60,13 +60,13 @@ public:
 
     explicit Reference(DELEGATE_T* p);
 
-public:
+  public:
     /**
      * Destroys a reference.
      */
     ~Reference();
 
-public:
+  public:
     operator DELEGATE_REF_T() const;
 
     /**
@@ -142,13 +142,13 @@ public:
      */
     bool operator!=(const null_type nil) const;
 
-private:
+  private:
     // -- disallow dynamic allocation for reference types
     void* operator new(size_t);
 
 
 
-public:
+  public:
     /**
      * Returns a reference to the underlying delegate. This can be used
      * to invoke non-standard extensions provided by the DDS implementor.
@@ -205,9 +205,9 @@ public:
 
     operator const DELEGATE_REF_T& () const;
 
-protected:
+  protected:
     DELEGATE_REF_T impl_;
-};
+  };
 
 
 } } /* namespace dds / namespace core */

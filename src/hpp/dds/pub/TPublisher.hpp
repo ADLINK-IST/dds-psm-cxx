@@ -29,10 +29,10 @@
 
 
 namespace dds { namespace pub {
-   template <typename DELEGATE>
-   class TPublisher;
+  template <typename DELEGATE>
+  class TPublisher;
 
-   class PublisherListener;
+  class PublisherListener;
 } }
 
 /**
@@ -46,118 +46,118 @@ namespace dds { namespace pub {
 template <typename DELEGATE>
 class dds::pub::TPublisher : public dds::core::TEntity<DELEGATE> {
 public:
-   typedef dds::pub::PublisherListener                 Listener;
+  typedef dds::pub::PublisherListener                 Listener;
 
 public:
-   OMG_DDS_REF_TYPE(TPublisher, dds::core::TEntity, DELEGATE)
+  OMG_DDS_REF_TYPE(TPublisher, dds::core::TEntity, DELEGATE)
 
 
-   /**
-    * Create a new <code>Publisher</code>.
-    * @param dp the domain participant
-    */
-   TPublisher(const dds::domain::DomainParticipant& dp);
+  /**
+   * Create a new <code>Publisher</code>.
+   * @param dp the domain participant
+   */
+  TPublisher(const dds::domain::DomainParticipant& dp);
 
-   /**
-    * Create a <code>Publisher</code> with the desired QoS policies
-    * and attaches to it the specified PublisherListener.
-    * If the specified QoS policies are not consistent, the operation
-    * will fail and an exception will be thrown.
-    *
-    * @param dp the domain participant.
-    * @param qos the publisher qos policies.
-    * @param listener the publisher listener
-    * @param mask the mask of events notified to the listener.
-    */
-   TPublisher(const dds::domain::DomainParticipant& dp,
-         const dds::pub::qos::PublisherQos& qos,
-         dds::pub::PublisherListener* listener = NULL,
-         const dds::core::status::StatusMask& mask = dds::core::status::StatusMask::all());
+  /**
+   * Create a <code>Publisher</code> with the desired QoS policies
+   * and attaches to it the specified PublisherListener.
+   * If the specified QoS policies are not consistent, the operation
+   * will fail and an exception will be thrown.
+   *
+   * @param dp the domain participant.
+   * @param qos the publisher qos policies.
+   * @param listener the publisher listener
+   * @param mask the mask of events notified to the listener.
+   */
+  TPublisher(const dds::domain::DomainParticipant& dp,
+      const dds::pub::qos::PublisherQos& qos,
+      dds::pub::PublisherListener* listener = NULL,
+      const dds::core::status::StatusMask& mask = dds::core::status::StatusMask::all());
 
-   ~TPublisher();
+  ~TPublisher();
 
-   //==========================================================================
+  //==========================================================================
 
-   /**
-    * Get the publisher qos policies.
-    */
-   const dds::pub::qos::PublisherQos qos() const;
-
-
-   /**
-    * Set the new qos policies for this publisher.
-    *
-    * @param pqos the new publisher QoS
-    */
-   void qos(const dds::pub::qos::PublisherQos& pqos);
+  /**
+   * Get the publisher qos policies.
+   */
+  const dds::pub::qos::PublisherQos qos() const;
 
 
-   /**
-    * Set the new qos policies for this publisher.
-    *
-    * @param pqos the new publisher QoS
-    */
-   TPublisher& operator <<(const dds::pub::qos::PublisherQos& the_qos);
-
-   /**
-    * Get the publisher qos policies.
-    */
-   TPublisher& operator >> (dds::pub::qos::PublisherQos& the_qos);
-
-   /**
-    * This operation sets a default value of the <code>DataWriterQos<\code>
-    * which will be used for newly created <core>DataWriter<code>entities
-    * for which no <code>DataWriterQos</code> is provided in the constructor.
-    * This operation will check that the resulting policies are self consistent;
-    * if they are not, the operation will have no effect and raise an
-    * InconsistentPolicyError.
-    */
-   TPublisher& default_writer_qos(const dds::pub::qos::DataWriterQos& dwqos);
-
-   /**
-    * This operation retrieves the default value of the <code>DataWriterQos<\code>,
-    * that is, the QoS policies which will be used for newly created DataWriter
-    * that don't provide a QoS parameter in the constructor.
-    */
-   dds::pub::qos::DataWriterQos default_writer_qos() const;
-
-   //==========================================================================
-
-   /**
-    * Set/Reset the listener associated with this publisher.
-    * Listener un-registration is performed by setting the listener to NULL.
-    *
-    * @param plistener the publisher listener.
-    */
-   void listener(Listener* plistener,
-         const dds::core::status::StatusMask& event_mask);
-
-   /**
-    * Get the currently registered listener.
-    */
-   Listener* listener() const;
-
-   //==========================================================================
-
-   /**
-    * This operation blocks the calling thread until either all data written
-    * by the reliable DataWriter entities is acknowledged by all matched
-    * reliable DataReader entities, or else the duration specified by the
-    * max_wait parameter elapses, whichever happens first.
-    * A normal return indicates that all the samples written have been
-    * acknowledged by all reliable matched data readers; A TimeoutError
-    * indicates that max_wait elapsed before all the data was acknowledged.
-    */
-   void wait_for_acknowledgments(const dds::core::Duration& timeout);
+  /**
+   * Set the new qos policies for this publisher.
+   *
+   * @param pqos the new publisher QoS
+   */
+  void qos(const dds::pub::qos::PublisherQos& pqos);
 
 
+  /**
+   * Set the new qos policies for this publisher.
+   *
+   * @param pqos the new publisher QoS
+   */
+  TPublisher& operator <<(const dds::pub::qos::PublisherQos& the_qos);
 
-   //==========================================================================
+  /**
+   * Get the publisher qos policies.
+   */
+  TPublisher& operator >> (dds::pub::qos::PublisherQos& the_qos);
 
-   /**
-    * Return the <code>DomainParticipant<code> that owns this Publisher.
-    */
-   const dds::domain::DomainParticipant& participant() const;
+  /**
+   * This operation sets a default value of the <code>DataWriterQos<\code>
+   * which will be used for newly created <core>DataWriter<code>entities
+   * for which no <code>DataWriterQos</code> is provided in the constructor.
+   * This operation will check that the resulting policies are self consistent;
+   * if they are not, the operation will have no effect and raise an
+   * InconsistentPolicyError.
+   */
+  TPublisher& default_writer_qos(const dds::pub::qos::DataWriterQos& dwqos);
+
+  /**
+   * This operation retrieves the default value of the <code>DataWriterQos<\code>,
+   * that is, the QoS policies which will be used for newly created DataWriter
+   * that don't provide a QoS parameter in the constructor.
+   */
+  dds::pub::qos::DataWriterQos default_writer_qos() const;
+
+  //==========================================================================
+
+  /**
+   * Set/Reset the listener associated with this publisher.
+   * Listener un-registration is performed by setting the listener to NULL.
+   *
+   * @param plistener the publisher listener.
+   */
+  void listener(Listener* plistener,
+      const dds::core::status::StatusMask& event_mask);
+
+  /**
+   * Get the currently registered listener.
+   */
+  Listener* listener() const;
+
+  //==========================================================================
+
+  /**
+   * This operation blocks the calling thread until either all data written
+   * by the reliable DataWriter entities is acknowledged by all matched
+   * reliable DataReader entities, or else the duration specified by the
+   * max_wait parameter elapses, whichever happens first.
+   * A normal return indicates that all the samples written have been
+   * acknowledged by all reliable matched data readers; A TimeoutError
+   * indicates that max_wait elapsed before all the data was acknowledged.
+   */
+  void wait_for_acknowledgments(const dds::core::Duration& timeout);
+
+
+
+  //==========================================================================
+
+  /**
+   * Return the <code>DomainParticipant<code> that owns this Publisher.
+   */
+  const dds::domain::DomainParticipant& participant() const;
 
 };
 

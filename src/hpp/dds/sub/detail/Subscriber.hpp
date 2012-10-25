@@ -22,7 +22,7 @@
 #include <dds/sub/TSubscriber.hpp>
 #include <foo/bar/sub/Subscriber.hpp>
 namespace dds { namespace sub { namespace detail {
-    typedef dds::sub::TSubscriber<foo::bar::sub::Subscriber> Subscriber;
+  typedef dds::sub::TSubscriber<foo::bar::sub::Subscriber> Subscriber;
 } } }
 
 
