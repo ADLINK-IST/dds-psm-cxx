@@ -20,6 +20,15 @@ namespace dds {
       return t.end();
     }
 
+    template <typename T> typename T::const_iterator begin(const T& t) {
+          return t.begin();
+        }
+
+        template <typename T> typename T::const_iterator end(const T& t) {
+          return t.end();
+        }
+
+
     /**
      *  @brief A standard container for storing a fixed size sequence of elements.
      *
@@ -206,6 +215,31 @@ namespace dds {
     operator>=(const array<_Tp, _Nm>& __one, const array<_Tp, _Nm>& __two)
     { return !(__one < __two); }
 
+    /// tuple_element
+     template<std::size_t _Int, typename _Tp>
+       class tuple_element;
+
+     template<typename _Tp, std::size_t _Nm>
+       struct tuple_size<array<_Tp, _Nm> >
+       { static const std::size_t value = _Nm; };
+
+     template<typename _Tp, std::size_t _Nm>
+       const std::size_t
+       tuple_size<array<_Tp, _Nm> >::value;
+
+     template<std::size_t _Int, typename _Tp, std::size_t _Nm>
+       struct tuple_element<_Int, array<_Tp, _Nm> >
+       { typedef _Tp type; };
+
+     template<std::size_t _Int, typename _Tp, std::size_t _Nm>
+       inline _Tp&
+       get(array<_Tp, _Nm>& __arr)
+       { return __arr[_Int]; }
+
+     template<std::size_t _Int, typename _Tp, std::size_t _Nm>
+       inline const _Tp&
+       get(const array<_Tp, _Nm>& __arr)
+       { return __arr[_Int]; }
   }
 }
 
