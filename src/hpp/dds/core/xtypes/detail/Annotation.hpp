@@ -7,22 +7,23 @@ namespace dds {
       namespace detail {
         class Annotation { };
 
-        class IdAnnotation { };
+        class IdAnnotation : public  Annotation { };
 
-        class KeyAnnotation { };
+        class KeyAnnotation : public  Annotation { };
 
-        class SharedAnnotation { };
+        class SharedAnnotation : public  Annotation  { };
 
-        class NestedAnnotation { };
+        class NestedAnnotation : public  Annotation  { };
 
-        class ExtensibilityAnnotation { };
+        class ExtensibilityAnnotation : public  Annotation  { };
 
-        class MustUnderstandAnnotation { };
+        class MustUnderstandAnnotation : public  Annotation { };
 
-        class VerbatimAnnotation { };
+        class VerbatimAnnotation : public  Annotation { };
 
-        class BitsetAnnotation { };
-        class BitBoundAnnotation { };
+        class BitsetAnnotation : public  Annotation { };
+
+        class BitBoundAnnotation : public  Annotation  { };
       }
     }
   }

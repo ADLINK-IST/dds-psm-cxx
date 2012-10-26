@@ -42,6 +42,13 @@ public:
       const TStructType& parent,
       const std::vector<MemberType>& members);
 
+  template <typename MemberIter>
+  TStructType(
+        const std::string& name,
+        const TStructType& parent,
+        const MemberIter& begin,
+        const MemberIter& end);
+
   TStructType(
           const std::string& name,
           const TStructType& parent,
@@ -53,19 +60,28 @@ public:
         const TStructType& parent,
         const std::vector<MemberType>& members,
         const std::vector<Annotation>& annotations);
+
+  template <typename AnnotationIter, typename MemberIter>
+  TStructType(
+        const std::string& name,
+        const TStructType& parent,
+        const MemberIter& begin,
+        const MemberIter& end,
+        const AnnotationIter& begin,
+        const AnnotationIter& end);
 public:
   TStructType parent() const;
-  const std::vector<MemberType>& members();
-  const MemberType& member(uint32_t id);
-  const MemberType& member(const std::string& name);
+  const std::vector<MemberType>& members() const;
+  const MemberType& member(uint32_t id) const;
+  const MemberType& member(const std::string& name) const;
 
-  const std::vector<Annotation>& annotations();
+  const std::vector<Annotation>& annotations() const;
 
-  TStructType operator +(const MemberType& member);
-  TStructType operator -(const MemberType& member);
+  TStructType add_member(const MemberType& member) const ;
+  TStructType remove_member(const MemberType& member) const;
 
-  TStructType operator +(const Annotation& annotation);
-  TStructType operator -(const Annotation& annotation);
+  TStructType add_annotation(const Annotation& annotation) const;
+  TStructType remove_annotation(const Annotation& annotation) const;
 };
 
 

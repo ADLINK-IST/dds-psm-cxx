@@ -1,21 +1,37 @@
 #ifndef OMG_DDS_CORE_XTYPES_TANNOTATIONS_HPP_
 #define OMG_DDS_CORE_XTYPES_TANNOTATIONS_HPP_
 
+#include <dds/core/Reference.hpp>
+
 namespace dds {
   namespace core {
     namespace xtypes {
 
-      enum AnnotationKind {
-        ID_ANNOTATION_TYPE,
-        OPTIONAL_ANNOTATION_TYPE,
-        KEY_ANNOTATION_TYPE,
-        SHARED_ANNOTATION_TYPE,
-        NESTED_ANNOTATION_TYPE,
-        EXTENSIBILITY_ANNOTATION_TYPE,
-        MUST_UNDERSTAND_ANNOTATION_TYPE,
-        VERBATIM_ANNOTATION_TYPE,
-        BITSET_ANNOTATION_TYPE
+      struct AnnotationKind_def {
+        enum type {
+          ID_ANNOTATION_TYPE,
+          OPTIONAL_ANNOTATION_TYPE,
+          KEY_ANNOTATION_TYPE,
+          SHARED_ANNOTATION_TYPE,
+          NESTED_ANNOTATION_TYPE,
+          EXTENSIBILITY_ANNOTATION_TYPE,
+          MUST_UNDERSTAND_ANNOTATION_TYPE,
+          VERBATIM_ANNOTATION_TYPE,
+          BITSET_ANNOTATION_TYPE
+        };
       };
+
+      typedef dds::core::safe_enum<AnnotationKind_def> AnnotationKind;
+
+      struct ExtensibilityKind_def {
+        enum type {
+          FINAL,
+          EXTENSIBLE,
+          MUTABLE
+        };
+      };
+      typedef dds::core::safe_enum<ExtensibilityKind_def> ExtensibilityKind;
+
 
       template <typename DELEGATE>
       class TAnnotation;
@@ -50,8 +66,12 @@ namespace dds {
     }
   }
 }
+
 template <typename DELEGATE>
-class dds::core::xtypes::TAnnotation {
+class dds::core::xtypes::TAnnotation : public dds::core::Reference<DELEGATE> {
+public:
+  OMG_DDS_REF_TYPE(TAnnotation, dds::core::Reference, DELEGATE)
+
 public:
   TAnnotation();
 protected:
@@ -84,12 +104,6 @@ public:
 
 template <typename DELEGATE>
 class dds::core::xtypes::TExtensibilityAnnotation : public dds::core::xtypes::TAnnotation<DELEGATE> {
-public:
-  typedef enum {
-    FINAL,
-    EXTENSIBLE,
-    MUTABLE
-  } ExtensibilityKind;
 
 public:
   TExtensibilityAnnotation(ExtensibilityKind xkind);

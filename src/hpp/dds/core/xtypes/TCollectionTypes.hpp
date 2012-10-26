@@ -24,9 +24,9 @@ namespace dds {
 
 template <typename DELEGATE>
 class dds::core::xtypes::TCollectionType : public dds::core::xtypes::TDynamicType<DELEGATE> {
-  enum {
-    UNBOUNDED = 0xFFFFFFFF
-  };
+public:
+    const uint32_t UNBOUNDED = 0xFFFFFFFF;
+
 protected:
   TCollectionType(const std::string& name, TypeKind kind);
 public:

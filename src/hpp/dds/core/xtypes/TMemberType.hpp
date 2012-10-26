@@ -41,7 +41,10 @@ namespace dds {
  * This class represents a dynamic type member.
  */
 template <typename DELEGATE>
-class dds::core::xtypes::TMemberType {
+class dds::core::xtypes::TMemberType : public dds::core::Reference<DELEGATE> {
+public:
+  OMG_DDS_REF_TYPE(TMemberType, dds::core::Reference, DELEGATE)
+
 public:
   TMemberType(const std::string& name, const dds::core::xtypes::DynamicType& type);
 
@@ -49,6 +52,13 @@ public:
       const dds::core::xtypes::DynamicType& type,
       const Annotation& annotation
   );
+
+  template <typename AnnotationIter>
+  TMemberType(const std::string& name,
+          const dds::core::xtypes::DynamicType& type,
+          const AnnotationIter& begin,
+          const AnnotationIter& end);
+
 
   TMemberType(const std::string& name,
         const dds::core::xtypes::DynamicType& type,
@@ -60,8 +70,8 @@ public:
   const dds::core::xtypes::DynamicType& type() const;
 
 public:
-  TMemberType operator +(const Annotation& annotation);
-  TMemberType operator -(const Annotation& annotation);
+  TMemberType add_annotation(const Annotation& annotation);
+  TMemberType remove_annotation(const Annotation& annotation);
 };
 
 #endif /* OMG_DDS_CORE_XTYPES_TMEMBER_TYPE_HPP */

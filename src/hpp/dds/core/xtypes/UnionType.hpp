@@ -17,21 +17,21 @@ namespace dds {
 }
 
 template <typename T, typename DELEGATE>
-class dds::core::xtypes::TUnionType  : public dds::core::xtypes::DynamicType<DELEGATE<T> > {
+class dds::core::xtypes::UnionType  : public dds::core::xtypes::DynamicType<DELEGATE<T> > {
 public:
 
-  TUnionType(
+  UnionType(
       const std::string& name,
       const TPrimitiveType<T>& discriminator_type,
       const std::vector<UnionCase<T> >& cases);
 
-  TUnionType(
+  UnionType(
       const std::string& name,
       const TPrimitiveType<T>& discriminator_type,
       const std::vector<UnionCase<T> >& cases,
       const Annotation& annotation);
 
-  TUnionType(
+  UnionType(
       const std::string& name,
       const TPrimitiveType<T>& discriminator_type,
       const std::vector<UnionCase<T> >& cases,
@@ -39,17 +39,17 @@ public:
 
  public:
 
-   const std::vector<UnionCase<T> >& members();
-   const MemberType& member(uint32_t id);
-   const MemberType& member(const std::string& name);
+   const std::vector<UnionCase<T> >& members() const;
+   const MemberType& member(uint32_t id) const;
+   const MemberType& member(const std::string& name) const;
 
-   const std::vector<Annotation>& annotations();
+   const std::vector<Annotation>& annotations() const;
 
-   TUnionType operator +(const UnionCase<T>& member);
-   TUnionType operator -(const UnionCase<T>& member);
+   UnionType add_member(const UnionCase<T>& member) const;
+   UnionType remove_member(const UnionCase<T>& member) const;
 
-   TUnionType operator +(const Annotation& annotation);
-   TUnionType operator -(const Annotation& annotation);
+   UnionType add_annotation(const Annotation& annotation) const;
+   UnionType remove_annotation(const Annotation& annotation) const;
 
 };
 

@@ -21,7 +21,7 @@
 
 #include <string>
 #include <vector>
-#include <dds/core/detail/conformance.hpp>
+#include <dds/core/conformance.hpp>
 #include <dds/core/Reference.hpp>
 #include <dds/core/xtypes/Annotations.hpp>
 
@@ -54,6 +54,9 @@ namespace dds {
  */
 template <typename DELEGATE>
 class dds::core::xtypes::TDynamicType : public dds::core::Reference<DELEGATE> {
+public:
+  OMG_DDS_REF_TYPE(TDynamicType, dds::core::Reference, DELEGATE)
+
 protected:
   TDynamicType(const std::string& name, TypeKind kind);
   TDynamicType(const std::string& name, TypeKind kind, const Annotation& annotation);
@@ -73,7 +76,7 @@ public:
    */
   const std::string& name() const;
 
-  const std::vector<Annotation>& annotations();
+  const std::vector<Annotation>& annotations() const;
 
 public:
   bool operator == (const DynamicType& that) const;

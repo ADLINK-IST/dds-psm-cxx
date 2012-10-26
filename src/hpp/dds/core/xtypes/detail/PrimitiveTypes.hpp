@@ -9,35 +9,37 @@
 namespace dds {
   namespace core {
     namespace xtypes {
+      // Notice that const char* const is used instead of std::string
+      // to limit initialization issues with ctors.
       template<>
       struct dynamic_type_traits<uint8_t> {
-        static const TypeKind TYPE_ID = UINT_8_TYPE;
-        static const  std::string NAME; // "uint8_t"
+        static const TypeKind TYPE_ID = TypeKind::UINT_8_TYPE;
+        static const  char* const NAME; // "uint8_t"
       };
 
       template<>
       struct dynamic_type_traits<int16_t> {
-        static const TypeKind TYPE_ID = INT_16_TYPE;
-        static const  std::string NAME; // "uint16_t"
+        static const TypeKind TYPE_ID = TypeKind::INT_16_TYPE;
+        static const  char* const NAME; // "uint16_t"
       };
 
 
       template<>
       struct dynamic_type_traits<uint16_t> {
-        static const TypeKind TYPE_ID = UINT_16_TYPE;
-        static const  std::string NAME; // "int16_t"
+        static const TypeKind TYPE_ID = TypeKind::UINT_16_TYPE;
+        static const  char* const NAME; // "int16_t"
       };
 
       template<>
       struct dynamic_type_traits<int32_t> {
-        static const TypeKind TYPE_ID = INT_32_TYPE;
-        static const  std::string NAME; // "int16_t"
+        static const TypeKind TYPE_ID = TypeKind::INT_32_TYPE;
+        static const  char* const NAME; // "int16_t"
       };
 
       template<>
       struct dynamic_type_traits<uint32_t> {
-        static const TypeKind TYPE_ID = UINT_32_TYPE;
-        static const std::string NAME; // "uint32_t"
+        static const TypeKind TYPE_ID = TypeKind::UINT_32_TYPE;
+        static const  char* const NAME; // "uint32_t"
       };
 
     }

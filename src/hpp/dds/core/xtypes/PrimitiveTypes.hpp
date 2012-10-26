@@ -12,7 +12,7 @@ namespace dds {
 
       template <typename T>
       struct dynamic_type_traits {
-        static const TypeKind TYPE_ID = NO_TYPE;
+        static const TypeKind TYPE_ID = TypeKind::NO_TYPE;
         static const std::string NAME;
       };
 
