@@ -20,24 +20,24 @@
  */
 
 #include <dds/core/detail/conformance.hpp>
-
+#include <dds/core/SafeEnumeration.hpp>
 
 namespace dds { namespace core { namespace policy {
 
-  namespace OwnershipKind {
-    enum Type {
+  struct OwnershipKind_def {
+    enum type {
       SHARED
 
 #ifdef  OMG_DDS_OWNERSHIP_SUPPORT
       ,
       EXCLUSIVE
 #endif  // OMG_DDS_OWNERSHIP_SUPPORT
-    }; }
+    };
+  };
+  typedef dds::core::safe_enum<OwnershipKind_def> OwnershipKind;
 
-
-
-  namespace DurabilityKind {
-    enum Type {
+  struct DurabilityKind_def {
+    enum type {
       VOLATILE,
       TRANSIENT_LOCAL
 
@@ -46,9 +46,11 @@ namespace dds { namespace core { namespace policy {
       TRANSIENT,
       PERSISTENT
 #endif  // #ifdef  OMG_DDS_PERSISTENCE_SUPPORT
-    }; }
+    };
+  };
+  typedef dds::core::safe_enum<DurabilityKind_def> DurabilityKind;
 
-  namespace PresentationAccessScopeKind  {
+  struct PresentationAccessScopeKind_def  {
     enum Type {
       INSTANCE,
       TOPIC
@@ -57,39 +59,52 @@ namespace dds { namespace core { namespace policy {
       ,
       GROUP
 #endif  // OMG_DDS_OBJECT_MODEL_SUPPORT
-    }; }
-  namespace ReliabilityKind {
-    enum Type {
+    }; };
+
+
+
+  struct ReliabilityKind_def {
+    enum type {
       BEST_EFFORT,
       RELIABLE
-    }; }
+    };
+  };
+  typedef dds::core::safe_enum<ReliabilityKind_def> ReliabilityKind;
 
-  namespace DestinationOrderKind {
-    enum Type {
+
+  struct DestinationOrderKind_def {
+    enum type {
       BY_RECEPTION_TIMESTAMP,
       BY_SOURCE_TIMESTAMP
-    }; }
+    }; };
 
-  namespace HistoryKind {
-    enum Type {
+  typedef dds::core::safe_enum<DestinationOrderKind_def> DestinationOrderKind;
+
+  struct HistoryKind_def {
+    enum type {
       KEEP_LAST,
       KEEP_ALL
-    };}
+    };};
 
-  namespace LivelinessKind {
-    enum Type {
+  typedef dds::core::safe_enum<HistoryKind_def> HistoryKind;
+
+  struct LivelinessKind_def {
+    enum type {
       AUTOMATIC,
       MANUAL_BY_PARTICIPANT,
       MANUAL_BY_TOPIC
-    }; }
+    }; };
+  typedef dds::core::safe_enum<LivelinessKind_def> LivelinessKind;
 
-  namespace TypeConsistencyEnforcementKind {
-    enum Type {
+  namespace TypeConsistencyEnforcementKind_def {
+    enum type {
       EXACT_TYPE_TYPE_CONSISTENCY,
       EXACT_NAME_TYPE_CONSISTENCY,
       DECLARED_TYPE_CONSISTENCY,
       ASSIGNABLE_TYPE_CONSISTENCY
-    }; }
+    }; };
+
+  typedef dds::core::safe_enum<TypeConsistencyEnforcementKind_def> TypeConsistencyEnforcementKind;
 
 } } }
 #endif /* OMG_DDS_CORE_POLICY_POLICYKIND_HPP_ */
