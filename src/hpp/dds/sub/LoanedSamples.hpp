@@ -17,9 +17,10 @@ namespace dds {
     template <typename T> typename T::iterator begin(T& t);
     template <typename T> typename T::iterator end(T& t);
 
-    template <typename T> typename T::const_iterator begin(const T& t);
-    template <typename T> typename T::const_iterator end(const T& t);
+    template <typename T> typename T::const_iterator cbegin(const T& t);
+    template <typename T> typename T::const_iterator cend(const T& t);
   } 
+
 }
 
 /**
@@ -63,4 +64,11 @@ private:
   DELEGATE_REF_T delegate_;
 };
 
+namespace dds {
+  namespace sub {
+    template <typename T, template <typename Q> class D>
+    void
+    move(LoanedSamples<T, D<T> >& a, LoanedSamples<T, D<T> >& b);
+  }
+}
 #endif /* OMG_DDS_SUB_TLOANED_SAMPLES_HPP_ */
