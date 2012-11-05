@@ -26,6 +26,9 @@ namespace dds { namespace sub {
 
   class AnyDataReaderListener {
   public:
+    typedef ::dds::core::smart_ptr_traits<AnyDataReaderListener>::ref_type ref_type;
+
+  public:
     virtual ~AnyDataReaderListener();
 
   public:

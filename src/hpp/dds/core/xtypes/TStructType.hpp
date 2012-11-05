@@ -11,6 +11,9 @@ namespace dds {
       template <typename DELEGATE>
       class TStructType;
 
+      template <typename DELEGATE>
+      class TStructForwardDeclaration;
+
       template <typename T>
       bool isFinal(const TStructType<T>& s);
 
@@ -25,6 +28,15 @@ namespace dds {
     }
   }
 }
+
+/**
+ * Declares a forward declaration for a struct type.
+ */
+template <typename DELEGATE>
+class dds::core::xtypes::TStructForwardDeclaration : public dds::core::xtypes::DynamicType<DELEGATE> {
+public:
+  TStructForwardDeclaration(const std::string& name);
+};
 
 /**
  * Create a dynamic structure type. If the members don't have Id associated

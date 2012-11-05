@@ -44,7 +44,7 @@ public:
    * @param ls the loaned samples.
    *
    */
-  SharedSamples(LoanedSamples& ls);
+  SharedSamples(LoanedSamples ls);
 
   ~SharedSamples();
 

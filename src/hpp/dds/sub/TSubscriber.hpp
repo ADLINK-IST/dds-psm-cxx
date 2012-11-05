@@ -47,7 +47,7 @@ public:
    *
    * @param dp the domain participant that will own this subscriber.
    */
-  TSubscriber(const ::dds::domain::DomainParticipant& dp)l;
+  TSubscriber(const ::dds::domain::DomainParticipant& dp);
 
   /**
    * Create a <code>Subscriber</code> attached to the given domain participant.

@@ -32,6 +32,9 @@ namespace dds { namespace sub {
 template <typename T>
 class dds::sub::DataReaderListener {
 public:
+  typedef ::dds::core::smart_ptr_traits<DataReaderListener>::ref_type ref_type;
+
+public:
   virtual ~DataReaderListener();
 
 public:
@@ -65,6 +68,9 @@ public:
 
 template <typename T>
 class dds::sub::NoOpDataReaderListener : public virtual DataReaderListener<T> {
+public:
+  typedef ::dds::core::smart_ptr_traits<NoOpDataReaderListener>::ref_type ref_type;
+
 public:
   virtual ~NoOpDataReaderListener();
 

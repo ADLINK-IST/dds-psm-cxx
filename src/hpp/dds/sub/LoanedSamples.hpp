@@ -67,8 +67,8 @@ private:
 namespace dds {
   namespace sub {
     template <typename T, template <typename Q> class D>
-    void
-    move(LoanedSamples<T, D<T> >& a, LoanedSamples<T, D<T> >& b);
+    LoanedSamples<T, D<T> >
+    move(LoanedSamples<T, D<T> >& a);
   }
 }
 #endif /* OMG_DDS_SUB_TLOANED_SAMPLES_HPP_ */

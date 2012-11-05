@@ -23,7 +23,6 @@
 #include <dds/topic/ContentFilteredTopic.hpp>
 #include <dds/topic/TopicInstance.hpp>
 #include <dds/sub/LoanedSamples.hpp>
-#include <dds/sub/DataReaderEventHandler.hpp>
 
 namespace dds {
   namespace sub {
