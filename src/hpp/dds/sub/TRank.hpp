@@ -19,9 +19,9 @@ public:
 
   TRank(int32_t s, int32_t a, int32_t ag);
 
-  int32_t 			absolute_generation() const;
-  inline int32_t 	generation() const;
-  inline int32_t 	sample() const;
+  int32_t       absolute_generation() const;
+  inline int32_t   generation() const;
+  inline int32_t   sample() const;
 };
 
 #endif /* OMG_DDS_SUB_TRANK_HPP_ */

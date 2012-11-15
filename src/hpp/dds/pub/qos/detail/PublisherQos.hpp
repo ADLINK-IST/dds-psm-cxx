@@ -23,7 +23,7 @@
 #include <foo/bar/pub/qos/PublisherQos.hpp>
 
 namespace dds { namespace pub { namespace qos { namespace detail {
-	typedef dds::core::qos::TEntityQos<foo::bar::pub::qos::PublisherQos> PublisherQos;
+  typedef dds::core::qos::TEntityQos<foo::bar::pub::qos::PublisherQos> PublisherQos;
 } } } }
 
 #endif /* OMG_DDS_PUB_QOS_DETAIL_PUBLISER_QOS_HPP_ */

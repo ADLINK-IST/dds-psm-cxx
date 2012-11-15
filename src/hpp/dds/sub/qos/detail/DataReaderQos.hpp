@@ -23,7 +23,7 @@
 #include <foo/bar/sub/qos/DataReaderQos.hpp>
 
 namespace dds { namespace sub { namespace qos { namespace detail {
-	typedef ::dds::core::qos::TEntityQos< ::foo::bar::sub::qos::DataReaderQos> DataReaderQos;
+  typedef ::dds::core::qos::TEntityQos< ::foo::bar::sub::qos::DataReaderQos> DataReaderQos;
 } } } }
 
 

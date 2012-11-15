@@ -27,16 +27,16 @@
 
 
 namespace dds {
-	namespace pub {
+  namespace pub {
 
-    	template <typename T>
-    	class DataWriterListener;
+      template <typename T>
+      class DataWriterListener;
 
-    	namespace detail {
-    		template <typename T>
-    			class DataWriter;
-    	}
-	}
+      namespace detail {
+        template <typename T>
+          class DataWriter;
+      }
+  }
 }
 
 template <typename T>

@@ -25,12 +25,12 @@
 
 
 namespace dds { namespace topic { namespace detail {
-	class TDHolderBase;
+  class TDHolderBase;
 
-	template <typename T>
-	class TDHolder;
+  template <typename T>
+  class TDHolder;
 
-	// Vendors should provide implementation.
+  // Vendors should provide implementation.
 
 } } }
 

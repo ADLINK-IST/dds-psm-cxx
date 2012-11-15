@@ -24,13 +24,13 @@ public:
   TSampleInfo();
 
 public:
-  const dds::core::Time 				timestamp() const;
-  const dds::sub::status::DataState 	state() const;
-  dds::sub::GenerationCount 			generation_count() const;
-  dds::sub::Rank 						rank() const;
-  bool 									valid() const;
-  dds::core::InstanceHandle 			instance_handle() const;
-  dds::core::InstanceHandle 			publication_handle() const;
+  const dds::core::Time         timestamp() const;
+  const dds::sub::status::DataState   state() const;
+  dds::sub::GenerationCount       generation_count() const;
+  dds::sub::Rank             rank() const;
+  bool                   valid() const;
+  dds::core::InstanceHandle       instance_handle() const;
+  dds::core::InstanceHandle       publication_handle() const;
 };
 
 #endif /* OMG_DDS_SUB_TSAMPLE_INFO_HPP_ */

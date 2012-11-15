@@ -23,7 +23,7 @@
 #include <foo/bar/core/policy/QosPolicyCount.hpp>
 
 namespace dds { namespace core { namespace policy { namespace detail {
-	typedef dds::core::policy::TQosPolicyCount<foo::bar::core::policy::QosPolicyCount> QosPolicyCount;
+  typedef dds::core::policy::TQosPolicyCount<foo::bar::core::policy::QosPolicyCount> QosPolicyCount;
 } } } }
 
 #endif /* !defined(OMG_DDS_CORE_POLICY_DETAIL_QOS_POLICY_COUNT_HPP_) */

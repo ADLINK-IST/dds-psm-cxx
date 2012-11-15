@@ -126,7 +126,7 @@ public:
       const dds::core::xtypes::DynamicType type);
 
   /**
-	 Create a new topic with a dynamic type description. Notice that in this
+   Create a new topic with a dynamic type description. Notice that in this
    * case the data type has to be DynamicData. Thus the Topic type will be
    *  <code>Topic<DynamicData></code>
    *

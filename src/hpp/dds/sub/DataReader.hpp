@@ -22,9 +22,9 @@ namespace dds {
     namespace functors {
       typedef dds::sub::functors::detail::MaxSamplesManipulatorFunctor      MaxSamplesManipulatorFunctor;
       typedef dds::sub::functors::detail::ContentFilterManipulatorFunctor   ContentFilterManipulatorFunctor;
-      typedef dds::sub::functors::detail::StateFilterManipulatorFunctor 	StateFilterManipulatorFunctor;
-      typedef dds::sub::functors::detail::InstanceManipulatorFunctor 		InstanceManipulatorFunctor;
-      typedef dds::sub::functors::detail::NextInstanceManipulatorFunctor 	NextInstanceManipulatorFunctor;
+      typedef dds::sub::functors::detail::StateFilterManipulatorFunctor   StateFilterManipulatorFunctor;
+      typedef dds::sub::functors::detail::InstanceManipulatorFunctor     InstanceManipulatorFunctor;
+      typedef dds::sub::functors::detail::NextInstanceManipulatorFunctor   NextInstanceManipulatorFunctor;
     }
   }
 }

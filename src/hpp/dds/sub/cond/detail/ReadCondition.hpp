@@ -9,8 +9,8 @@ namespace dds {
    namespace sub {
       namespace cond {
          namespace detail {
-         	 class ReadCondition;
-         	 // For Implementor to fills in
+            class ReadCondition;
+            // For Implementor to fills in
 
          }
       }

@@ -23,7 +23,7 @@
 #include <foo/bar/topic/qos/TopicQos.hpp>
 
 namespace dds { namespace topic { namespace qos { namespace detail {
-	typedef ::dds::core::qos::TEntityQos< ::foo::bar::topic::qos::TopicQos> TopicQos;
+  typedef ::dds::core::qos::TEntityQos< ::foo::bar::topic::qos::TopicQos> TopicQos;
 } } } }
 
 #endif /* OMG_DDS_TOPIC_QOS_DETAIL_TOPIC_QOS_HPP_ */
