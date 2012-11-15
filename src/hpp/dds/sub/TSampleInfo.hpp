@@ -6,7 +6,7 @@
 #include <dds/sub/GenerationCount.hpp>
 #include <dds/sub/Rank.hpp>
 
-namespace dds { 
+namespace dds {
   namespace sub {
     template <typename DELEGATE>
     class TSampleInfo;

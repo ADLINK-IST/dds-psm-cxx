@@ -28,7 +28,7 @@ namespace dds {
 }
 
 /**
- * This class provides the basic behavior for Value types. 
+ * This class provides the basic behavior for Value types.
  */
 template <typename D>
 class dds::core::Value {

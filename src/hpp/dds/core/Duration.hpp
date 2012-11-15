@@ -84,7 +84,7 @@ namespace dds { namespace core {
      * Returns this <code>Duration</code> in micro-seconds.
      *
      * @return the duration in micro-seconds
-     */    
+     */
     int64_t to_microsecs() const;
 
     /**

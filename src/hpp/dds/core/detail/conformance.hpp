@@ -10,7 +10,7 @@
  *        the corresponding macro to "PARTIAL".
  *      - And implementation with no support for a given profile shall leave
  *        the corresponding macro undefined.
- * 
+ *
  * DDS Minimum Profile support is required of all DDS implementations;
  * therefore no corresponding macro is provided.
  */

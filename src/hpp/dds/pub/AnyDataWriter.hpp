@@ -40,7 +40,7 @@ namespace dds {
 }
 
 /**
- * This class provides an holder for representing a generic DDS 
+ * This class provides an holder for representing a generic DDS
  * <code>DataWriter</code>.
  */
 class dds::pub::AnyDataWriter {

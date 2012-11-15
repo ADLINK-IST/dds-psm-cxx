@@ -19,7 +19,7 @@ namespace dds {
 
     template <typename T> typename T::const_iterator cbegin(const T& t);
     template <typename T> typename T::const_iterator cend(const T& t);
-  } 
+  }
 
 }
 

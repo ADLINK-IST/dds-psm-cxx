@@ -21,7 +21,7 @@
 
 #include <dds/topic/detail/BuiltinTopic.hpp>
 
-namespace dds { namespace topic { 
+namespace dds { namespace topic {
 
   typedef dds::topic::detail::ParticipantBuiltinTopicData ParticipantTopicData;
 
@@ -32,7 +32,7 @@ namespace dds { namespace topic {
 
   typedef dds::topic::detail::SubscriptionBuiltinTopicData SubscriptionBuiltinTopicData;
 
-} } 
+} }
 
 
 #endif /* OMG_DDS_TOPIC_BUILTIN_TOPIC_HPP_ */

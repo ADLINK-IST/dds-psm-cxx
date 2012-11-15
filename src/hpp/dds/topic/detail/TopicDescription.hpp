@@ -30,5 +30,5 @@ namespace dds { namespace topic { namespace detail {
 
     // Vendors should provide implementation.
 } } }
-    
+
 #endif /* OMG_DDS_TOPIC_DETAIL_PARENT_HPP_ */

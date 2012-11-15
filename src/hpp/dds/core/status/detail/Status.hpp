@@ -26,34 +26,34 @@
 namespace dds { namespace core { namespace status { namespace detail {
     typedef dds::core::status::TInconsistentTopicStatus< foo::bar::core::InconsistentTopicStatusImpl >
     InconsistentTopicStatus;
-    
+
     typedef dds::core::status::TLivelinessChangedStatus <foo::bar::core::LivelinessChangedStatusImpl>
     LivelinessChangedStatus;
-    
+
     typedef dds::core::status::TLivelinessLostStatus<foo::bar::core::LivelinessLostStatusImpl>
     LivelinessLostStatus;
-    
+
     typedef dds::core::status::TOfferedDeadlineMissedStatus<foo::bar::core::OfferedDeadlineMissedStatusImpl>
     OfferedDeadlineMissedStatus;
-    
+
     typedef dds::core::status::TOfferedIncompatibleQosStatus<foo::bar::core::OfferedIncompatibleQosStatusImpl>
     OfferedIncompatibleQosStatus;
-    
+
     typedef dds::core::status::TPublicationMatchedStatus<foo::bar::core::PublicationMatchedStatusImpl>
     PublicationMatchedStatus;
-    
+
     typedef dds::core::status::TSampleRejectedStatus< foo::bar::core::SampleRejectedStatusImpl >
     SampleRejectedStatus;
-    
+
     typedef dds::core::status::TRequestedDeadlineMissedStatus<foo::bar::core::RequestedDeadlineMissedStatusImpl>
     RequestedDeadlineMissedStatus;
-    
+
     typedef dds::core::status::TRequestedIncompatibleQosStatus<foo::bar::core::RequestedIncompatibleQosStatusImpl>
     RequestedIncompatibleQosStatus;
-    
+
     typedef dds::core::status::TSampleLostStatus<foo::bar::core::SampleLostStatusImpl>
     SampleLostStatus;
-    
+
     typedef dds::core::status::TSubscriptionMatchedStatus<foo::bar::core::SubscriptionMatchedStatusImpl>
     SubscriptionMatchedStatus;
 } } } } // namespace dds::core::status::detail

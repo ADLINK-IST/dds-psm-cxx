@@ -23,17 +23,17 @@
 #include <dds/topic/TBuiltinTopic.hpp>
 
 namespace dds { namespace topic { namespace detail {
-    
+
     typedef dds::topic::TParticipantBuiltinTopicData<foo::bar::topic::ParticipantBuiltinTopicDataImpl>
     ParticipantBuiltinTopicData;
-    
-    
+
+
     typedef dds::topic::TTopicBuiltinTopicData<foo::bar::topic::TopicBuiltinTopicDataImpl>
     TopicBuiltinTopicData;
-    
+
     typedef dds::topic::TPublicationBuiltinTopicData<foo::bar::topic::PublicationBuiltinTopicDataImpl>
     PublicationBuiltinTopicData;
-    
+
     typedef dds::topic::TSubscriptionBuiltinTopicData<foo::bar::topic::SubscriptionBuiltinTopicDataImpl>
     SubscriptionBuiltinTopicData;
 

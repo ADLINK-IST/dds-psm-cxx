@@ -24,7 +24,7 @@
 #include <dds/sub/detail/AnyDataReader.hpp>
 
 
-namespace dds { 
+namespace dds {
   namespace sub {
 
     class AnyDataReader;
