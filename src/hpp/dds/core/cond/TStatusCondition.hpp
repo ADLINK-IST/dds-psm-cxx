@@ -81,5 +81,3 @@ public:
 };
 
 #endif  /* OMG_DDS_CORE_T_STATUS_CONDITION_HPP_ */
-
-

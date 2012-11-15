@@ -56,4 +56,3 @@ TO dds::core::polymorphic_cast(FROM& from) {
     return to;
 }
 #endif /* OMG_DDS_CORE_DETAIL_REF_TRAITS_H_ */
-

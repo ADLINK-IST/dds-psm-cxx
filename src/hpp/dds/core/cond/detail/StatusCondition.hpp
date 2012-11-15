@@ -34,5 +34,3 @@ namespace dds {
 }
 
 #endif  /* OMG_DDS_CORE_DETAIL_STATUS_CONDITION_HPP_ */
-
-

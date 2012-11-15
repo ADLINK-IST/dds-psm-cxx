@@ -8,4 +8,3 @@ namespace dds { namespace sub {
 } }
 
 #endif /* OMG_DDS_SUB_GENERATION_COUNT_HPP_ */
-

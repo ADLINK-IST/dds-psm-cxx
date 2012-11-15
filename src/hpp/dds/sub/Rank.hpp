@@ -8,5 +8,3 @@ namespace dds { namespace sub {
 } }
 
 #endif /* OMG_DDS_SUB_RANK_HPP_ */
-
-

@@ -217,4 +217,3 @@ template <class D> bool operator == (dds::core::null_type, const dds::core::Refe
 template <class D> bool operator != (dds::core::null_type, const dds::core::Reference<D> & r);
 
 #endif /* OMG_DDS_CORE_REFERENCE_HPP_ */
-

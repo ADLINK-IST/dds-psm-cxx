@@ -46,4 +46,3 @@ namespace  dds { namespace core {
 #include <dds/core/detail/ref_traits.hpp>
 
 #endif /* OMG_DDS_CORE_REF_TRAITS_H_ */
-

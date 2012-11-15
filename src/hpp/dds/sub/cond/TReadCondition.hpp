@@ -66,5 +66,3 @@ public:
 
 
 #endif /* OMG_DDS_SUB_TCOND_READ_CONDITION_HPP_ */
-
-

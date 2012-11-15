@@ -79,4 +79,3 @@ const dds::core::Time operator -(const dds::core::Time& lhs,      const dds::cor
 
 
 #endif /* OMG_DDS_CORE_TIME_HPP_ */
-

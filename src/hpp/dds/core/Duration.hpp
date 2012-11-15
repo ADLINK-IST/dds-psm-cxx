@@ -111,4 +111,3 @@ namespace dds { namespace core {
 
 } } /* namespace dds / namespace core  */
 #endif /* OMG_DDS_CORE_DURATION_HPP_ */
-
