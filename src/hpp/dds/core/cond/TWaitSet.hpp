@@ -244,4 +244,3 @@ public:
 };
 
 #endif /* OMG_TDDS_CORE_WAIT_SET_HPP_ */
-

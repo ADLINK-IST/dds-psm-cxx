@@ -83,4 +83,3 @@ public:
 
 
 #endif /* OMG_TDDS_PUB_COHERENT_SET_HPP_ */
-

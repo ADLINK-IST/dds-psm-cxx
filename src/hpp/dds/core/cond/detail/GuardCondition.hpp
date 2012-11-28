@@ -23,13 +23,13 @@
 #include <foo/bar/core/cond/GuardConditionImpl.hpp>
 
 namespace dds {
-	namespace core {
-		namespace cond {
-			namespace detail {
-				typedef dds::core::cond::TGuardCondition<foo::bar::core::cond::GuardConditionl> GuardCondition;
-			}
-		}
-	}
+  namespace core {
+    namespace cond {
+      namespace detail {
+        typedef dds::core::cond::TGuardCondition<foo::bar::core::cond::GuardConditionl> GuardCondition;
+      }
+    }
+  }
 }
 
 

@@ -750,7 +750,6 @@ namespace dds { namespace core { namespace policy {
   //==============================================================================
 
 
-} } } 
+} } }
 
 #endif /* OMG_TDDS_CORE_POLICY_CORE_POLICY_HPP_ */
-

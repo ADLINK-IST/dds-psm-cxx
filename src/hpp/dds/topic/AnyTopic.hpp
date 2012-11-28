@@ -24,7 +24,7 @@
 #include <dds/topic/detail/AnyTopic.hpp>
 #include <dds/topic/TopicDescription.hpp>
 
-namespace dds { 
+namespace dds {
   namespace topic {
     class AnyTopic;
 

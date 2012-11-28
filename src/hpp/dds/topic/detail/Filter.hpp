@@ -5,7 +5,7 @@
 #include <iterator>
 
 namespace dds { namespace topic { namespace detail {
-	class Filter;
+  class Filter;
     // Vendors should provide implementation.
 
 } } }

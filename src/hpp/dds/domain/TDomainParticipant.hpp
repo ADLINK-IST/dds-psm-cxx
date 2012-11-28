@@ -89,10 +89,10 @@ public:
    * @param id the id of the domain joined by this <code>DomainParticipant</code>.
    * @param qos the QoS settings for this <code>DomainParticipant</code>
    */
-  TDomainParticipant(uint32_t 	                                       id,
-      const dds::domain::qos::DomainParticipantQos& 	qos,
-      dds::domain::DomainParticipantListener*       	listener = NULL,
-      const dds::core::status::StatusMask&          	mask = dds::core::status::StatusMask::all());
+  TDomainParticipant(uint32_t                                          id,
+      const dds::domain::qos::DomainParticipantQos&   qos,
+      dds::domain::DomainParticipantListener*         listener = NULL,
+      const dds::core::status::StatusMask&            mask = dds::core::status::StatusMask::all());
 
 public:
   OMG_DDS_BASIC_REF_TYPE(TDomainParticipant, ::dds::core::TEntity, DELEGATE)

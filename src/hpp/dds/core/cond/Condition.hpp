@@ -26,5 +26,3 @@ namespace dds { namespace core { namespace cond {
 } } }
 
 #endif  /* OMG_DDS_CORE_COND_CONDITION_HPP_ */
-
-

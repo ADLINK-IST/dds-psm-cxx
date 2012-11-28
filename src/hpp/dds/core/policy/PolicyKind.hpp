@@ -96,7 +96,7 @@ namespace dds { namespace core { namespace policy {
     }; };
   typedef dds::core::safe_enum<LivelinessKind_def> LivelinessKind;
 
-  namespace TypeConsistencyEnforcementKind_def {
+  struct TypeConsistencyEnforcementKind_def {
     enum type {
       EXACT_TYPE_TYPE_CONSISTENCY,
       EXACT_NAME_TYPE_CONSISTENCY,

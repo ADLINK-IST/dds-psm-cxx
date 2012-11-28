@@ -112,4 +112,3 @@ public:
 
 
 #endif /* OMG_TDDS_CORE_ENTITY_HPP_ */
-

@@ -15,7 +15,7 @@ public:
   TGenerationCount(int32_t dgc, int32_t nwgc);
 
 public:
-  int32_t 		 disposed() const;
+  int32_t      disposed() const;
   inline int32_t no_writers() const;
 
 };

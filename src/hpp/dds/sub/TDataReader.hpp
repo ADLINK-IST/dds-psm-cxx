@@ -71,7 +71,7 @@ public:
 
     template <typename SamplesFWIterator>
     uint32_t
-    take(SamplesFWIterator sfit,	uint32_t max_samples);
+    take(SamplesFWIterator sfit,  uint32_t max_samples);
 
     // --- Back-Inserting Iterators: --- //
     template <typename SamplesBIIterator>
@@ -341,12 +341,12 @@ public:
    * per-instance selection, content and status filtering.
    *
    * The selector can be used as follows:
-	   <pre>
-	      dr.select()
-	           .instance(handle)
-	           .content(query)
-	           .state(state)
-	        .take(sbit);
+     <pre>
+        dr.select()
+             .instance(handle)
+             .content(query)
+             .state(state)
+          .take(sbit);
       </pre>
    * This shows how samples can be taken by selecting a specific instance,
    * then filtering by state and content.

@@ -9,4 +9,3 @@ namespace dds { namespace sub { namespace detail {
 } } }
 
 #endif /* OMG_DDS_SUB_DETAIL_SAMPLE_INFO_HPP_ */
-
